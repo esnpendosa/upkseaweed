@@ -12,13 +12,30 @@ class SettingForm
     {
         return $schema
             ->components([
-                TextInput::make('key')
-                    ->required(),
-                Textarea::make('value')
-                    ->columnSpanFull(),
-                TextInput::make('type')
+                \Filament\Forms\Components\TextInput::make('key')
                     ->required()
-                    ->default('text'),
+                    ->unique(ignoreRecord: true)
+                    ->helperText('Unique identifier for this setting (e.g., hero_title)'),
+                
+                \Filament\Forms\Components\Select::make('type')
+                    ->options([
+                        'text' => 'Short Text',
+                        'textarea' => 'Long Text / Markdown',
+                    ])
+                    ->required()
+                    ->default('text')
+                    ->live(),
+
+                \Filament\Forms\Components\TextInput::make('value')
+                    ->label('Content (Short)')
+                    ->visible(fn ($get) => $get('type') === 'text')
+                    ->columnSpanFull(),
+
+                \Filament\Forms\Components\Textarea::make('value')
+                    ->label('Content (Long)')
+                    ->visible(fn ($get) => $get('type') === 'textarea')
+                    ->rows(5)
+                    ->columnSpanFull(),
             ]);
     }
 }

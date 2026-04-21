@@ -24,14 +24,12 @@
                 <span class="text-upkgreen text-sm font-medium tracking-wide">{{ __('messages.hero_badge') }}</span>
             </div>
 
-            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-white leading-[1.1] mb-6 animate-fade-in-up">
-                {{ __('messages.hero_h1_line1') }}
-                <span class="block gradient-text">{{ __('messages.hero_h1_line2') }}</span>
-                <span class="block text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-semibold text-gray-300 mt-2">{{ __('messages.hero_h1_line3') }}</span>
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-heading font-extrabold text-white leading-tight mb-8 animate-fade-in-up" style="animation-delay: 0.1s;">
+                {{ \App\Models\Setting::get('hero_title_1', __('messages.hero_h1_line1')) }} <span class="gradient-text">{{ \App\Models\Setting::get('hero_title_2', __('messages.hero_h1_line2')) }}</span>
             </h1>
 
-            <p class="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up" style="animation-delay: 0.2s;">
-                {{ __('messages.hero_subtitle') }}
+            <p class="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto mb-12 animate-fade-in-up" style="animation-delay: 0.2s;">
+                {{ \App\Models\Setting::get('hero_subtitle', __('messages.hero_subtitle')) }}
             </p>
 
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up" style="animation-delay: 0.4s;">
@@ -115,18 +113,18 @@
 <section class="relative py-24 bg-upknavy" id="about">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div class="reveal">
-                <span class="inline-flex items-center gap-2 bg-upkgreen/10 text-upkgreen text-sm font-medium px-4 py-1.5 rounded-full border border-upkgreen/20 mb-6">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <div class="lg:w-1/2 reveal">
+                <span class="inline-block px-4 py-1.5 bg-upkgreen/10 text-upkgreen text-sm font-bold rounded-full border border-upkgreen/20 mb-6 uppercase tracking-widest">
                     {{ __('messages.about_badge') }}
                 </span>
-                <h2 class="text-3xl sm:text-4xl font-heading font-bold text-white mb-6 leading-tight">
-                    {{ __('messages.about_h2_1') }}
-                    <span class="gradient-text"> {{ __('messages.about_h2_2') }} </span>
-                    {{ __('messages.about_h2_3') }}
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-8 leading-tight">
+                    {{ \App\Models\Setting::get('about_title', __('messages.about_h2_1') . ' ' . __('messages.about_h2_2')) }}
                 </h2>
-                <p class="text-gray-400 mb-6 leading-relaxed">{{ __('messages.about_p1') }}</p>
-                <p class="text-gray-400 mb-8 leading-relaxed">{{ __('messages.about_p2') }}</p>
+                <div class="space-y-6 text-gray-400 text-lg leading-relaxed mb-8">
+                    <p>
+                        {{ \App\Models\Setting::get('about_description', __('messages.about_p1')) }}
+                    </p>
+                </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     @foreach([
                         ['about_direct','about_direct_sub'],
@@ -338,13 +336,15 @@
                             </div>
                         </div>
                         <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-xl font-heading font-bold text-white mb-3 group-hover:text-upkgreen transition-colors line-clamp-2">
-                                {{ $article->title }}
-                            </h3>
+                            <a href="{{ route('articles.show', $article->slug) }}" class="group/title">
+                                <h3 class="text-xl font-heading font-bold text-white mb-3 group-hover/title:text-upkgreen transition-colors line-clamp-2">
+                                    {{ $article->title }}
+                                </h3>
+                            </a>
                             <p class="text-sm text-gray-400 mb-6 line-clamp-3 flex-grow">
                                 {{ $article->excerpt ?? Str::limit(strip_tags($article->content), 120) }}
                             </p>
-                            <a href="#" class="inline-flex items-center gap-2 text-upkgreen text-sm font-semibold hover:gap-3 transition-all">
+                            <a href="{{ route('articles.show', $article->slug) }}" class="inline-flex items-center gap-2 text-upkgreen text-sm font-semibold hover:gap-3 transition-all">
                                 {{ __('messages.news_read_more') }}
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                             </a>

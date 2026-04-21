@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     {{-- Dynamic SEO Meta Tags --}}
-    <title>@yield('title', 'UPK Seaweed — Premium Indonesian Seaweed Exporter')</title>
-    <meta name="description" content="@yield('meta_description', 'UPK Seaweed (Ujungpangkah Kulon Marine) — Leading Indonesian B2B seaweed exporter. Premium Cottonii, Spinosum & Gracilaria. ISO & HACCP Certified. FOB/CIF Global Shipping.')">
-    <meta name="keywords" content="seaweed exporter, Indonesian seaweed, Cottonii, Spinosum, Gracilaria, B2B seaweed, dried seaweed supplier, carrageenan raw material">
-    <meta name="author" content="UPK Seaweed - Ujungpangkah Kulon Marine">
+    <title>@yield('title', \App\Models\Setting::get('seo_title', 'UPK Seaweed — Premium Indonesian Seaweed Exporter'))</title>
+    <meta name="description" content="@yield('meta_description', \App\Models\Setting::get('seo_description', 'Leading Indonesian B2B seaweed exporter. Premium quality, ISO & HACCP Certified.'))">
+    <meta name="keywords" content="@yield('meta_keywords', \App\Models\Setting::get('seo_keywords', 'seaweed exporter, Indonesia seaweed, Cottonii supplier'))">
+    <meta name="author" content="{{ \App\Models\Setting::get('site_name', 'UPK Seaweed') }}">
     <meta name="robots" content="index, follow">
 
     {{-- Open Graph --}}
     <meta property="og:type" content="website">
-    <meta property="og:title" content="@yield('title', 'UPK Seaweed — Premium Indonesian Seaweed Exporter')">
-    <meta property="og:description" content="@yield('meta_description', 'Leading Indonesian B2B seaweed exporter. Premium quality, ISO & HACCP Certified.')">
+    <meta property="og:title" content="@yield('title', \App\Models\Setting::get('seo_title', 'UPK Seaweed'))">
+    <meta property="og:description" content="@yield('meta_description', \App\Models\Setting::get('seo_description', 'SEAWEED EXPORTER'))">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:site_name" content="UPK Seaweed">
+    <meta property="og:site_name" content="{{ \App\Models\Setting::get('site_name', 'UPK Seaweed') }}">
 
     {{-- Hreflang Tags for Multi-language SEO --}}
     <link rel="alternate" hreflang="en" href="{{ url('/') }}?lang=en">
@@ -228,6 +228,25 @@
             animation: float 6s ease-in-out infinite;
         }
     </style>
+
+    {{-- Structured Data (JSON-LD) --}}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "{{ \App\Models\Setting::get('site_name', 'UPK Seaweed') }}",
+      "url": "{{ url('/') }}",
+      "logo": "{{ asset('logo.svg') }}",
+      "description": "{{ \App\Models\Setting::get('seo_description') }}",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Pangkahkulon",
+        "addressLocality": "Ujungpangkah",
+        "addressRegion": "Gresik",
+        "addressCountry": "ID"
+      }
+    }
+    </script>
 
     @stack('styles')
 </head>
