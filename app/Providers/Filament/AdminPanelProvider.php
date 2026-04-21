@@ -28,9 +28,14 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
-            ->brandName('UPK Seaweed Admin')
+            ->brandName('UPK Seaweed')
+            ->brandLogo(fn () => view('filament.logo'))
+            ->favicon(asset('favicon.ico'))
+            ->sidebarCollapsible()
+            ->font('Outfit')
             ->colors([
                 'primary' => Color::Emerald,
+                'gray' => Color::Slate,
                 'danger' => Color::Rose,
                 'info' => Color::Blue,
                 'success' => Color::Green,
@@ -44,7 +49,6 @@ class AdminPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
                 AccountWidget::class,
-                FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
