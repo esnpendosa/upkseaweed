@@ -14,8 +14,8 @@
                     </svg>
                 </div>
                 <div>
-                    <span class="text-xl font-heading font-bold text-white tracking-tight">UPK <span class="text-upkgreen">SEAWEED</span></span>
-                    <p class="text-[10px] text-gray-400 tracking-widest uppercase -mt-0.5">Ujungpangkah Kulon Marine</p>
+                    <span class="text-lg font-heading font-bold text-white uppercase leading-none block">{{ __('messages.nav_company_name_line1') }} <span class="text-upkgreen">{{ __('messages.nav_company_name_line2') }}</span></span>
+                    <p class="text-[8px] text-gray-500 tracking-[0.12em] uppercase mt-0.5">{{ __('messages.nav_tagline') }}</p>
                 </div>
             </a>
 
@@ -63,24 +63,31 @@
                          style="display: none;">
                         @php
                             $langs = [
-                                'en' => ['flag'=>'🇺🇸','label'=>'English'],
-                                'id' => ['flag'=>'🇮🇩','label'=>'Bahasa Indonesia'],
-                                'ja' => ['flag'=>'🇯🇵','label'=>'日本語'],
-                                'zh' => ['flag'=>'🇨🇳','label'=>'中文'],
-                                'ko' => ['flag'=>'🇰🇷','label'=>'한국어'],
-                                'ar' => ['flag'=>'🇸🇦','label'=>'العربية'],
-                                'es' => ['flag'=>'🇪🇸','label'=>'Español'],
-                                'fr' => ['flag'=>'🇫🇷','label'=>'Français'],
-                                'de' => ['flag'=>'🇩🇪','label'=>'Deutsch'],
-                                'pt' => ['flag'=>'🇧🇷','label'=>'Português'],
-                                'ru' => ['flag'=>'🇷🇺','label'=>'Русский'],
+                                'en' => ['flag' => '🇺🇸', 'label' => 'English'],
+                                'id' => ['flag' => '🇮🇩', 'label' => 'Indonesia'],
+                                'ja' => ['flag' => '🇯🇵', 'label' => '日本語'],
+                                'zh' => ['flag' => '🇨🇳', 'label' => '中文'],
+                                'ko' => ['flag' => '🇰🇷', 'label' => '한국어'],
+                                'ar' => ['flag' => '🇸🇦', 'label' => 'العربية'],
+                                'es' => ['flag' => '🇪🇸', 'label' => 'Español'],
+                                'fr' => ['flag' => '🇫🇷', 'label' => 'Français'],
+                                'de' => ['flag' => '🇩🇪', 'label' => 'Deutsch'],
+                                'pt' => ['flag' => '🇧🇷', 'label' => 'Português'],
+                                'ru' => ['flag' => '🇷🇺', 'label' => 'Русский'],
+                                'nl' => ['flag' => '🇳🇱', 'label' => 'Nederlands'],
+                                'it' => ['flag' => '🇮🇹', 'label' => 'Italiano'],
+                                'hi' => ['flag' => '🇮🇳', 'label' => 'हिन्दी'],
+                                'th' => ['flag' => '🇹🇭', 'label' => 'ไทย'],
+                                'vi' => ['flag' => '🇻🇳', 'label' => 'Tiếng Việt'],
+                                'ms' => ['flag' => '🇲🇾', 'label' => 'Bahasa Melayu'],
+                                'tr' => ['flag' => '🇹🇷', 'label' => 'Türkçe'],
                             ];
                             $currentLocale = app()->getLocale();
                         @endphp
-                        <div class="py-1 max-h-80 overflow-y-auto">
+                        <div class="py-1 max-h-80 overflow-y-auto custom-scrollbar">
                             @foreach($langs as $code => $lang)
                                 <a href="?lang={{ $code }}"
-                                   class="flex items-center gap-3 px-4 py-2.5 text-sm hover:bg-white/10 transition-colors {{ $currentLocale === $code ? 'text-upkgreen bg-upkgreen/10' : 'text-gray-300' }}"
+                                   class="flex items-center gap-3 px-4 py-2.5 text-sm hover:bg-white/10 transition-colors {{ $currentLocale === $code ? 'text-upkgreen bg-upkgreen/10 font-bold' : 'text-gray-300' }}"
                                    id="lang-{{ $code }}">
                                     <span class="text-base">{{ $lang['flag'] }}</span>
                                     <span>{{ $lang['label'] }}</span>
@@ -134,13 +141,13 @@
 
             {{-- Mobile Language Switcher Grid --}}
             <div class="pt-3 border-t border-white/10">
-                <p class="text-xs text-gray-500 uppercase tracking-wider px-2 mb-2">Language / Bahasa</p>
-                <div class="grid grid-cols-3 gap-2">
+                <p class="text-xs text-gray-500 uppercase tracking-wider px-2 mb-2">Language Selection</p>
+                <div class="grid grid-cols-4 gap-2">
                     @foreach($langs ?? [] as $code => $lang)
                         <a href="?lang={{ $code }}"
-                           class="flex flex-col items-center gap-1 py-2 px-1 rounded-lg text-center transition-all {{ (app()->getLocale() === $code) ? 'bg-upkgreen/20 text-upkgreen' : 'text-gray-400 hover:bg-white/5' }}">
-                            <span class="text-lg">{{ $lang['flag'] }}</span>
-                            <span class="text-[9px] font-medium uppercase">{{ $code }}</span>
+                           class="flex flex-col items-center gap-1 py-3 px-1 rounded-xl text-center transition-all {{ (app()->getLocale() === $code) ? 'bg-upkgreen/20 text-upkgreen ring-1 ring-upkgreen/50' : 'text-gray-400 hover:bg-white/5' }}">
+                            <span class="text-xl">{{ $lang['flag'] }}</span>
+                            <span class="text-[8px] font-bold uppercase">{{ $code }}</span>
                         </a>
                     @endforeach
                 </div>
@@ -148,7 +155,7 @@
 
             {{-- Mobile CTA --}}
             <a href="#contact" @click="mobileMenu = false"
-               class="block text-center px-4 py-3 bg-upkgreen hover:bg-upkgreen-600 text-white text-sm font-semibold rounded-lg transition-all mt-2">
+               class="block text-center px-4 py-3 bg-upkgreen hover:bg-upkgreen-600 text-white text-sm font-semibold rounded-lg transition-all mt-4">
                 {{ __('messages.nav_cta') }}
             </a>
         </div>
@@ -159,17 +166,24 @@
 @php
     if (!isset($langs)) {
         $langs = [
-            'en'=>['flag'=>'🇺🇸','label'=>'English'],
-            'id'=>['flag'=>'🇮🇩','label'=>'Indonesia'],
-            'ja'=>['flag'=>'🇯🇵','label'=>'日本語'],
-            'zh'=>['flag'=>'🇨🇳','label'=>'中文'],
-            'ko'=>['flag'=>'🇰🇷','label'=>'한국어'],
-            'ar'=>['flag'=>'🇸🇦','label'=>'العربية'],
-            'es'=>['flag'=>'🇪🇸','label'=>'Español'],
-            'fr'=>['flag'=>'🇫🇷','label'=>'Français'],
-            'de'=>['flag'=>'🇩🇪','label'=>'Deutsch'],
-            'pt'=>['flag'=>'🇧🇷','label'=>'Português'],
-            'ru'=>['flag'=>'🇷🇺','label'=>'Русский'],
+            'en' => ['flag' => '🇺🇸', 'label' => 'English'],
+            'id' => ['flag' => '🇮🇩', 'label' => 'Indonesia'],
+            'ja' => ['flag' => '🇯🇵', 'label' => '日本語'],
+            'zh' => ['flag' => '🇨🇳', 'label' => '中文'],
+            'ko' => ['flag' => '🇰🇷', 'label' => '한국어'],
+            'ar' => ['flag' => '🇸🇦', 'label' => 'العربية'],
+            'es' => ['flag' => '🇪🇸', 'label' => 'Español'],
+            'fr' => ['flag' => '🇫🇷', 'label' => 'Français'],
+            'de' => ['flag' => '🇩🇪', 'label' => 'Deutsch'],
+            'pt' => ['flag' => '🇧🇷', 'label' => 'Português'],
+            'ru' => ['flag' => '🇷🇺', 'label' => 'Русский'],
+            'nl' => ['flag' => '🇳🇱', 'label' => 'Nederlands'],
+            'it' => ['flag' => '🇮🇹', 'label' => 'Italiano'],
+            'hi' => ['flag' => '🇮🇳', 'label' => 'हिन्दी'],
+            'th' => ['flag' => '🇹🇭', 'label' => 'ไทย'],
+            'vi' => ['flag' => '🇻🇳', 'label' => 'Tiếng Việt'],
+            'ms' => ['flag' => '🇲🇾', 'label' => 'Bahasa Melayu'],
+            'tr' => ['flag' => '🇹🇷', 'label' => 'Türkçe'],
         ];
     }
 @endphp

@@ -2,11 +2,9 @@
 
 namespace App\Filament\Resources\Settings\Tables;
 
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
-use Filament\Tables\Columns\TextColumn;
+use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Actions\EditAction;
 
 class SettingsTable
 {
@@ -14,29 +12,27 @@ class SettingsTable
     {
         return $table
             ->columns([
-                TextColumn::make('key')
-                    ->searchable(),
-                TextColumn::make('type')
-                    ->searchable(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('key')
+                    ->label('Setting Key')
+                    ->fontFamily('mono')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('value')
+                    ->label('Current Value')
+                    ->limit(50)
+                    ->color('gray'),
+                Tables\Columns\TextColumn::make('type')
+                    ->badge()
+                    ->color('info'),
             ])
             ->filters([
                 //
             ])
-            ->recordActions([
+            ->actions([
                 EditAction::make(),
             ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+            ->bulkActions([
+                // Settings usually shouldn't be bulk deleted
             ]);
     }
 }

@@ -2,12 +2,12 @@
 
 namespace App\Filament\Resources\Articles\Tables;
 
+use Filament\Tables;
+use Filament\Tables\Table;
+use Filament\Actions\EditAction;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
-use Filament\Tables\Columns\ImageColumn;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Table;
 
 class ArticlesTable
 {
@@ -15,32 +15,34 @@ class ArticlesTable
     {
         return $table
             ->columns([
-                TextColumn::make('title')
-                    ->searchable(),
-                TextColumn::make('slug')
-                    ->searchable(),
-                ImageColumn::make('image_path'),
-                TextColumn::make('author')
-                    ->searchable(),
-                TextColumn::make('published_at')
-                    ->dateTime()
+                Tables\Columns\ImageColumn::make('image_path')
+                    ->label('Cover')
+                    ->circular()
+                    ->size(40),
+                Tables\Columns\TextColumn::make('title')
+                    ->label('Headline')
+                    ->searchable()
+                    ->sortable()
+                    ->weight('bold')
+                    ->wrap(),
+                Tables\Columns\TextColumn::make('author')
+                    ->label('Written By')
+                    ->searchable()
+                    ->toggleable(),
+                Tables\Columns\TextColumn::make('published_at')
+                    ->label('Published')
+                    ->dateTime('d M Y')
                     ->sortable(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->defaultSort('published_at', 'desc')
             ->filters([
                 //
             ])
-            ->recordActions([
+            ->actions([
                 EditAction::make(),
+                DeleteAction::make(),
             ])
-            ->toolbarActions([
+            ->bulkActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),

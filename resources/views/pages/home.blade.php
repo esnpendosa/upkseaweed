@@ -204,9 +204,9 @@
                             <div class="absolute inset-0 bg-gradient-to-t from-upknavy/80 via-transparent to-transparent"></div>
                         </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-heading font-bold text-white mb-3 group-hover:text-upkgreen transition-colors">{{ $product->title }}</h3>
+                            <h3 class="text-xl font-heading font-bold text-white mb-3 group-hover:text-upkgreen transition-colors">{{ $product->getLocalized('title') }}</h3>
                             @if($product->description)
-                                <p class="text-sm text-gray-400 mb-4 line-clamp-2">{{ $product->description }}</p>
+                                <p class="text-sm text-gray-400 mb-4 line-clamp-2">{{ $product->getLocalized('description') }}</p>
                             @endif
                             <div class="space-y-2 mb-5">
                                 @if($product->moisture_content)
@@ -275,9 +275,9 @@
                                 <svg class="w-10 h-10 text-upkgreen/50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
                             @endif
                         </div>
-                        <h4 class="text-base font-heading font-bold text-white mb-1 group-hover:text-upkgreen transition-colors">{{ $cert->name }}</h4>
+                        <h4 class="text-base font-heading font-bold text-white mb-1 group-hover:text-upkgreen transition-colors">{{ $cert->getLocalized('name') }}</h4>
                         @if($cert->issuing_body)
-                            <p class="text-xs text-gray-500 mb-1">{{ $cert->issuing_body }}</p>
+                            <p class="text-xs text-gray-500 mb-1">{{ $cert->getLocalized('issuing_body') }}</p>
                         @endif
                         @if($cert->year_acquired)
                             <span class="inline-block text-[10px] text-upkgreen bg-upkgreen/10 px-2 py-0.5 rounded-full font-medium">
@@ -338,11 +338,11 @@
                         <div class="p-6 flex flex-col flex-grow">
                             <a href="{{ route('articles.show', $article->slug) }}" class="group/title">
                                 <h3 class="text-xl font-heading font-bold text-white mb-3 group-hover/title:text-upkgreen transition-colors line-clamp-2">
-                                    {{ $article->title }}
+                                    {{ $article->getLocalized('title') }}
                                 </h3>
                             </a>
                             <p class="text-sm text-gray-400 mb-6 line-clamp-3 flex-grow">
-                                {{ $article->excerpt ?? Str::limit(strip_tags($article->content), 120) }}
+                                {{ $article->getLocalized('excerpt') ?? Str::limit(strip_tags($article->getLocalized('content')), 120) }}
                             </p>
                             <a href="{{ route('articles.show', $article->slug) }}" class="inline-flex items-center gap-2 text-upkgreen text-sm font-semibold hover:gap-3 transition-all">
                                 {{ __('messages.news_read_more') }}
