@@ -5,6 +5,7 @@ return [
     'nav_products'      => 'Products',
     'nav_certifications'=> 'Certifications',
     'nav_about'         => 'About',
+    'nav_news'          => 'News',
     'nav_contact'       => 'Contact',
     'nav_cta'           => 'Request a Quote',
 
@@ -78,4 +79,12 @@ return [
     'footer_quick'      => 'Quick Links',
     'footer_products'   => 'Products',
     'footer_hq'         => 'Headquarters',
+
+    // News
+    'news_badge'        => 'Latest News & Events',
+    'news_h2'           => 'Marine',
+    'news_h2_2'         => 'Insights',
+    'news_desc'         => 'Stay updated with our latest achievements, export milestones, and community impact in the seaweed industry.',
+    'news_read_more'    => 'Read Full Story',
+    'news_empty'        => 'No news updates available at the moment.',
 ];

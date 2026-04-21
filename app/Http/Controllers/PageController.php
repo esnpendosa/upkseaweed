@@ -23,6 +23,11 @@ class PageController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return view('pages.home', compact('products', 'certifications'));
+        $articles = \App\Models\Article::orderBy('published_at', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->take(3)
+            ->get();
+
+        return view('pages.home', compact('products', 'certifications', 'articles'));
     }
 }

@@ -5,6 +5,7 @@ return [
     'nav_products'      => 'Produk',
     'nav_certifications'=> 'Sertifikasi',
     'nav_about'         => 'Tentang Kami',
+    'nav_news'          => 'Berita',
     'nav_contact'       => 'Kontak',
     'nav_cta'           => 'Minta Penawaran',
 
@@ -78,4 +79,12 @@ return [
     'footer_quick'      => 'Tautan Cepat',
     'footer_products'   => 'Produk',
     'footer_hq'         => 'Kantor Pusat',
+
+    // News
+    'news_badge'        => 'Berita & Acara Terbaru',
+    'news_h2'           => 'Wawasan',
+    'news_h2_2'         => 'Kelautan',
+    'news_desc'         => 'Ikuti perkembangan terbaru mengenai pencapaian kami, tonggak sejarah ekspor, dan dampak komunitas dalam industri rumput laut.',
+    'news_read_more'    => 'Baca Selengkapnya',
+    'news_empty'        => 'Belum ada pembaruan berita saat ini.',
 ];

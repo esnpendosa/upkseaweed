@@ -30,6 +30,9 @@
                 <a href="#about" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white rounded-lg hover:bg-white/5 transition-all duration-200" id="nav-about">
                     {{ __('messages.nav_about') }}
                 </a>
+                <a href="#news" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white rounded-lg hover:bg-white/5 transition-all duration-200" id="nav-news">
+                    {{ __('messages.nav_news') }}
+                </a>
                 <a href="#contact" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white rounded-lg hover:bg-white/5 transition-all duration-200" id="nav-contact">
                     {{ __('messages.nav_contact') }}
                 </a>
@@ -126,6 +129,7 @@
             <a href="#products" @click="mobileMenu = false" class="block px-4 py-3 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all">{{ __('messages.nav_products') }}</a>
             <a href="#certifications" @click="mobileMenu = false" class="block px-4 py-3 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all">{{ __('messages.nav_certifications') }}</a>
             <a href="#about" @click="mobileMenu = false" class="block px-4 py-3 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all">{{ __('messages.nav_about') }}</a>
+            <a href="#news" @click="mobileMenu = false" class="block px-4 py-3 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all">{{ __('messages.nav_news') }}</a>
             <a href="#contact" @click="mobileMenu = false" class="block px-4 py-3 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all">{{ __('messages.nav_contact') }}</a>
 
             {{-- Mobile Language Switcher Grid --}}
