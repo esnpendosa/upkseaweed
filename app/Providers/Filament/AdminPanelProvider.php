@@ -31,7 +31,7 @@ class AdminPanelProvider extends PanelProvider
             ->brandName('UPK Seaweed')
             ->brandLogo(fn () => view('filament.logo'))
             ->favicon(asset('favicon.ico'))
-            ->sidebarCollapsible()
+            ->sidebarCollapsibleOnDesktop()
             ->font('Outfit')
             ->colors([
                 'primary' => Color::Emerald,
