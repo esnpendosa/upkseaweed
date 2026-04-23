@@ -221,4 +221,13 @@ return [
     'prod_cert_title' => 'Sertifikasi',
     'prod_cert_haccp' => 'Tersertifikasi HACCP Global',
     'prod_cert_halal' => 'Halal Indonesia (BPJPH)',
+
+    // Chatbot
+    'bot_online' => 'Sistem AI Aktif',
+    'bot_greeting' => 'Halo! Saya Seaweed Intelligence. Bagaimana saya bisa membantu perdagangan maritim global Anda hari ini?',
+    'bot_placeholder' => 'Tanya tentang pengiriman, produk...',
+    'bot_shipping_ans' => 'Kami melayani pengiriman global ke lebih dari 25 negara melalui Pelabuhan Tanjung Perak.',
+    'bot_products_ans' => 'Kami memproduksi Eucheuma Cottonii, Spinosum, dan Gracilaria berkualitas ekspor.',
+    'bot_contact_ans' => 'Anda dapat menghubungi tim penjualan kami melalui WhatsApp di halaman Kontak.',
+    'bot_default_ans' => 'Terima kasih atas pertanyaannya. Sebagai asisten AI UPK Seaweed, saya di sini untuk membantu informasi tentang produk rumput laut dan logistik ekspor.',
 ];
