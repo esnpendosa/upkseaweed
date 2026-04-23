@@ -5,18 +5,18 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\CertificationResource\Pages;
 use App\Models\Certification;
 use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
-use Filament\Schemas\Components\Section;
+use Filament\Forms\Form;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Filament\Actions\EditAction;
-use Filament\Actions\DeleteAction;
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteBulkAction;
 use UnitEnum;
 
 class CertificationResource extends Resource
@@ -31,9 +31,9 @@ class CertificationResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    public static function form(Schema $schema): Schema
+    public static function form(Form $form): Form
     {
-        return $schema
+        return $form
             ->components([
                 Section::make('Certification Details')
                     ->description('Enter the certification information.')

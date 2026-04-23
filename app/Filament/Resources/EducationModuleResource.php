@@ -6,8 +6,9 @@ use App\Filament\Resources\EducationModuleResource\Pages;
 use App\Models\EducationModule;
 use Filament\Resources\Resource;
 use UnitEnum;
-use Filament\Schemas\Schema;
-use Filament\Schemas\Components\Section;
+use Filament\Forms\Form;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
@@ -26,9 +27,9 @@ class EducationModuleResource extends Resource
 
     protected static ?int $navigationSort = 3;
 
-    public static function form(Schema $schema): Schema
+    public static function form(Form $form): Form
     {
-        return $schema
+        return $form
             ->components([
                 Section::make('Module Info')
                     ->schema([

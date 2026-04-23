@@ -12,7 +12,8 @@ use App\Filament\Resources\HeroSlides\Tables\HeroSlidesTable;
 use App\Models\HeroSlide;
 use BackedEnum;
 use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
+use Filament\Forms\Form;
+use Filament\Infolists\Infolist;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
@@ -24,14 +25,14 @@ class HeroSlideResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'title';
 
-    public static function form(Schema $schema): Schema
+    public static function form(Form $form): Form
     {
-        return HeroSlideForm::configure($schema);
+        return HeroSlideForm::configure($form);
     }
 
-    public static function infolist(Schema $schema): Schema
+    public static function infolist(Infolist $infolist): Infolist
     {
-        return HeroSlideInfolist::configure($schema);
+        return HeroSlideInfolist::configure($infolist);
     }
 
     public static function table(Table $table): Table

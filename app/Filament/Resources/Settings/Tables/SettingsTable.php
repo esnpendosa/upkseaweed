@@ -4,7 +4,7 @@ namespace App\Filament\Resources\Settings\Tables;
 
 use Filament\Tables;
 use Filament\Tables\Table;
-use Filament\Actions\EditAction;
+use Filament\Tables\Actions\EditAction;
 
 class SettingsTable
 {

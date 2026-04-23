@@ -6,8 +6,8 @@ use App\Filament\Resources\RegulationResource\Pages;
 use App\Models\Regulation;
 use Filament\Resources\Resource;
 use UnitEnum;
-use Filament\Schemas\Schema;
-use Filament\Schemas\Components\Section;
+use Filament\Forms\Form;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -27,9 +27,9 @@ class RegulationResource extends Resource
 
     protected static ?int $navigationSort = 2;
 
-    public static function form(Schema $schema): Schema
+    public static function form(Form $form): Form
     {
-        return $schema
+        return $form
             ->components([
                 Section::make('Regulation Details')
                     ->schema([

@@ -5,8 +5,8 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\TeamMemberResource\Pages;
 use App\Models\TeamMember;
 use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
-use Filament\Schemas\Components\Section;
+use Filament\Forms\Form;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -26,9 +26,9 @@ class TeamMemberResource extends Resource
 
     protected static ?int $navigationSort = 4;
 
-    public static function form(Schema $schema): Schema
+    public static function form(Form $form): Form
     {
-        return $schema
+        return $form
             ->components([
                 Section::make('Member Information')
                     ->schema([
