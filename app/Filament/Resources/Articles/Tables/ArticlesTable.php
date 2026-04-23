@@ -11,7 +11,7 @@ use Filament\Actions\DeleteBulkAction;
 
 class ArticlesTable
 {
-    public static function configure(Table $table): Table
+    public static function configure(\Filament\Tables\Table $table): \Filament\Tables\Table
     {
         return $table
             ->columns([

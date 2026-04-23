@@ -32,7 +32,7 @@ class HeroSlideResource extends Resource
         return HeroSlideInfolist::configure($schema);
     }
 
-    public static function table(Table $table): Table
+    public static function table(\Filament\Tables\Table $table): \Filament\Tables\Table
     {
         return HeroSlidesTable::configure($table);
     }

@@ -13,7 +13,7 @@ use Filament\Tables\Table;
 
 class HeroSlidesTable
 {
-    public static function configure(Table $table): Table
+    public static function configure(\Filament\Tables\Table $table): \Filament\Tables\Table
     {
         return $table
             ->columns([
