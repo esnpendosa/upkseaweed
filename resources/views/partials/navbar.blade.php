@@ -1,189 +1,142 @@
 {{-- Sticky Corporate Navbar --}}
-<nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
-     x-data="{ scrolled: false, langOpen: false }"
-     x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 50 })"
-     :class="scrolled ? 'glass-dark shadow-2xl py-2' : 'bg-transparent py-4'">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between">
+<nav class="fixed top-0 left-0 right-0 z-[100] transition-all duration-700"
+     x-data="{ scrolled: false, mobileMenu: false, langOpen: false }"
+     x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 30 })"
+     :class="scrolled ? 'glass-dark shadow-2xl py-2' : 'bg-transparent py-6'">
+    <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between gap-4">
 
-            {{-- Logo --}}
-            <a href="{{ route('home') }}" class="flex items-center gap-3 group" id="nav-logo">
-                <div class="w-10 h-10 bg-gradient-to-br from-upkgreen to-upkgreen-300 rounded-lg flex items-center justify-center shadow-lg group-hover:shadow-upkgreen/30 transition-shadow duration-300">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            {{-- Logo Area --}}
+            <a href="{{ route('home') }}" class="flex items-center gap-3 shrink-0 group" id="nav-logo">
+                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-upkgreen/10 rounded-2xl flex items-center justify-center border border-upkgreen/20 group-hover:border-upkgreen/50 transition-all duration-500 shadow-2xl">
+                    <svg class="w-6 h-6 sm:w-7 sm:h-7 text-upkgreen group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                 </div>
-                <div>
-                    <span class="text-lg font-heading font-bold text-white uppercase leading-none block">{{ __('messages.nav_company_name_line1') }} <span class="text-upkgreen">{{ __('messages.nav_company_name_line2') }}</span></span>
-                    <p class="text-[8px] text-gray-500 tracking-[0.12em] uppercase mt-0.5">{{ __('messages.nav_tagline') }}</p>
+                <div class="hidden xl:block">
+                    <span class="text-xs sm:text-sm font-heading font-black text-white uppercase leading-none block tracking-tighter">UPK <span class="text-upkgreen">SEAWEED</span></span>
+                    <p class="text-[6px] text-gray-500 tracking-[0.3em] uppercase mt-1 font-black">Industrial Marine Hub</p>
                 </div>
             </a>
 
             {{-- Desktop Navigation --}}
-            <div class="hidden lg:flex items-center gap-1">
-                <a href="#products" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white rounded-lg hover:bg-white/5 transition-all duration-200" id="nav-products">
-                    {{ __('messages.nav_products') }}
-                </a>
-                <a href="#certifications" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white rounded-lg hover:bg-white/5 transition-all duration-200" id="nav-certifications">
-                    {{ __('messages.nav_certifications') }}
-                </a>
-                <a href="#about" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white rounded-lg hover:bg-white/5 transition-all duration-200" id="nav-about">
-                    {{ __('messages.nav_about') }}
-                </a>
-                <a href="#news" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white rounded-lg hover:bg-white/5 transition-all duration-200" id="nav-news">
-                    {{ __('messages.nav_news') }}
-                </a>
-                <a href="#contact" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white rounded-lg hover:bg-white/5 transition-all duration-200" id="nav-contact">
-                    {{ __('messages.nav_contact') }}
-                </a>
+            <div class="hidden lg:flex items-center gap-0.5">
+                <a href="{{ route('home') }}" class="px-3 py-2 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-white transition-all whitespace-nowrap">{{ __('messages.nav_home') }}</a>
+                <a href="{{ route('products') }}" class="px-3 py-2 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-white transition-all whitespace-nowrap">{{ __('messages.nav_products') }}</a>
+                <a href="{{ route('trade') }}" class="px-3 py-2 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-white transition-all whitespace-nowrap">{{ __('messages.nav_trade') }}</a>
 
-                {{-- Language Switcher --}}
-                <div class="relative ml-2" x-data="{ langOpen: false }">
-                    <button @click="langOpen = !langOpen" @click.outside="langOpen = false"
-                            class="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-300 hover:text-white rounded-lg hover:bg-white/5 transition-all duration-200 border border-white/10"
-                            id="language-switcher">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
-                        </svg>
-                        <span class="uppercase font-semibold text-xs">{{ strtoupper(app()->getLocale()) }}</span>
-                        <svg class="w-3 h-3 transition-transform" :class="langOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
+                {{-- Resources --}}
+                <div class="relative group" x-data="{ open: false }">
+                    <button @mouseenter="open = true" @click="open = !open" class="flex items-center gap-1.5 px-3 py-2 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-white transition-all">
+                        {{ __('messages.nav_resources') }}
+                        <svg class="w-2.5 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </button>
+                    <div x-show="open" @mouseleave="open = false" x-transition class="absolute left-0 mt-2 w-48 glass-dark rounded-xl shadow-2xl border border-white/10 py-2 z-50">
+                        <a href="{{ route('statistics') }}" class="block px-4 py-3 text-[10px] uppercase font-black text-gray-300 hover:text-white hover:bg-white/5 mx-2 rounded-lg">{{ __('messages.nav_stats') }}</a>
+                        <a href="{{ route('lms') }}" class="block px-4 py-3 text-[10px] uppercase font-black text-gray-300 hover:text-white hover:bg-white/5 mx-2 rounded-lg">{{ __('messages.nav_lms') }}</a>
+                        <a href="{{ route('regulations') }}" class="block px-4 py-3 text-[10px] uppercase font-black text-gray-300 hover:text-white hover:bg-white/5 mx-2 rounded-lg">{{ __('messages.nav_regulations') }}</a>
+                    </div>
+                </div>
 
-                    {{-- Dropdown --}}
-                    <div x-show="langOpen"
-                         x-transition:enter="transition ease-out duration-200"
-                         x-transition:enter-start="opacity-0 scale-95 -translate-y-2"
-                         x-transition:enter-end="opacity-100 scale-100 translate-y-0"
-                         x-transition:leave="transition ease-in duration-150"
-                         x-transition:leave-start="opacity-100 scale-100"
-                         x-transition:leave-end="opacity-0 scale-95"
-                         class="absolute right-0 mt-2 w-52 glass-dark rounded-xl shadow-2xl overflow-hidden divide-y divide-white/5"
-                         style="display: none;">
-                        @php
-                            $langs = [
-                                'en' => ['flag' => '🇺🇸', 'label' => 'English'],
-                                'id' => ['flag' => '🇮🇩', 'label' => 'Indonesia'],
-                                'ja' => ['flag' => '🇯🇵', 'label' => '日本語'],
-                                'zh' => ['flag' => '🇨🇳', 'label' => '中文'],
-                                'ko' => ['flag' => '🇰🇷', 'label' => '한국어'],
-                                'ar' => ['flag' => '🇸🇦', 'label' => 'العربية'],
-                                'es' => ['flag' => '🇪🇸', 'label' => 'Español'],
-                                'fr' => ['flag' => '🇫🇷', 'label' => 'Français'],
-                                'de' => ['flag' => '🇩🇪', 'label' => 'Deutsch'],
-                                'pt' => ['flag' => '🇧🇷', 'label' => 'Português'],
-                                'ru' => ['flag' => '🇷🇺', 'label' => 'Русский'],
-                                'nl' => ['flag' => '🇳🇱', 'label' => 'Nederlands'],
-                                'it' => ['flag' => '🇮🇹', 'label' => 'Italiano'],
-                                'hi' => ['flag' => '🇮🇳', 'label' => 'हिन्दी'],
-                                'th' => ['flag' => '🇹🇭', 'label' => 'ไทย'],
-                                'vi' => ['flag' => '🇻🇳', 'label' => 'Tiếng Việt'],
-                                'ms' => ['flag' => '🇲🇾', 'label' => 'Bahasa Melayu'],
-                                'tr' => ['flag' => '🇹🇷', 'label' => 'Türkçe'],
-                            ];
-                            $currentLocale = app()->getLocale();
-                        @endphp
-                        <div class="py-1 max-h-80 overflow-y-auto custom-scrollbar">
-                            @foreach($langs as $code => $lang)
-                                <a href="?lang={{ $code }}"
-                                   class="flex items-center gap-3 px-4 py-2.5 text-sm hover:bg-white/10 transition-colors {{ $currentLocale === $code ? 'text-upkgreen bg-upkgreen/10 font-bold' : 'text-gray-300' }}"
-                                   id="lang-{{ $code }}">
-                                    <span class="text-base">{{ $lang['flag'] }}</span>
-                                    <span>{{ $lang['label'] }}</span>
-                                    @if($currentLocale === $code)
-                                        <svg class="w-3.5 h-3.5 ml-auto text-upkgreen flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
-                                    @endif
-                                </a>
-                            @endforeach
-                        </div>
+                {{-- Company --}}
+                <div class="relative group" x-data="{ open: false }">
+                    <button @mouseenter="open = true" @click="open = !open" class="flex items-center gap-1.5 px-3 py-2 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-white transition-all">
+                        {{ __('messages.nav_company') }}
+                        <svg class="w-2.5 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div x-show="open" @mouseleave="open = false" x-transition class="absolute left-0 mt-2 w-48 glass-dark rounded-xl shadow-2xl border border-white/10 py-2 z-50">
+                        <a href="{{ route('about') }}" class="block px-4 py-3 text-[10px] uppercase font-black text-gray-300 hover:text-white hover:bg-white/5 mx-2 rounded-lg">{{ __('messages.nav_about') }}</a>
+                        <a href="{{ route('team') }}" class="block px-4 py-3 text-[10px] uppercase font-black text-gray-300 hover:text-white hover:bg-white/5 mx-2 rounded-lg">{{ __('messages.nav_team') }}</a>
+                        <a href="{{ route('certifications') }}" class="block px-4 py-3 text-[10px] uppercase font-black text-gray-300 hover:text-white hover:bg-white/5 mx-2 rounded-lg">{{ __('messages.nav_certifications') }}</a>
+                    </div>
+                </div>
+
+                <a href="{{ route('articles.index') }}" class="px-3 py-2 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-white transition-all whitespace-nowrap">{{ __('messages.nav_news') }}</a>
+                <a href="{{ route('contact') }}" class="px-3 py-2 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-white transition-all whitespace-nowrap">{{ __('messages.nav_contact') }}</a>
+            </div>
+
+            {{-- Right Actions --}}
+            <div class="flex items-center gap-3">
+                {{-- Language Selector --}}
+                @php
+                    $fullLocales = [
+                        'en' => ['flag' => 'fi-us', 'name' => 'English'],
+                        'id' => ['flag' => 'fi-id', 'name' => 'Indonesia'],
+                        'zh' => ['flag' => 'fi-cn', 'name' => 'Chinese'],
+                        'ja' => ['flag' => 'fi-jp', 'name' => 'Japanese'],
+                        'ko' => ['flag' => 'fi-kr', 'name' => 'Korean'],
+                        'ar' => ['flag' => 'fi-sa', 'name' => 'Arabic'],
+                        'fr' => ['flag' => 'fi-fr', 'name' => 'French'],
+                        'es' => ['flag' => 'fi-es', 'name' => 'Spanish'],
+                        'de' => ['flag' => 'fi-de', 'name' => 'German'],
+                        'ru' => ['flag' => 'fi-ru', 'name' => 'Russian'],
+                        'it' => ['flag' => 'fi-it', 'name' => 'Italian'],
+                        'pt' => ['flag' => 'fi-pt', 'name' => 'Portuguese'],
+                        'nl' => ['flag' => 'fi-nl', 'name' => 'Dutch'],
+                        'tr' => ['flag' => 'fi-tr', 'name' => 'Turkish'],
+                        'vi' => ['flag' => 'fi-vn', 'name' => 'Vietnamese'],
+                        'th' => ['flag' => 'fi-th', 'name' => 'Thai'],
+                        'hi' => ['flag' => 'fi-in', 'name' => 'Hindi'],
+                        'ms' => ['flag' => 'fi-my', 'name' => 'Malay'],
+                    ];
+                    $currentLocale = app()->getLocale();
+                @endphp
+                <div class="relative" x-data="{ langOpen: false }">
+                    <button @click="langOpen = !langOpen" class="flex items-center gap-3 px-4 py-3 glass border border-white/10 rounded-2xl hover:bg-upkgreen/10 transition-all group">
+                        <span class="fi {{ $fullLocales[$currentLocale]['flag'] ?? 'fi-un' }} fis rounded-lg group-hover:scale-110 transition-transform"></span>
+                        <span class="text-[12px] font-black text-white uppercase tracking-widest">{{ strtoupper($currentLocale) }}</span>
+                        <svg class="w-3 opacity-30 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div x-show="langOpen" @click.outside="langOpen = false" x-transition class="absolute right-0 mt-4 w-56 glass-dark rounded-2xl shadow-2xl border border-white/10 py-3 z-50 h-96 overflow-y-auto custom-scrollbar">
+                        @foreach($fullLocales as $code => $data)
+                            <a href="?lang={{ $code }}" class="flex items-center justify-between px-6 py-4 hover:bg-upkgreen/10 transition-all {{ $currentLocale == $code ? 'bg-upkgreen/5 text-upkgreen' : 'text-gray-400' }}">
+                                <div class="flex items-center gap-4">
+                                    <span class="fi {{ $data['flag'] }} fis rounded-md scale-125"></span>
+                                    <span class="text-[10px] font-black uppercase tracking-widest">{{ $data['name'] }}</span>
+                                </div>
+                                @if($currentLocale == $code)
+                                <svg class="w-4 h-4 text-upkgreen" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                @endif
+                            </a>
+                        @endforeach
                     </div>
                 </div>
 
                 {{-- CTA Button --}}
-                <a href="#contact"
-                   class="ml-4 px-6 py-2.5 bg-upkgreen hover:bg-upkgreen-600 text-white text-sm font-semibold rounded-lg shadow-lg shadow-upkgreen/25 hover:shadow-upkgreen/40 transition-all duration-300 hover:scale-105"
-                   id="nav-cta-quote">
+                <a href="https://wa.me/{{ \App\Models\Setting::get('whatsapp_number') }}" target="_blank"
+                   class="hidden sm:flex items-center justify-center px-8 py-4 bg-upkgreen hover:bg-upkgreen-600 text-white text-[10px] font-black uppercase tracking-[0.2em] rounded-2xl shadow-2xl shadow-upkgreen/20 transition-all hover:scale-105 active:scale-95">
                     {{ __('messages.nav_cta') }}
                 </a>
-            </div>
 
-            {{-- Mobile Menu Button --}}
-            <button @click="mobileMenu = !mobileMenu"
-                    class="lg:hidden p-2 text-gray-300 hover:text-white rounded-lg hover:bg-white/10 transition-all"
-                    id="mobile-menu-toggle">
-                <svg x-show="!mobileMenu" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                </svg>
-                <svg x-show="mobileMenu" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                </svg>
-            </button>
+                {{-- Mobile Menu Toggle --}}
+                <button @click="mobileMenu = !mobileMenu" class="lg:hidden p-3.5 glass border border-white/10 rounded-2xl text-white">
+                    <svg x-show="!mobileMenu" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    <svg x-show="mobileMenu" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
         </div>
     </div>
 
     {{-- Mobile Menu --}}
-    <div x-show="mobileMenu"
-         x-transition:enter="transition ease-out duration-300"
-         x-transition:enter-start="opacity-0 -translate-y-4"
-         x-transition:enter-end="opacity-100 translate-y-0"
-         x-transition:leave="transition ease-in duration-200"
-         x-transition:leave-start="opacity-100 translate-y-0"
-         x-transition:leave-end="opacity-0 -translate-y-4"
-         class="lg:hidden glass-dark mt-2 mx-4 rounded-2xl shadow-2xl overflow-hidden"
-         style="display: none;">
-        <div class="p-4 space-y-1">
-            <a href="#products" @click="mobileMenu = false" class="block px-4 py-3 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all">{{ __('messages.nav_products') }}</a>
-            <a href="#certifications" @click="mobileMenu = false" class="block px-4 py-3 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all">{{ __('messages.nav_certifications') }}</a>
-            <a href="#about" @click="mobileMenu = false" class="block px-4 py-3 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all">{{ __('messages.nav_about') }}</a>
-            <a href="#news" @click="mobileMenu = false" class="block px-4 py-3 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all">{{ __('messages.nav_news') }}</a>
-            <a href="#contact" @click="mobileMenu = false" class="block px-4 py-3 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all">{{ __('messages.nav_contact') }}</a>
+    <div x-show="mobileMenu" x-cloak x-transition class="lg:hidden fixed inset-0 z-50 bg-upknavy/98 backdrop-blur-3xl p-8 overflow-y-auto">
+        <div class="flex justify-between items-center mb-20">
+            <span class="text-2xl font-heading font-black text-white uppercase tracking-tighter">Terminal Menu</span>
+            <button @click="mobileMenu = false" class="p-5 glass rounded-3xl text-white border border-white/10">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+        </div>
+        <div class="space-y-6">
+            <a href="{{ route('home') }}" class="block py-6 text-xl font-black uppercase tracking-widest text-gray-400 border-b border-white/5 hover:text-white">{{ __('messages.nav_home') }}</a>
+            <a href="{{ route('products') }}" class="block py-6 text-xl font-black uppercase tracking-widest text-white border-b border-white/5 hover:text-upkgreen">{{ __('messages.nav_products') }}</a>
+            <a href="{{ route('trade') }}" class="block py-6 text-xl font-black uppercase tracking-widest text-gray-400 border-b border-white/5 hover:text-white">{{ __('messages.nav_trade') }}</a>
+            <a href="{{ route('articles.index') }}" class="block py-6 text-xl font-black uppercase tracking-widest text-gray-400 border-b border-white/5 hover:text-white">{{ __('messages.nav_news') }}</a>
+            <a href="{{ route('contact') }}" class="block py-6 text-xl font-black uppercase tracking-widest text-gray-400 hover:text-white">{{ __('messages.nav_contact') }}</a>
 
-            {{-- Mobile Language Switcher Grid --}}
-            <div class="pt-3 border-t border-white/10">
-                <p class="text-xs text-gray-500 uppercase tracking-wider px-2 mb-2">Language Selection</p>
-                <div class="grid grid-cols-4 gap-2">
-                    @foreach($langs ?? [] as $code => $lang)
-                        <a href="?lang={{ $code }}"
-                           class="flex flex-col items-center gap-1 py-3 px-1 rounded-xl text-center transition-all {{ (app()->getLocale() === $code) ? 'bg-upkgreen/20 text-upkgreen ring-1 ring-upkgreen/50' : 'text-gray-400 hover:bg-white/5' }}">
-                            <span class="text-xl">{{ $lang['flag'] }}</span>
-                            <span class="text-[8px] font-bold uppercase">{{ $code }}</span>
-                        </a>
-                    @endforeach
-                </div>
+            <div class="pt-12">
+                 <a href="https://wa.me/{{ \App\Models\Setting::get('whatsapp_number') }}" class="flex items-center justify-center py-8 bg-upkgreen text-white font-black uppercase tracking-[0.3em] text-sm rounded-4xl shadow-2xl">
+                    {{ __('messages.nav_cta') }}
+                 </a>
             </div>
-
-            {{-- Mobile CTA --}}
-            <a href="#contact" @click="mobileMenu = false"
-               class="block text-center px-4 py-3 bg-upkgreen hover:bg-upkgreen-600 text-white text-sm font-semibold rounded-lg transition-all mt-4">
-                {{ __('messages.nav_cta') }}
-            </a>
         </div>
     </div>
 </nav>
-
-{{-- Pass langs to view for mobile menu --}}
-@php
-    if (!isset($langs)) {
-        $langs = [
-            'en' => ['flag' => '🇺🇸', 'label' => 'English'],
-            'id' => ['flag' => '🇮🇩', 'label' => 'Indonesia'],
-            'ja' => ['flag' => '🇯🇵', 'label' => '日本語'],
-            'zh' => ['flag' => '🇨🇳', 'label' => '中文'],
-            'ko' => ['flag' => '🇰🇷', 'label' => '한국어'],
-            'ar' => ['flag' => '🇸🇦', 'label' => 'العربية'],
-            'es' => ['flag' => '🇪🇸', 'label' => 'Español'],
-            'fr' => ['flag' => '🇫🇷', 'label' => 'Français'],
-            'de' => ['flag' => '🇩🇪', 'label' => 'Deutsch'],
-            'pt' => ['flag' => '🇧🇷', 'label' => 'Português'],
-            'ru' => ['flag' => '🇷🇺', 'label' => 'Русский'],
-            'nl' => ['flag' => '🇳🇱', 'label' => 'Nederlands'],
-            'it' => ['flag' => '🇮🇹', 'label' => 'Italiano'],
-            'hi' => ['flag' => '🇮🇳', 'label' => 'हिन्दी'],
-            'th' => ['flag' => '🇹🇭', 'label' => 'ไทย'],
-            'vi' => ['flag' => '🇻🇳', 'label' => 'Tiếng Việt'],
-            'ms' => ['flag' => '🇲🇾', 'label' => 'Bahasa Melayu'],
-            'tr' => ['flag' => '🇹🇷', 'label' => 'Türkçe'],
-        ];
-    }
-@endphp

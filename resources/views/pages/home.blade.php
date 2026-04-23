@@ -1,395 +1,351 @@
 @extends('layouts.app')
 
-@section('title', 'UPK Seaweed — ' . __('messages.hero_h1_line1') . ' ' . __('messages.hero_h1_line3'))
-@section('meta_description', 'UPK Seaweed (Ujungpangkah Kulon Marine) — ' . __('messages.hero_subtitle'))
+@section('title', 'UPK Seaweed — Industrial Hub')
+@section('meta_description', 'Connecting Sustainable Farmers with the Global Marine Industry.')
 
 @section('content')
 
-{{-- ============================================ --}}
-{{-- HERO SECTION --}}
-{{-- ============================================ --}}
+{{-- ============= HERO SLIDER ============= --}}
 <section class="relative min-h-screen flex items-center justify-center overflow-hidden" id="hero">
-    <div class="absolute inset-0">
-        <div class="absolute inset-0 bg-gradient-to-br from-upknavy via-upknavy-600 to-upknavy-800"></div>
-        <div class="absolute inset-0 opacity-[0.03]" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%2310B981&quot; fill-opacity=&quot;1&quot;%3E%3Cpath d=&quot;M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
-        <div class="absolute top-20 left-10 w-72 h-72 bg-upkgreen/10 rounded-full blur-3xl animate-pulse-slow"></div>
-        <div class="absolute bottom-20 right-10 w-96 h-96 bg-upkgreen/5 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 1.5s;"></div>
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-upkgreen/[0.03] rounded-full blur-3xl"></div>
-    </div>
+    {{-- Swiper Container --}}
+    <div class="swiper hero-swiper absolute inset-0 w-full h-full">
+        <div class="swiper-wrapper">
+            @forelse($slides as $slide)
+            <div class="swiper-slide relative w-full h-full">
+                {{-- Background Image --}}
+                <div class="absolute inset-0 z-0">
+                    @if($slide->image_path)
+                        <img src="{{ asset('storage/' . $slide->image_path) }}" alt="{{ $slide->getLocalized('title') }}" class="w-full h-full object-cover">
+                    @else
+                        <div class="w-full h-full bg-gradient-to-br from-upknavy via-upknavy-600 to-upknavy-800"></div>
+                    @endif
+                    <div class="absolute inset-0 bg-upknavy/60"></div>
+                </div>
 
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
-        <div class="text-center max-w-4xl mx-auto">
-            <div class="inline-flex items-center gap-2 bg-upkgreen/10 border border-upkgreen/20 rounded-full px-5 py-2 mb-8 animate-fade-in">
-                <span class="w-2 h-2 bg-upkgreen rounded-full animate-pulse"></span>
-                <span class="text-upkgreen text-sm font-medium tracking-wide">{{ __('messages.hero_badge') }}</span>
+                {{-- Slide Content --}}
+                <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+                    <div class="max-w-4xl pt-20">
+                        <div class="reveal">
+                            <span class="inline-flex items-center gap-2 bg-upkgreen/10 text-upkgreen text-[10px] font-black px-4 py-2 rounded-full border border-upkgreen/20 mb-8 uppercase tracking-widest leading-none">
+                                {{ __('messages.hero_badge') }}
+                            </span>
+                            <h1 class="text-4xl sm:text-5xl lg:text-7xl font-heading font-extrabold text-white mb-8 leading-[0.9] tracking-tighter uppercase hero-title opacity-0">
+                                {!! $slide->getLocalized('title') !!}
+                            </h1>
+                            <p class="text-gray-400 text-lg sm:text-xl mb-12 max-w-2xl leading-relaxed font-medium hero-subtitle opacity-0">
+                                {{ $slide->getLocalized('subtitle') }}
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-6 hero-actions opacity-0">
+                                @if($slide->cta_text)
+                                <a href="{{ $slide->cta_link ?? route('products') }}" class="inline-flex items-center justify-center px-10 py-5 bg-upkgreen hover:bg-upkgreen-600 text-white font-black uppercase tracking-widest text-xs rounded-2xl shadow-2xl shadow-upkgreen/20 transition-all hover:scale-105 active:scale-95">
+                                    {{ $slide->getLocalized('cta_text') }}
+                                </a>
+                                @endif
+                                <a href="{{ route('trade') }}" class="inline-flex items-center justify-center px-10 py-5 glass border border-white/10 text-white font-black uppercase tracking-widest text-xs rounded-2xl hover:bg-white/5 transition-all">
+                                    {{ __('messages.hero_cta_trade') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-heading font-extrabold text-white leading-tight mb-8 animate-fade-in-up" style="animation-delay: 0.1s;">
-                {{ \App\Models\Setting::get('hero_title_1', __('messages.hero_h1_line1')) }} <span class="gradient-text">{{ \App\Models\Setting::get('hero_title_2', __('messages.hero_h1_line2')) }}</span>
-            </h1>
-
-            <p class="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto mb-12 animate-fade-in-up" style="animation-delay: 0.2s;">
-                {{ \App\Models\Setting::get('hero_subtitle', __('messages.hero_subtitle')) }}
-            </p>
-
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up" style="animation-delay: 0.4s;">
-                <a href="#products"
-                   class="group px-8 py-4 bg-upkgreen hover:bg-upkgreen-600 text-white font-semibold rounded-xl shadow-2xl shadow-upkgreen/25 hover:shadow-upkgreen/40 transition-all duration-300 hover:scale-105 flex items-center gap-2"
-                   id="hero-cta-products">
-                    {{ __('messages.hero_cta_products') }}
-                    <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                    </svg>
-                </a>
-                <a href="#contact"
-                   class="px-8 py-4 border border-white/20 hover:border-upkgreen/50 text-white font-semibold rounded-xl hover:bg-white/5 transition-all duration-300 flex items-center gap-2"
-                   id="hero-cta-contact">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-                    </svg>
-                    {{ __('messages.hero_cta_quote') }}
-                </a>
+            @empty
+            {{-- Fallback --}}
+            <div class="swiper-slide relative w-full h-full">
+                <div class="absolute inset-0 bg-gradient-to-br from-upknavy via-upknavy-600 to-upknavy-800"></div>
+                <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+                    <div class="max-w-4xl pt-20 text-center">
+                        <h1 class="text-6xl font-heading font-black text-white uppercase">{{ __('messages.hero_title') }}</h1>
+                    </div>
+                </div>
             </div>
-
-            <div class="mt-16 animate-bounce">
-                <a href="#trust-bar" class="inline-flex flex-col items-center gap-2 text-gray-500 hover:text-upkgreen transition-colors">
-                    <span class="text-xs uppercase tracking-widest">{{ __('messages.hero_scroll') }}</span>
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-                    </svg>
-                </a>
-            </div>
+            @endforelse
         </div>
+
+        {{-- Navigation Dots --}}
+        <div class="swiper-pagination !bottom-12"></div>
     </div>
 
-    <div class="wave-bg">
-        <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-            <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,45 L1440,80 L0,80 Z" fill="#0A192F" fill-opacity="0.5"/>
-            <path d="M0,50 C360,90 720,10 1080,50 C1260,70 1380,60 1440,55 L1440,80 L0,80 Z" fill="#07101F"/>
-        </svg>
-    </div>
+    {{-- Overlay Patterns --}}
+    <div class="absolute inset-0 opacity-[0.03] z-10 pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%2310B981&quot; fill-opacity=&quot;1&quot;%3E%3Cpath d=&quot;M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
 </section>
 
-{{-- ============================================ --}}
-{{-- TRUST BAR --}}
-{{-- ============================================ --}}
+@push('styles')
+<style>
+    .swiper-pagination-bullet { background: rgba(255,255,255,0.4) !important; opacity: 1 !important; width: 10px !important; height: 10px !important; margin: 0 6px !important; transition: all 0.3s ease; }
+    .swiper-pagination-bullet-active { background: #10B981 !important; border-radius: 20px !important; width: 32px !important; }
+    
+    .hero-title { transform: translateY(20px); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s; }
+    .hero-subtitle { transform: translateY(20px); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s; }
+    .hero-actions { transform: translateY(20px); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s; }
+    
+    .swiper-slide-active .hero-title,
+    .swiper-slide-active .hero-subtitle,
+    .swiper-slide-active .hero-actions { opacity: 1 !important; transform: translateY(0) !important; }
+</style>
+@endpush
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const swiper = new Swiper('.hero-swiper', {
+            loop: true,
+            effect: 'fade',
+            fadeEffect: { crossFade: true },
+            speed: 1000,
+            autoplay: {
+                delay: 6000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+    });
+</script>
+@endpush
+
+{{-- ============= TRUST BAR ============= --}}
 <section class="relative bg-upknavy-700 py-12 border-y border-white/5" id="trust-bar">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {{-- Dynamic Trust Items from Settings --}}
             <div class="reveal flex items-center justify-center gap-4 group">
                 <div class="w-14 h-14 rounded-2xl bg-upkgreen/10 border border-upkgreen/20 flex items-center justify-center group-hover:bg-upkgreen/20 transition-all duration-300">
                     <svg class="w-7 h-7 text-upkgreen" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
                 </div>
                 <div>
-                    <div class="text-2xl font-heading font-bold text-white">500+ MT</div>
-                    <p class="text-sm text-gray-400">{{ __('messages.trust_capacity') }}</p>
+                    <div class="text-2xl font-heading font-bold text-white">{{ \App\Models\Setting::get('trust_capacity_val', '500+ MT') }}</div>
+                    <p class="text-[10px] uppercase font-black tracking-widest text-gray-500">{{ __('messages.trust_capacity') }}</p>
                 </div>
             </div>
-            <div class="reveal flex items-center justify-center gap-4 group" style="transition-delay: 0.1s;">
+            <div class="reveal flex items-center justify-center gap-4 group">
                 <div class="w-14 h-14 rounded-2xl bg-upkgreen/10 border border-upkgreen/20 flex items-center justify-center group-hover:bg-upkgreen/20 transition-all duration-300">
                     <svg class="w-7 h-7 text-upkgreen" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
                 </div>
                 <div>
-                    <div class="text-2xl font-heading font-bold text-white">ISO & HACCP</div>
-                    <p class="text-sm text-gray-400">{{ __('messages.trust_certified') }}</p>
+                    <div class="text-2xl font-heading font-bold text-white">{{ \App\Models\Setting::get('trust_certified_val', 'ISO & HACCP') }}</div>
+                    <p class="text-[10px] uppercase font-black tracking-widest text-gray-500">{{ __('messages.trust_certified') }}</p>
                 </div>
             </div>
-            <div class="reveal flex items-center justify-center gap-4 group" style="transition-delay: 0.2s;">
+            <div class="reveal flex items-center justify-center gap-4 group">
                 <div class="w-14 h-14 rounded-2xl bg-upkgreen/10 border border-upkgreen/20 flex items-center justify-center group-hover:bg-upkgreen/20 transition-all duration-300">
                     <svg class="w-7 h-7 text-upkgreen" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                 </div>
                 <div>
-                    <div class="text-2xl font-heading font-bold text-white">FOB / CIF</div>
-                    <p class="text-sm text-gray-400">{{ __('messages.trust_shipping') }}</p>
+                    <div class="text-2xl font-heading font-bold text-white">{{ \App\Models\Setting::get('trust_shipping_val', 'FOB / CIF / DDP') }}</div>
+                    <p class="text-[10px] uppercase font-black tracking-widest text-gray-500">{{ __('messages.trust_shipping') }}</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-{{-- ============================================ --}}
-{{-- ABOUT SECTION --}}
-{{-- ============================================ --}}
-<section class="relative py-24 bg-upknavy" id="about">
+{{-- ============= ABOUT SECTION ============= --}}
+<section class="relative py-24 bg-upknavy overflow-hidden" id="home-about">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+            <div class="reveal">
+                <span class="inline-block px-4 py-1.5 bg-upkgreen/10 text-upkgreen text-[10px] font-black rounded-full border border-upkgreen/20 mb-8 uppercase tracking-[0.3em]">
+                    {{ __('messages.home_about_badge') }}
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-heading font-black text-white mb-8 leading-tight tracking-tighter uppercase">
+                    {{ \App\Models\Setting::getLocalized('home_about_title', __('messages.home_about_title')) }}
+                </h2>
+                <div class="text-gray-400 text-lg leading-relaxed mb-12">
+                    {!! \App\Models\Setting::getLocalized('compro_foreword') !!}
+                </div>
+                <div class="grid grid-cols-2 gap-8">
+                    <div class="glass p-6 rounded-3xl border border-white/5 card-glow group">
+                        <div class="text-4xl font-heading font-black text-white mb-2 group-hover:text-upkgreen transition-colors">{{ \App\Models\Setting::get('stats_yrs', '10+') }}</div>
+                        <p class="text-[10px] font-black uppercase tracking-widest text-gray-500">{{ __('messages.home_about_stats_yrs') }}</p>
+                    </div>
+                    <div class="glass p-6 rounded-3xl border border-white/5 card-glow group">
+                        <div class="text-4xl font-heading font-black text-white mb-2 group-hover:text-upkgreen transition-colors">{{ \App\Models\Setting::get('stats_farmers', '200+') }}</div>
+                        <p class="text-[10px] font-black uppercase tracking-widest text-gray-500">{{ __('messages.home_about_stats_farmers') }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal relative h-[600px] rounded-[4rem] overflow-hidden group shadow-2xl">
+                 <img src="{{ asset('storage/' . \App\Models\Setting::get('home_about_image', 'images/default-about.jpg')) }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000">
+                 <div class="absolute inset-0 bg-gradient-to-t from-upknavy via-transparent to-transparent"></div>
+                 <div class="absolute bottom-12 left-12 right-12">
+                     <div class="glass p-8 rounded-[2rem] border border-white/10 backdrop-blur-xl">
+                        <p class="text-white text-xl font-heading font-bold italic leading-relaxed">
+                            "{{ \App\Models\Setting::getLocalized('home_about_quote', __('messages.home_about_quote')) }}"
+                        </p>
+                     </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- ============= PRODUCTS GRID ============= --}}
+<section class="relative py-24 bg-upknavy-700" id="products">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-8 mb-16 reveal">
+            <div>
+                 <h2 class="text-3xl sm:text-5xl font-heading font-black text-white mb-4 tracking-tighter uppercase">
+                    {!! __('messages.home_prod_title') !!}
+                </h2>
+                <p class="text-gray-500 text-lg font-medium">{{ __('messages.prod_subtitle') }}</p>
+            </div>
+            <a href="{{ route('products') }}" class="px-8 py-4 glass border border-white/10 text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-upkgreen hover:border-upkgreen transition-all">
+                {{ __('messages.prod_all') }}
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            @foreach($products->take(4) as $product)
+            <div class="reveal glass rounded-[3rem] p-4 border border-white/5 hover:border-upkgreen/30 transition-all duration-500 group shadow-2xl overflow-hidden">
+                <div class="aspect-square rounded-[2.5rem] bg-white/5 mb-8 overflow-hidden relative">
+                    <img src="{{ $product->image_path ? asset('storage/' . $product->image_path) : 'https://placehold.co/600x600/0A192F/10B981?text=UPK' }}" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 p-2 rounded-[2.5rem]">
+                    <div class="absolute top-6 left-6">
+                        <span class="text-[8px] font-black uppercase tracking-[0.3em] bg-upkgreen/20 text-upkgreen px-4 py-1.5 rounded-full backdrop-blur-md border border-upkgreen/20">{{ $product->grade_type }}</span>
+                    </div>
+                </div>
+                <div class="px-6 pb-6">
+                    <h3 class="text-white font-heading font-black text-xl mb-3 tracking-tight group-hover:text-upkgreen transition-colors">{{ $product->getLocalized('title') }}</h3>
+                    <p class="text-gray-500 text-xs line-clamp-2 leading-relaxed mb-6">{{ $product->getLocalized('description') }}</p>
+                    <div class="flex items-center justify-between pt-6 border-t border-white/5">
+                        <span class="text-[10px] font-black text-upkgreen uppercase tracking-widest">{{ __('messages.home_inquire_price') }}</span>
+                        <svg class="w-5 h-5 text-gray-700 group-hover:text-upkgreen transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+{{-- ============= TRADE & STATS ============= --}}
+<section class="relative py-24 bg-upknavy overflow-hidden">
+    {{-- Dynamic Background Blob --}}
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-blue-600/[0.03] rounded-full blur-[120px] -z-10"></div>
+    
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div class="lg:w-1/2 reveal">
-                <span class="inline-block px-4 py-1.5 bg-upkgreen/10 text-upkgreen text-sm font-bold rounded-full border border-upkgreen/20 mb-6 uppercase tracking-widest">
-                    {{ __('messages.about_badge') }}
-                </span>
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-8 leading-tight">
-                    {{ \App\Models\Setting::get('about_title', __('messages.about_h2_1') . ' ' . __('messages.about_h2_2')) }}
+            <div class="reveal">
+                <span class="text-blue-500 text-[10px] font-black uppercase tracking-[0.4em] mb-8 block">{{ __('messages.trade_badge') }}</span>
+                <h2 class="text-3xl sm:text-5xl font-heading font-black text-white mb-8 tracking-tighter uppercase leading-tight">
+                    {{ __('messages.trade_title') }}
                 </h2>
-                <div class="space-y-6 text-gray-400 text-lg leading-relaxed mb-8">
-                    <p>
-                        {{ \App\Models\Setting::get('about_description', __('messages.about_p1')) }}
-                    </p>
+                <p class="text-gray-400 text-xl leading-relaxed mb-12">
+                    {{ __('messages.trade_desc') }}
+                </p>
+                <div class="flex flex-wrap gap-6">
+                    <a href="{{ route('trade') }}" class="px-10 py-5 bg-blue-600 hover:bg-blue-700 text-white font-black uppercase tracking-widest text-xs rounded-2xl shadow-2xl shadow-blue-600/20 transition-all hover:scale-105">
+                        {{ __('messages.home_enter_trade') }}
+                    </a>
+                    <a href="{{ route('statistics') }}" class="px-10 py-5 glass border border-white/10 text-white font-black uppercase tracking-widest text-xs rounded-2xl hover:bg-white/5 transition-all">
+                        {{ __('messages.home_market_stats') }}
+                    </a>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    @foreach([
-                        ['about_direct','about_direct_sub'],
-                        ['about_trace','about_trace_sub'],
-                        ['about_quality','about_quality_sub'],
-                        ['about_sustain','about_sustain_sub'],
-                    ] as $item)
-                    <div class="flex items-start gap-3">
-                        <div class="w-8 h-8 rounded-lg bg-upkgreen/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                            <svg class="w-4 h-4 text-upkgreen" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
-                        </div>
+            </div>
+            <div class="reveal bg-upknavy-800 rounded-[3.5rem] border border-white/5 p-12 card-glow shadow-2xl">
+                 <div class="grid grid-cols-1 gap-12">
+                    <div class="flex items-center justify-between border-b border-white/5 pb-8">
                         <div>
-                            <p class="text-sm font-medium text-white">{{ __('messages.'.$item[0]) }}</p>
-                            <p class="text-xs text-gray-500">{{ __('messages.'.$item[1]) }}</p>
+                            <p class="text-white font-black text-4xl mb-1">{{ \App\Models\Setting::get('stats_production', '1,240') }} <span class="text-blue-500 text-sm italic">{{ __('messages.stats_mt') }}</span></p>
+                            <p class="text-[10px] font-black uppercase tracking-widest text-gray-600">{{ __('messages.stats_capacity_label') }}</p>
+                        </div>
+                        <div class="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
                         </div>
                     </div>
-                    @endforeach
-                </div>
-            </div>
-            <div class="reveal grid grid-cols-2 gap-4" style="transition-delay: 0.2s;">
-                <div class="glass rounded-2xl p-6 text-center card-glow">
-                    <div class="text-3xl font-heading font-bold gradient-text mb-1">10+</div>
-                    <p class="text-sm text-gray-400">{{ __('messages.about_years') }}</p>
-                </div>
-                <div class="glass rounded-2xl p-6 text-center card-glow">
-                    <div class="text-3xl font-heading font-bold gradient-text mb-1">15+</div>
-                    <p class="text-sm text-gray-400">{{ __('messages.about_countries') }}</p>
-                </div>
-                <div class="glass rounded-2xl p-6 text-center card-glow">
-                    <div class="text-3xl font-heading font-bold gradient-text mb-1">200+</div>
-                    <p class="text-sm text-gray-400">{{ __('messages.about_farmers') }}</p>
-                </div>
-                <div class="glass rounded-2xl p-6 text-center card-glow">
-                    <div class="text-3xl font-heading font-bold gradient-text mb-1">6K+</div>
-                    <p class="text-sm text-gray-400">{{ __('messages.about_export') }}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-{{-- ============================================ --}}
-{{-- PRODUCTS SECTION --}}
-{{-- ============================================ --}}
-<section class="relative py-24 bg-upknavy-700" id="products">
-    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-upkgreen/30 to-transparent"></div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16 reveal">
-            <span class="inline-flex items-center gap-2 bg-upkgreen/10 text-upkgreen text-sm font-medium px-4 py-1.5 rounded-full border border-upkgreen/20 mb-6">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
-                {{ __('messages.products_badge') }}
-            </span>
-            <h2 class="text-3xl sm:text-4xl font-heading font-bold text-white mb-4">
-                {{ __('messages.products_h2') }} <span class="gradient-text">{{ __('messages.products_h2_2') }}</span> {{ __('messages.products_h2_3') }}
-            </h2>
-            <p class="text-gray-400 max-w-2xl mx-auto">{{ __('messages.products_desc') }}</p>
-        </div>
-
-        @if($products->count() > 0)
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                @foreach($products as $product)
-                    <div class="reveal group glass rounded-2xl overflow-hidden card-glow" style="transition-delay: {{ $loop->index * 0.1 }}s;">
-                        <div class="relative h-56 overflow-hidden bg-upknavy-600">
-                            @if($product->image_path)
-                                <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->title }}"
-                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy">
-                            @else
-                                <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-upknavy-600 to-upknavy-800">
-                                    <svg class="w-16 h-16 text-upkgreen/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                                    </svg>
-                                </div>
-                            @endif
-                            <div class="absolute top-4 left-4">
-                                <span class="px-3 py-1 bg-upkgreen/90 backdrop-blur-sm text-white text-xs font-semibold rounded-full shadow-lg">{{ $product->grade_type }}</span>
-                            </div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-upknavy/80 via-transparent to-transparent"></div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-white font-black text-4xl mb-1">{{ \App\Models\Setting::get('stats_export_value', '$3.2M') }}</p>
+                            <p class="text-[10px] font-black uppercase tracking-widest text-gray-600">{{ __('messages.stats_trade_label') }}</p>
                         </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-heading font-bold text-white mb-3 group-hover:text-upkgreen transition-colors">{{ $product->getLocalized('title') }}</h3>
-                            @if($product->description)
-                                <p class="text-sm text-gray-400 mb-4 line-clamp-2">{{ $product->getLocalized('description') }}</p>
-                            @endif
-                            <div class="space-y-2 mb-5">
-                                @if($product->moisture_content)
-                                    <div class="flex items-center justify-between py-2 border-b border-white/5">
-                                        <span class="text-xs text-gray-500 uppercase tracking-wider">{{ __('messages.products_moisture') }}</span>
-                                        <span class="text-sm font-medium text-upkgreen">{{ $product->moisture_content }}</span>
-                                    </div>
-                                @endif
-                                @if($product->impurity_content)
-                                    <div class="flex items-center justify-between py-2 border-b border-white/5">
-                                        <span class="text-xs text-gray-500 uppercase tracking-wider">{{ __('messages.products_impurity') }}</span>
-                                        <span class="text-sm font-medium text-upkgreen">{{ $product->impurity_content }}</span>
-                                    </div>
-                                @endif
-                                @if($product->packaging_details)
-                                    <div class="flex items-center justify-between py-2">
-                                        <span class="text-xs text-gray-500 uppercase tracking-wider">{{ __('messages.products_packaging') }}</span>
-                                        <span class="text-sm font-medium text-gray-300">{{ $product->packaging_details }}</span>
-                                    </div>
-                                @endif
-                            </div>
-                            <a href="https://wa.me/6281234567890?text=Hello%2C%20I%20am%20interested%20in%20{{ urlencode($product->title) }}"
-                               target="_blank"
-                               class="flex items-center justify-center gap-2 w-full py-3 bg-upkgreen/10 hover:bg-upkgreen text-upkgreen hover:text-white border border-upkgreen/30 hover:border-upkgreen rounded-xl text-sm font-semibold transition-all duration-300">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
-                                {{ __('messages.products_inquire') }}
-                            </a>
+                        <div class="w-16 h-16 rounded-2xl bg-upkgreen/10 flex items-center justify-center text-upkgreen">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
                         </div>
                     </div>
-                @endforeach
+                 </div>
             </div>
-        @else
-            <div class="text-center py-16 glass rounded-2xl">
-                <svg class="w-16 h-16 text-upkgreen/30 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
-                <h3 class="text-lg font-heading font-semibold text-gray-300 mb-2">{{ __('messages.products_empty') }}</h3>
-                <p class="text-sm text-gray-500">{{ __('messages.products_empty_sub') }}</p>
-            </div>
-        @endif
+        </div>
     </div>
 </section>
 
-{{-- ============================================ --}}
-{{-- CERTIFICATIONS SECTION --}}
-{{-- ============================================ --}}
-<section class="relative py-24 bg-upknavy" id="certifications">
+{{-- ============= KNOWLEDGE & NEWS ============= --}}
+<section class="relative py-24 bg-upknavy-700" id="lms">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16 reveal">
-            <span class="inline-flex items-center gap-2 bg-upkgreen/10 text-upkgreen text-sm font-medium px-4 py-1.5 rounded-full border border-upkgreen/20 mb-6">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                {{ __('messages.cert_badge') }}
-            </span>
-            <h2 class="text-3xl sm:text-4xl font-heading font-bold text-white mb-4">
-                {{ __('messages.cert_h2') }} <span class="gradient-text">{{ __('messages.cert_h2_2') }}</span>
-            </h2>
-            <p class="text-gray-400 max-w-2xl mx-auto">{{ __('messages.cert_desc') }}</p>
+        <div class="text-center mb-20 reveal">
+            <span class="text-purple-500 text-[10px] font-black uppercase tracking-[0.4em] mb-6 block">{{ __('messages.edu_badge') }}</span>
+            <h2 class="text-4xl sm:text-6xl font-heading font-black text-white mb-6 uppercase tracking-tight">{{ __('messages.edu_title') }}</h2>
+            <p class="text-gray-500 text-lg max-w-2xl mx-auto">{{ __('messages.edu_desc') }}</p>
         </div>
 
-        @if($certifications->count() > 0)
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-                @foreach($certifications as $cert)
-                    <div class="reveal glass rounded-2xl p-6 text-center card-glow group" style="transition-delay: {{ $loop->index * 0.1 }}s;">
-                        <div class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-white/5 flex items-center justify-center overflow-hidden group-hover:bg-white/10 transition-all duration-300">
-                            @if($cert->logo_path)
-                                <img src="{{ asset('storage/' . $cert->logo_path) }}" alt="{{ $cert->name }}" class="w-14 h-14 object-contain" loading="lazy">
-                            @else
-                                <svg class="w-10 h-10 text-upkgreen/50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                            @endif
-                        </div>
-                        <h4 class="text-base font-heading font-bold text-white mb-1 group-hover:text-upkgreen transition-colors">{{ $cert->getLocalized('name') }}</h4>
-                        @if($cert->issuing_body)
-                            <p class="text-xs text-gray-500 mb-1">{{ $cert->getLocalized('issuing_body') }}</p>
-                        @endif
-                        @if($cert->year_acquired)
-                            <span class="inline-block text-[10px] text-upkgreen bg-upkgreen/10 px-2 py-0.5 rounded-full font-medium">
-                                {{ __('messages.cert_since') }} {{ $cert->year_acquired }}
-                            </span>
-                        @endif
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+            @foreach(\App\Models\EducationModule::where('is_active', true)->ordered()->take(3)->get() as $module)
+            <a href="{{ $module->link ?? route('lms') }}" class="reveal group glass rounded-[3rem] p-10 border border-white/5 hover:border-purple-500/50 transition-all duration-500 shadow-xl overflow-hidden relative">
+                @if($module->image_path)
+                    <div class="absolute inset-0 -z-10 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <img src="{{ asset('storage/' . $module->image_path) }}" class="w-full h-full object-cover grayscale">
                     </div>
-                @endforeach
-            </div>
-        @else
-            <div class="text-center py-16 glass rounded-2xl">
-                <svg class="w-16 h-16 text-upkgreen/30 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                <h3 class="text-lg font-heading font-semibold text-gray-300 mb-2">{{ __('messages.cert_empty') }}</h3>
-                <p class="text-sm text-gray-500">{{ __('messages.cert_empty_sub') }}</p>
-            </div>
-        @endif
-    </div>
-</section>
-
-{{-- ============================================ --}}
-{{-- NEWS SECTION --}}
-{{-- ============================================ --}}
-<section class="relative py-24 bg-upknavy-700" id="news">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16 reveal">
-            <span class="inline-flex items-center gap-2 bg-upkgreen/10 text-upkgreen text-sm font-medium px-4 py-1.5 rounded-full border border-upkgreen/20 mb-6">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
-                {{ __('messages.news_badge') }}
-            </span>
-            <h2 class="text-3xl sm:text-4xl font-heading font-bold text-white mb-4">
-                {{ __('messages.news_h2') }} <span class="gradient-text">{{ __('messages.news_h2_2') }}</span>
-            </h2>
-            <p class="text-gray-400 max-w-2xl mx-auto">{{ __('messages.news_desc') }}</p>
+                @endif
+                <div class="w-16 h-16 rounded-2xl bg-purple-500/10 flex items-center justify-center text-purple-400 mb-8 border border-purple-500/20 group-hover:scale-110 transition-transform">
+                    {!! $module->icon ?? '<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5s3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>' !!}
+                </div>
+                <h3 class="text-white font-heading font-black text-2xl mb-4 tracking-tight group-hover:text-purple-400 transition-colors">{{ $module->getLocalized('title') }}</h3>
+                <p class="text-gray-500 text-sm leading-relaxed line-clamp-3">{{ $module->getLocalized('description') }}</p>
+                <div class="mt-8 flex items-center gap-3 text-purple-400 text-[10px] font-black uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all">
+                    {{ __('messages.home_start_learning') }} <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </div>
+            </a>
+            @endforeach
         </div>
 
-        @if($articles->count() > 0)
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                @foreach($articles as $article)
-                    <article class="reveal group glass rounded-2xl overflow-hidden card-glow flex flex-col h-full" style="transition-delay: {{ $loop->index * 0.1 }}s;">
-                        <div class="relative h-52 overflow-hidden bg-upknavy-600">
-                            @if($article->image_path)
-                                <img src="{{ asset('storage/' . $article->image_path) }}" alt="{{ $article->title }}"
-                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                            @else
-                                <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-upknavy-600 to-upknavy-800">
-                                    <svg class="w-16 h-16 text-upkgreen/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                                    </svg>
-                                </div>
-                            @endif
-                            <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-upknavy to-transparent">
-                                <time class="text-upkgreen text-xs font-semibold tracking-wider flex items-center gap-2">
-                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                                    {{ $article->published_at ? $article->published_at->format('d M Y') : $article->created_at->format('d M Y') }}
-                                </time>
-                            </div>
-                        </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <a href="{{ route('articles.show', $article->slug) }}" class="group/title">
-                                <h3 class="text-xl font-heading font-bold text-white mb-3 group-hover/title:text-upkgreen transition-colors line-clamp-2">
-                                    {{ $article->getLocalized('title') }}
-                                </h3>
-                            </a>
-                            <p class="text-sm text-gray-400 mb-6 line-clamp-3 flex-grow">
-                                {{ $article->getLocalized('excerpt') ?? Str::limit(strip_tags($article->getLocalized('content')), 120) }}
-                            </p>
-                            <a href="{{ route('articles.show', $article->slug) }}" class="inline-flex items-center gap-2 text-upkgreen text-sm font-semibold hover:gap-3 transition-all">
-                                {{ __('messages.news_read_more') }}
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                            </a>
-                        </div>
-                    </article>
-                @endforeach
-            </div>
-        @else
-            <div class="text-center py-16 glass rounded-2xl">
-                <p class="text-gray-500">{{ __('messages.news_empty') }}</p>
-            </div>
-        @endif
-    </div>
-</section>
-
-{{-- ============================================ --}}
-{{-- CTA SECTION --}}
-{{-- ============================================ --}}
-<section class="relative py-24 bg-upknavy-700 overflow-hidden">
-    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-upkgreen/30 to-transparent"></div>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-upkgreen/[0.02] rounded-full blur-3xl"></div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="reveal text-center max-w-3xl mx-auto">
-            <span class="inline-flex items-center gap-2 bg-upkgreen/10 text-upkgreen text-sm font-medium px-4 py-1.5 rounded-full border border-upkgreen/20 mb-6">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                {{ __('messages.cta_badge') }}
-            </span>
-            <h2 class="text-3xl sm:text-4xl font-heading font-bold text-white mb-6">
-                {{ __('messages.cta_h2') }} <span class="gradient-text">{{ __('messages.cta_h2_2') }}</span>
-            </h2>
-            <p class="text-gray-400 mb-10 leading-relaxed">{{ __('messages.cta_desc') }}</p>
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="https://wa.me/6281234567890?text=Hello%20UPK%20Seaweed%2C%20I%20would%20like%20to%20discuss%20a%20supply%20contract."
-                   target="_blank"
-                   class="group px-8 py-4 bg-upkgreen hover:bg-upkgreen-600 text-white font-semibold rounded-xl shadow-2xl shadow-upkgreen/25 hover:shadow-upkgreen/40 transition-all duration-300 hover:scale-105 flex items-center gap-2"
-                   id="cta-whatsapp">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    {{ __('messages.cta_whatsapp') }}
-                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        {{-- Latest Articles --}}
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-1 reveal">
+                <h2 class="text-3xl font-heading font-black text-white mb-6 uppercase tracking-tighter">{{ __('messages.news_title') }}</h2>
+                <p class="text-gray-500 mb-8 leading-relaxed">{{ __('messages.news_subtitle') }}</p>
+                <a href="{{ route('articles.index') }}" class="text-upkgreen font-black text-[10px] uppercase tracking-[0.3em] border-b-2 border-upkgreen pb-1 hover:text-white hover:border-white transition-all">
+                    {{ __('messages.news_all') }}
                 </a>
-                <a href="mailto:export@upkseaweed.id"
-                   class="px-8 py-4 border border-white/20 hover:border-upkgreen/50 text-white font-semibold rounded-xl hover:bg-white/5 transition-all duration-300 flex items-center gap-2"
-                   id="cta-email">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                    {{ __('messages.cta_email') }}
+            </div>
+            @foreach($articles->take(2) as $article)
+            <article class="reveal glass rounded-[3rem] overflow-hidden group border border-white/5 bg-upknavy-800">
+                <div class="aspect-video relative overflow-hidden">
+                    <img src="{{ $article->image_path ? asset('storage/' . $article->image_path) : 'https://placehold.co/800x450/0A192F/10B981?text=News' }}" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-all duration-1000">
+                    <div class="absolute inset-0 bg-gradient-to-t from-upknavy to-transparent opacity-60"></div>
+                </div>
+                <div class="p-10">
+                    <span class="text-[8px] font-black text-upkgreen uppercase tracking-widest mb-4 block">{{ $article->getLocalized('category') }}</span>
+                    <h3 class="text-xl font-heading font-black text-white mb-6 group-hover:text-upkgreen transition-colors line-clamp-2 leading-tight uppercase">{{ $article->getLocalized('title') }}</h3>
+                    <a href="{{ route('articles.show', $article->slug) }}" class="text-gray-500 hover:text-white text-[10px] font-black uppercase tracking-widest flex items-center gap-2">
+                        {{ __('messages.home_read_insight') }} <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </a>
+                </div>
+            </article>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+{{-- ============= BOTTOM CTA ============= --}}
+<section class="relative py-32 bg-upknavy overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-upkgreen/5 via-transparent to-transparent"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+        <div class="reveal max-w-4xl mx-auto">
+            <h2 class="text-4xl sm:text-7xl font-heading font-black text-white mb-8 tracking-tighter uppercase leading-[0.9]">
+                {{ __('messages.cta_h2') }}
+            </h2>
+            <p class="text-gray-500 text-xl sm:text-2xl mb-12 font-medium leading-relaxed">
+                 {{ __('messages.cta_p') }}
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+                <a href="https://wa.me/{{ \App\Models\Setting::get('whatsapp_number') }}" class="px-12 py-6 bg-upkgreen hover:bg-upkgreen-600 text-white font-black uppercase tracking-[0.2em] text-[10px] rounded-[2rem] shadow-2xl shadow-upkgreen/20 transition-all hover:scale-105 active:scale-95">
+                    {{ __('messages.cta_btn_primary') }}
+                </a>
+                <a href="mailto:{{ \App\Models\Setting::get('site_email') }}" class="px-12 py-6 glass border border-white/10 text-white font-black uppercase tracking-[0.2em] text-[10px] rounded-[2rem] hover:bg-white/5 transition-all">
+                    {{ __('messages.cta_btn_secondary') }}
                 </a>
             </div>
         </div>

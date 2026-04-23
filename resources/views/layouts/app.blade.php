@@ -248,6 +248,13 @@
     }
     </script>
 
+    {{-- Swiper.js --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    {{-- flag-icons --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css" />
+
     @stack('styles')
 </head>
 <body class="bg-upknavy text-white font-body antialiased overflow-x-hidden" x-data="{ mobileMenu: false }">

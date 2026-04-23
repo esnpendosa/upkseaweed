@@ -29,4 +29,9 @@ class Setting extends Model
 
         return $value;
     }
+
+    public static function getLocalized($key, $default = null)
+    {
+        return static::get($key, $default);
+    }
 }
