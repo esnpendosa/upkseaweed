@@ -5,13 +5,13 @@ namespace App\Filament\Resources\HeroSlides\Schemas;
 use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
-use Filament\Infolists\Infolist;
+use Filament\Schemas\Schema;
 
 class HeroSlideInfolist
 {
-    public static function configure(Infolist $infolist): Infolist
+    public static function configure(Schema $schema): Schema
     {
-        return $infolist
+        return $schema
             ->components([
                 TextEntry::make('title'),
                 TextEntry::make('subtitle')
