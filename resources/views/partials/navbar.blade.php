@@ -7,15 +7,13 @@
         <div class="flex items-center justify-between gap-4">
 
             {{-- Logo Area --}}
-            <a href="{{ route('home') }}" class="flex items-center gap-3 shrink-0 group" id="nav-logo">
-                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-upkgreen/10 rounded-2xl flex items-center justify-center border border-upkgreen/20 group-hover:border-upkgreen/50 transition-all duration-500 shadow-2xl">
-                    <svg class="w-6 h-6 sm:w-7 sm:h-7 text-upkgreen group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
+            <a href="{{ route('home') }}" class="flex items-center gap-4 shrink-0 group" id="nav-logo">
+                <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center border border-white/10 group-hover:border-upkgreen/50 transition-all duration-500 shadow-2xl p-2 overflow-hidden shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                    <img src="{{ asset('assets/img/logo-upkseaweed.png') }}" alt="UPK Seaweed Logo" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110">
                 </div>
                 <div class="hidden xl:block">
-                    <span class="text-xs sm:text-sm font-heading font-black text-white uppercase leading-none block tracking-tighter">UPK <span class="text-upkgreen">SEAWEED</span></span>
-                    <p class="text-[6px] text-gray-500 tracking-[0.3em] uppercase mt-1 font-black">Industrial Marine Hub</p>
+                    <span class="text-xl font-heading font-black text-white uppercase leading-none block tracking-tighter">UPK <span class="text-upkgreen">SEAWEED</span></span>
+                    <p class="text-[7px] text-gray-500 tracking-[0.4em] uppercase mt-1.5 font-black opacity-80 italic">Industrial Marine Hub</p>
                 </div>
             </a>
 

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ChatbotController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,4 +35,10 @@ Route::post('/articles/{id}/comment', [ArticleController::class, 'comment'])->na
 Route::get('/sitemap.xml', function() {
     $articles = \App\Models\Article::all();
     return response()->view('sitemap', compact('articles'))->header('Content-Type', 'text/xml');
+});
+
+// AI Chatbot Routes
+Route::prefix('api/chatbot')->group(function () {
+    Route::get('/options', [ChatbotController::class, 'getOptions']);
+    Route::post('/message', [ChatbotController::class, 'handleMessage']);
 });

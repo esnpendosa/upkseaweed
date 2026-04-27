@@ -229,4 +229,5 @@ return [
     'bot_products_ans' => 'We produce export-quality Eucheuma Cottonii, Spinosum, and Gracilaria.',
     'bot_contact_ans' => 'You can reach our sales team via WhatsApp on our Contact page.',
     'bot_default_ans' => 'Thank you for your question. As your UPK Seaweed AI assistant, I am here to help with information about seaweed products and export logistics.',
+    'bot_error' => 'I am sorry, our AI system is currently experiencing technical difficulties. Please try again later.',
 ];

@@ -11,13 +11,16 @@
             {{-- Column 1: Brand & Social (4/12) --}}
             <div class="lg:col-span-4 space-y-12">
                 <div class="space-y-8">
-                    <a href="{{ route('home') }}" class="flex items-center gap-4 group">
-                        <div class="w-14 h-14 bg-upkgreen/10 rounded-2xl flex items-center justify-center border border-upkgreen/20 group-hover:border-upkgreen/50 transition-all duration-500 shadow-2xl">
-                            <svg class="w-8 h-8 text-upkgreen group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
+                    <a href="{{ route('home') }}" class="flex flex-col sm:flex-row items-center gap-6 group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center border border-white/10 group-hover:border-upkgreen/50 transition-all duration-500 shadow-2xl p-2 overflow-hidden shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                                <img src="{{ asset('assets/img/logo-upkseaweed.png') }}" alt="UPK Seaweed Logo" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110">
+                            </div>
+                            <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center border border-white/10 group-hover:border-upkgreen/50 transition-all duration-500 shadow-2xl p-2 overflow-hidden shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                                <img src="{{ asset('assets/img/logo-koperasi.png') }}" alt="Koperasi Indonesia Logo" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110">
+                            </div>
                         </div>
-                        <div>
+                        <div class="text-center sm:text-left">
                             <span class="text-2xl font-heading font-black text-white uppercase leading-none block tracking-tighter">UPK <span class="text-upkgreen">SEAWEED</span></span>
                             <p class="text-[9px] text-gray-500 tracking-[0.4em] uppercase mt-1.5 font-black opacity-60">{{ __('messages.footer_subtitle') }}</p>
                         </div>

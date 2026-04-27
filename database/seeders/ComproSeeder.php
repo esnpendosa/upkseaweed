@@ -39,6 +39,9 @@ class ComproSeeder extends Seeder
             'hero_subtitle' => 'Connecting Sustainable Farmers with the Global Marine Industry. High-quality marine products processed with excellence.',
             'hero_cta' => 'Explore Catalogue',
             'whatsapp_number' => '6282228214233',
+            'chatbot_gemini_api_key' => '', // USER needs to fill this in Admin
+            'chatbot_name' => 'Seaweed Intelligence',
+            'chatbot_greeting' => 'Halo! Saya asisten AI UPK Seaweed. Ada yang bisa saya bantu hari ini?',
         ];
 
         foreach ($settings as $key => $value) {

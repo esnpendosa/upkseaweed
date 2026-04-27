@@ -1,103 +1,104 @@
-# UPK Seaweed — Global Marine Excellence
+# 🌊 UPK Seaweed — Industrial Marine Hub
 
-![UPK Seaweed Banner](https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg)
+![UPK Seaweed Banner](public/assets/img/logo-upkseaweed.png)
 
-## 🌊 About [upkseaweed.id](https://upkseaweed.id)
+## 🏢 Tentang [upkseaweed.id](https://upkseaweed.id)
 
-**UPK Seaweed (Ujungpangkah Kulon Marine)** is a premier Indonesian seaweed processing and export hub. We bridge the gap between local seaweed farmers and the global market, providing high-quality, sustainably sourced seaweed products for various industries worldwide.
-
-With over **10 years of experience** and a network of **200+ dedicated farmers**, we empower the blue economy by delivering excellence in every harvest.
+**UPK Seaweed (Ujungpangkah Kulon Marine)** adalah pusat pengolahan dan ekspor rumput laut terkemuka di Indonesia. Platform ini dirancang untuk menghubungkan petani lokal dengan pasar global, menyediakan produk rumput laut berkualitas tinggi yang berkelanjutan untuk berbagai industri di seluruh dunia.
 
 ---
 
-## 🚀 Key Features
+## 🚀 Fitur Utama & Keunggulan
 
--   **Multi-Language Engine**: Support for 18+ global languages with automatic region detection.
--   **Advanced CMS**: Powered by [Filament PHP](https://filamentphp.com/) for seamless product and content management.
--   **Dynamic Product Catalog**: Detailed specifications for different seaweed grades (Moisture, Impurity, Packaging).
--   **Traceability**: Transparent supply chain from the pristine waters of Ujungpangkah Kulon to your destination.
--   **Premium UI/UX**: Modern, responsive design built with Tailwind CSS and Vite.
+### 1. 🤖 Seaweed Intelligence (AI Chatbot)
+Asisten AI canggih yang dirancang untuk melayani mitra dagang global secara real-time.
+- **Teknologi**: Didukung oleh **OpenRouter API** (model Gemini atau Llama).
+- **Multilingual**: Secara otomatis mendeteksi dan merespons dalam **18+ bahasa**.
+- **Context-Aware**: Chatbot memahami spesifikasi produk, logistik pengiriman, lokasi perusahaan, dan sejarah UPK Seaweed.
+- **Menu Dinamis**: Integrasi database yang memungkinkan admin mengatur opsi menu chat langsung dari panel admin.
 
----
+### 2. 🌍 Localization Engine (Global Ready)
+Platform ini dioptimalkan untuk audiens internasional dengan fitur lokalisasi otomatis.
+- **Dukungan 18+ Bahasa**: Termasuk Arab (RTL), Mandarin, Jepang, Rusia, dan bahasa-bahasa Eropa.
+- **Deteksi Lokasi Otomatis**: Mendeteksi negara asal pengunjung via IP dan menyajikan bahasa yang sesuai.
+- **Auto-Translate**: Konten dinamis seperti Produk dan Artikel dapat diterjemahkan secara otomatis menggunakan integrasi **Google Translate**.
 
-## 🛠️ Technical Stack
+### 3. 💼 Katalog Produk & Ekspor
+Terminal khusus untuk transaksi B2B global.
+- **Spesifikasi Industri**: Menampilkan detail teknis seperti ambang batas kadar air (*Moisture*) dan kotoran (*Impurity*).
+- **Integrasi WhatsApp**: Hubungkan pembeli langsung dengan pakar perdagangan kami dalam satu klik.
+- **Sertifikasi**: Menampilkan standar internasional (ISO, HACCP, & Halal Indonesia).
 
--   **Framework**: [Laravel 11](https://laravel.com)
--   **Admin Panel**: [Filament v3](https://filamentphp.com)
--   **Styling**: [Tailwind CSS](https://tailwindcss.com)
--   **Frontend Tooling**: [Vite](https://vitejs.dev)
--   **Database**: MySQL / PostgreSQL
--   **Language Support**: Dynamic Localization (EN, ID, FR, ZH, etc.)
+### 4. 🎓 Seaweed Academy (LMS)
+Portal edukasi yang bertujuan untuk memberdayakan petani lokal dan anggota koperasi dengan pengetahuan standar global mengenai budidaya dan praktik berkelanjutan.
 
----
-
-## 📦 Getting Started
-
-### Prerequisites
-
--   PHP 8.2 or higher
--   Composer
--   Node.js & NPM
-
-### Installation
-
-1.  **Clone the repository**:
-    ```bash
-    git clone https://github.com/esnpendosa/upkseaweed.git
-    cd upkseaweed
-    ```
-
-2.  **Install PHP dependencies**:
-    ```bash
-    composer install
-    ```
-
-3.  **Install JS dependencies**:
-    ```bash
-    npm install
-    ```
-
-4.  **Environment Setup**:
-    ```bash
-    cp .env.example .env
-    php artisan key:generate
-    ```
-
-5.  **Database Migration**:
-    ```bash
-    php artisan migrate --seed
-    ```
-
-6.  **Run Development Server**:
-    ```bash
-    npm run dev
-    ```
-    And in another terminal:
-    ```bash
-    php artisan serve
-    ```
+### 5. 📝 Manajemen Konten (CMS)
+- **Filament v3**: Panel admin modern dan intuitif untuk mengelola seluruh aspek website.
+- **Artikel & Berita**: Sistem manajemen berita lengkap dengan fitur komentar untuk interaksi komunitas.
+- **Regulasi & Kepatuhan**: Halaman khusus untuk menampilkan regulasi ekspor dan standar kepatuhan industri.
 
 ---
 
-## 🚢 Export Capabilities
+## 🛠️ Tech Stack
 
--   **Annual Capacity**: 500+ MT
--   **Logistics**: FOB / CIF Worldwide Shipping
--   **Certifications**: ISO & HACCP (Industry Standards)
--   **Active Markets**: 15+ Countries
-
----
-
-## 📄 License
-
-This software is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- **Framework**: Laravel 11 (PHP 8.2+)
+- **Admin Panel**: Filament v3 (Professional CMS)
+- **AI Engine**: OpenRouter API Integration
+- **Frontend**: Tailwind CSS + Alpine.js
+- **Database**: MySQL / MariaDB
+- **Tools**: Vite, Composer, NPM
 
 ---
 
-## 📞 Contact
+## 💻 Panduan Instalasi & Server
 
--   **Website**: [upkseaweed.id](https://upkseaweed.id)
--   **Email**: export@upkseaweed.id
--   **WhatsApp**: [+62 812-3456-7890](https://wa.me/6281234567890)
+### 1. Pengembangan Lokal (Local Server)
+Jika menggunakan **Laragon** (direkomendasikan) atau server lokal lainnya:
 
-<p align="center">Made with ❤️ for the Global Seaweed Industry</p>
+1. **Clone & Setup**:
+   ```bash
+   git clone https://github.com/esnpendosa/upkseaweed.git
+   composer install
+   npm install
+   cp .env.example .env
+   php artisan key:generate
+   ```
+
+2. **Konfigurasi Database & AI**:
+   Atur kredensial database di `.env` dan tambahkan API Key OpenRouter:
+   ```env
+   OPENROUTER_API_KEY=your_api_key_here
+   ```
+
+3. **Migrasi & Seed**:
+   ```bash
+   php artisan migrate --seed
+   ```
+
+4. **Jalankan Aplikasi**:
+   ```bash
+   php artisan serve
+   npm run dev
+   ```
+
+### 2. Deployment di Hostinger Shared Hosting
+Platform ini sudah dioptimalkan untuk lingkungan **Shared Hosting**. Berikut langkah-langkahnya:
+
+- **Konfigurasi Root**: Website ini dilengkapi dengan file `.htaccess` di root directory yang secara otomatis mengarahkan traffic ke folder `/public`. Anda **tidak perlu** memindahkan folder `public` atau mengubah struktur folder Laravel.
+- **Versi PHP**: Pastikan akun Hostinger Anda menggunakan **PHP 8.2** atau lebih tinggi (dapat diatur di hPanel > Advanced > PHP Configuration).
+- **Storage Link**: Karena akses SSH mungkin terbatas, Anda dapat membuat *symbolic link* untuk storage dengan menjalankan perintah ini melalui cron job atau Terminal di hPanel:
+  ```bash
+  php artisan storage:link
+  ```
+- **File .env**: Sesuaikan `APP_URL` ke `https://upkseaweed.id` dan masukkan detail database yang dibuat di hPanel Hostinger.
+- **SSL**: Pastikan SSL (HTTPS) aktif di hPanel agar AI Chatbot dan fitur lainnya berjalan lancar.
+
+---
+
+## 📞 Kontak & Dukungan
+
+- **Situs Resmi**: [upkseaweed.id](https://upkseaweed.id)
+- **WhatsApp**: [+62 822-2821-4233](https://wa.me/6282228214233)
+- **Lokasi**: Pangkahkulon, Ujungpangkah, Gresik, Jawa Timur, Indonesia.
+
+<p align="center">Industrializing the Blue Economy with ❤️ from Indonesia</p>

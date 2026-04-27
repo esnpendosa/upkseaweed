@@ -22,8 +22,9 @@ class Setting extends Model
 
         $value = $baseSetting->value;
 
-        // 3. Auto-translate if not in 'id'
-        if ($locale !== 'id' && !empty($value)) {
+        // 3. Auto-translate if not in 'id' (Skip for phone/email to prevent broken links)
+        $skipTranslate = ['whatsapp_number', 'email', 'phone'];
+        if ($locale !== 'id' && !empty($value) && !in_array($key, $skipTranslate)) {
             return \App\Services\TranslationService::auto($value, 'id');
         }
 
