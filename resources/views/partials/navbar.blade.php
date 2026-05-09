@@ -10,7 +10,7 @@
      :class="scrolled ? 'glass-dark shadow-2xl py-3' : 'bg-transparent py-6'">
     
     <div class="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-10">
-        <div class="flex items-center justify-between gap-8">
+        <div class="flex items-center justify-between gap-4 lg:gap-8">
 
             {{-- Logo Section --}}
             <a href="{{ route('home') }}" class="flex items-center gap-4 shrink-0 group">
@@ -30,7 +30,7 @@
             </a>
 
             {{-- Desktop Navigation --}}
-            <div class="hidden xl:flex items-center gap-1 p-1.5 rounded-2xl border transition-all duration-500"
+            <div class="hidden lg:flex items-center gap-0.5 p-1.5 rounded-2xl border transition-all duration-500"
                  :class="scrolled ? 'bg-gray-50/50 dark:bg-white/5 border-gray-100 dark:border-white/5' : 'bg-white/10 border-white/10 backdrop-blur-md'">
                 
                 @php
@@ -43,7 +43,7 @@
 
                 @foreach($mainLinks as $link)
                 <a href="{{ route($link['route']) }}" 
-                   class="px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all whitespace-nowrap"
+                   class="px-3 xl:px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all whitespace-nowrap"
                    :class="scrolled ? 'text-gray-500 dark:text-gray-400 hover:text-upknavy-900 dark:hover:text-white hover:bg-white dark:hover:bg-white/10' : 'text-white/80 hover:text-white hover:bg-white/10'">
                     {{ __('messages.'.$link['label']) }}
                 </a>
@@ -51,7 +51,7 @@
 
                 {{-- Dropdown: Resources --}}
                 <div class="relative" @mouseenter="activeDropdown = 'resources'" @mouseleave="activeDropdown = null">
-                    <button class="flex items-center gap-2 px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all"
+                    <button class="flex items-center gap-2 px-3 xl:px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all"
                             :class="scrolled ? 'text-gray-500 dark:text-gray-400 hover:text-upknavy-900 dark:hover:text-white hover:bg-white dark:hover:bg-white/10' : 'text-white/80 hover:text-white hover:bg-white/10'">
                         {{ __('messages.nav_resources') }}
                         <svg class="w-2.5 opacity-40 transition-transform duration-300" :class="activeDropdown === 'resources' ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -74,7 +74,7 @@
 
                 {{-- Dropdown: Company --}}
                 <div class="relative" @mouseenter="activeDropdown = 'company'" @mouseleave="activeDropdown = null">
-                    <button class="flex items-center gap-2 px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all"
+                    <button class="flex items-center gap-2 px-3 xl:px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all"
                             :class="scrolled ? 'text-gray-500 dark:text-gray-400 hover:text-upknavy-900 dark:hover:text-white hover:bg-white dark:hover:bg-white/10' : 'text-white/80 hover:text-white hover:bg-white/10'">
                         {{ __('messages.nav_company') }}
                         <svg class="w-2.5 opacity-40 transition-transform duration-300" :class="activeDropdown === 'company' ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -96,12 +96,12 @@
                 </div>
 
                 <a href="{{ route('articles.index') }}" 
-                   class="px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all whitespace-nowrap"
+                   class="px-3 xl:px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all whitespace-nowrap"
                    :class="scrolled ? 'text-gray-500 dark:text-gray-400 hover:text-upknavy-900 dark:hover:text-white hover:bg-white dark:hover:bg-white/10' : 'text-white/80 hover:text-white hover:bg-white/10'">
                     {{ __('messages.nav_news') }}
                 </a>
                 <a href="{{ route('contact') }}" 
-                   class="px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all whitespace-nowrap"
+                   class="px-3 xl:px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all whitespace-nowrap"
                    :class="scrolled ? 'text-gray-500 dark:text-gray-400 hover:text-upknavy-900 dark:hover:text-white hover:bg-white dark:hover:bg-white/10' : 'text-white/80 hover:text-white hover:bg-white/10'">
                     {{ __('messages.nav_contact') }}
                 </a>
@@ -154,7 +154,7 @@
                 </a>
 
                 {{-- Mobile Menu Toggle --}}
-                <button @click="mobileMenu = !mobileMenu" class="xl:hidden p-2.5 sm:p-3 border rounded-xl sm:rounded-2xl transition-all duration-500"
+                <button @click="mobileMenu = !mobileMenu" class="lg:hidden p-2.5 sm:p-3 border rounded-xl sm:rounded-2xl transition-all duration-500"
                         :class="scrolled ? 'bg-gray-50/50 dark:bg-white/5 border-gray-100 dark:border-white/10 text-upknavy-900 dark:text-white' : 'bg-white/10 border-white/10 text-white'">
                     <svg x-show="!mobileMenu" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
                     <svg x-show="mobileMenu" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -164,7 +164,7 @@
     </div>
 
     {{-- Mobile Menu Overlay --}}
-    <div x-show="mobileMenu" x-cloak x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" class="xl:hidden fixed inset-0 z-[200] bg-white dark:bg-upknavy-900 p-6 flex flex-col">
+    <div x-show="mobileMenu" x-cloak x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" class="lg:hidden fixed inset-0 z-[200] bg-white dark:bg-upknavy-900 p-6 flex flex-col">
         <div class="flex justify-between items-center mb-12">
             <span class="text-xl font-heading font-black text-upknavy-900 dark:text-white uppercase tracking-tighter">Navigation</span>
             <button @click="mobileMenu = false" class="p-4 bg-gray-100 dark:bg-white/5 rounded-2xl text-upknavy-900 dark:text-white">
