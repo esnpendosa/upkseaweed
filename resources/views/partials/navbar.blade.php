@@ -105,11 +105,6 @@
                    :class="scrolled ? 'text-gray-500 dark:text-gray-400 hover:text-upknavy-900 dark:hover:text-white hover:bg-white dark:hover:bg-white/10' : 'text-white/80 hover:text-white hover:bg-white/10'">
                     {{ __('messages.nav_news') }}
                 </a>
-                <a href="{{ route('contact') }}" 
-                   class="px-2.5 xl:px-5 py-2.5 text-[10px] xl:text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all whitespace-nowrap"
-                   :class="scrolled ? 'text-gray-500 dark:text-gray-400 hover:text-upknavy-900 dark:hover:text-white hover:bg-white dark:hover:bg-white/10' : 'text-white/80 hover:text-white hover:bg-white/10'">
-                    {{ __('messages.nav_contact') }}
-                </a>
             </div>
 
             {{-- Right Actions --}}
