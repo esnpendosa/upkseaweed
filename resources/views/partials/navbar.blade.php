@@ -17,7 +17,7 @@
                 <div class="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-xl sm:rounded-2xl flex items-center justify-center border border-gray-100 dark:border-white/10 group-hover:border-upkgreen/50 transition-all duration-500 shadow-xl p-1.5 sm:p-2 overflow-hidden">
                     <img src="{{ asset('assets/img/logo-upkseaweed.png') }}" alt="Logo" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110">
                 </div>
-                <div class="hidden sm:block">
+                <div class="hidden xl:block">
                     <span class="text-lg sm:text-xl font-heading font-black uppercase leading-none block tracking-tighter transition-all duration-500"
                           :class="scrolled ? 'text-upknavy-900 dark:text-white' : 'text-white'">
                         UPK <span class="text-upkgreen">SEAWEED</span>
@@ -29,8 +29,13 @@
                 </div>
             </a>
 
+            {{-- Mobile Logo (visible on lg only) --}}
+            <a href="{{ route('home') }}" class="hidden lg:block xl:hidden shrink-0">
+                 <span class="text-lg font-heading font-black uppercase tracking-tighter" :class="scrolled ? 'text-upknavy-900 dark:text-white' : 'text-white'">UPK</span>
+            </a>
+
             {{-- Desktop Navigation --}}
-            <div class="hidden lg:flex items-center gap-0.5 p-1.5 rounded-2xl border transition-all duration-500"
+            <div class="hidden lg:flex items-center gap-0 p-1 rounded-2xl border transition-all duration-500"
                  :class="scrolled ? 'bg-gray-50/50 dark:bg-white/5 border-gray-100 dark:border-white/5' : 'bg-white/10 border-white/10 backdrop-blur-md'">
                 
                 @php
@@ -43,7 +48,7 @@
 
                 @foreach($mainLinks as $link)
                 <a href="{{ route($link['route']) }}" 
-                   class="px-3 xl:px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all whitespace-nowrap"
+                   class="px-2.5 xl:px-5 py-2.5 text-[10px] xl:text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all whitespace-nowrap"
                    :class="scrolled ? 'text-gray-500 dark:text-gray-400 hover:text-upknavy-900 dark:hover:text-white hover:bg-white dark:hover:bg-white/10' : 'text-white/80 hover:text-white hover:bg-white/10'">
                     {{ __('messages.'.$link['label']) }}
                 </a>
@@ -51,7 +56,7 @@
 
                 {{-- Dropdown: Resources --}}
                 <div class="relative" @mouseenter="activeDropdown = 'resources'" @mouseleave="activeDropdown = null">
-                    <button class="flex items-center gap-2 px-3 xl:px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all"
+                    <button class="flex items-center gap-1 xl:gap-2 px-2.5 xl:px-5 py-2.5 text-[10px] xl:text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all"
                             :class="scrolled ? 'text-gray-500 dark:text-gray-400 hover:text-upknavy-900 dark:hover:text-white hover:bg-white dark:hover:bg-white/10' : 'text-white/80 hover:text-white hover:bg-white/10'">
                         {{ __('messages.nav_resources') }}
                         <svg class="w-2.5 opacity-40 transition-transform duration-300" :class="activeDropdown === 'resources' ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -74,7 +79,7 @@
 
                 {{-- Dropdown: Company --}}
                 <div class="relative" @mouseenter="activeDropdown = 'company'" @mouseleave="activeDropdown = null">
-                    <button class="flex items-center gap-2 px-3 xl:px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all"
+                    <button class="flex items-center gap-1 xl:gap-2 px-2.5 xl:px-5 py-2.5 text-[10px] xl:text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all"
                             :class="scrolled ? 'text-gray-500 dark:text-gray-400 hover:text-upknavy-900 dark:hover:text-white hover:bg-white dark:hover:bg-white/10' : 'text-white/80 hover:text-white hover:bg-white/10'">
                         {{ __('messages.nav_company') }}
                         <svg class="w-2.5 opacity-40 transition-transform duration-300" :class="activeDropdown === 'company' ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -96,12 +101,12 @@
                 </div>
 
                 <a href="{{ route('articles.index') }}" 
-                   class="px-3 xl:px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all whitespace-nowrap"
+                   class="px-2.5 xl:px-5 py-2.5 text-[10px] xl:text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all whitespace-nowrap"
                    :class="scrolled ? 'text-gray-500 dark:text-gray-400 hover:text-upknavy-900 dark:hover:text-white hover:bg-white dark:hover:bg-white/10' : 'text-white/80 hover:text-white hover:bg-white/10'">
                     {{ __('messages.nav_news') }}
                 </a>
                 <a href="{{ route('contact') }}" 
-                   class="px-3 xl:px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all whitespace-nowrap"
+                   class="px-2.5 xl:px-5 py-2.5 text-[10px] xl:text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all whitespace-nowrap"
                    :class="scrolled ? 'text-gray-500 dark:text-gray-400 hover:text-upknavy-900 dark:hover:text-white hover:bg-white dark:hover:bg-white/10' : 'text-white/80 hover:text-white hover:bg-white/10'">
                     {{ __('messages.nav_contact') }}
                 </a>
@@ -135,7 +140,7 @@
                     <button @click="langOpen = !langOpen" class="flex items-center gap-2 px-3 py-2.5 sm:px-4 sm:py-3 border rounded-xl sm:rounded-2xl transition-all duration-500 group"
                             :class="scrolled ? 'bg-gray-50/50 dark:bg-white/5 border-gray-100 dark:border-white/10 text-upknavy-900 dark:text-white hover:bg-upkgreen/10' : 'bg-white/10 border-white/10 text-white hover:bg-white/20'">
                         <span class="fi {{ $locales[$current]['flag'] ?? 'fi-un' }} fis rounded-sm"></span>
-                        <span class="hidden sm:inline text-[10px] font-bold uppercase tracking-widest">{{ $locales[$current]['name'] ?? strtoupper($current) }}</span>
+                        <span class="hidden xl:inline text-[10px] font-bold uppercase tracking-widest">{{ $locales[$current]['name'] ?? strtoupper($current) }}</span>
                     </button>
                     <div x-show="langOpen" @click.outside="langOpen = false" x-transition class="absolute right-0 mt-4 w-44 bg-white dark:bg-upknavy-800 rounded-2xl shadow-2xl border border-gray-100 dark:border-white/10 py-2 z-50">
                         @foreach($locales as $code => $data)
@@ -149,7 +154,7 @@
 
                 {{-- CTA Button --}}
                 <a href="https://wa.me/{{ \App\Models\Setting::get('whatsapp_number') }}" target="_blank"
-                   class="hidden md:flex items-center justify-center px-8 py-4 bg-upkgreen hover:bg-upkgreen-600 text-white text-[11px] font-black uppercase tracking-[0.2em] rounded-xl sm:rounded-2xl shadow-lg shadow-upkgreen/20 transition-all hover:scale-105 active:scale-95 whitespace-nowrap">
+                   class="hidden lg:flex items-center justify-center px-4 xl:px-8 py-3 xl:py-4 bg-upkgreen hover:bg-upkgreen-600 text-white text-[10px] xl:text-[11px] font-black uppercase tracking-[0.2em] rounded-xl sm:rounded-2xl shadow-lg shadow-upkgreen/20 transition-all hover:scale-105 active:scale-95 whitespace-nowrap">
                     {{ __('messages.nav_cta') }}
                 </a>
 
