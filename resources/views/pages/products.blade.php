@@ -18,7 +18,7 @@
                 <h1 class="text-5xl lg:text-8xl font-heading font-black text-upknavy-900 dark:text-white mb-6 uppercase tracking-tighter leading-none transition-colors">
                     {!! __('messages.prod_h1') !!}
                 </h1>
-                <p class="text-gray-600 dark:text-gray-400 text-xl font-medium max-w-2xl leading-relaxed transition-colors">{{ __('messages.prod_subtitle') }}</p>
+                <p class="text-gray-700 dark:text-gray-300 text-xl font-medium max-w-2xl leading-relaxed transition-colors">{{ __('messages.prod_subtitle') }}</p>
             </div>
             <div class="flex items-center gap-4">
                  <div class="glass p-2 rounded-3xl border border-gray-200 dark:border-white/5 flex shadow-2xl bg-white/50 dark:bg-white/5">
@@ -49,7 +49,7 @@
                                 <input type="checkbox" class="peer hidden">
                                 <div class="w-full h-full rounded border-2 border-gray-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 peer-checked:bg-upkgreen peer-checked:border-upkgreen transition-all"></div>
                             </div>
-                            <span class="text-sm font-bold text-gray-500 dark:text-gray-400 group-hover:text-upknavy-900 dark:group-hover:text-white transition-colors">{{ $cat }}</span>
+                            <span class="text-sm font-bold text-gray-700 dark:text-gray-300 group-hover:text-upknavy-900 dark:group-hover:text-white transition-colors">{{ $cat }}</span>
                         </label>
                         @endforeach
                     </div>
@@ -58,13 +58,13 @@
                 <div class="glass p-8 rounded-[2.5rem] border border-gray-200 dark:border-white/5 bg-white dark:bg-white/5 transition-colors">
                     <h3 class="text-upknavy-900 dark:text-white text-[10px] font-black uppercase tracking-[.4em] mb-8 decoration-blue-500 underline underline-offset-8 decoration-2">{{ __('messages.prod_cert_title') }}</h3>
                     <div class="space-y-6">
-                        <div class="flex items-center gap-4 text-gray-600 dark:text-gray-400 text-xs font-bold leading-relaxed transition-colors">
+                        <div class="flex items-center gap-4 text-gray-700 dark:text-gray-300 text-xs font-bold leading-relaxed transition-colors">
                             <div class="w-8 h-8 rounded-lg bg-upkgreen/10 flex items-center justify-center shrink-0">
                                 <svg class="w-4 h-4 text-upkgreen" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
                             </div>
                             {{ __('messages.prod_cert_haccp') }}
                         </div>
-                        <div class="flex items-center gap-4 text-gray-600 dark:text-gray-400 text-xs font-bold leading-relaxed transition-colors">
+                        <div class="flex items-center gap-4 text-gray-700 dark:text-gray-300 text-xs font-bold leading-relaxed transition-colors">
                             <div class="w-8 h-8 rounded-lg bg-upkgreen/10 flex items-center justify-center shrink-0">
                                 <svg class="w-4 h-4 text-upkgreen" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
                             </div>
@@ -128,7 +128,7 @@
                         {{-- Info Area --}}
                         <div class="p-10 flex-1 flex flex-col">
                             <h3 class="text-2xl font-heading font-extrabold text-upknavy-900 dark:text-white mb-4 leading-tight group-hover:text-upkgreen transition-colors">{{ $product->getLocalized('title') }}</h3>
-                            <p class="text-gray-600 dark:text-gray-400 text-sm font-medium line-clamp-3 leading-loose mb-10 flex-1 transition-colors">
+                            <p class="text-gray-700 dark:text-gray-300 text-sm font-medium line-clamp-3 leading-loose mb-10 flex-1 transition-colors">
                                 {{ $product->getLocalized('description') }}
                             </p>
                             

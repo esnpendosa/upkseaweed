@@ -146,16 +146,17 @@
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
+            transition: background-color 0.5s ease, color 0.5s ease;
         }
         
         .dark body {
             background-color: #0A192F;
-            color: #ffffff;
+            color: #F8FAFC;
         }
 
         .light body {
             background-color: #F8FAFC;
-            color: #0F172A;
+            color: #030712;
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -184,10 +185,10 @@
 
         /* Glassmorphism utility */
         .glass {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .light .glass {
@@ -284,8 +285,11 @@
         .light .bg-upknavy { background-color: #F8FAFC; }
         .light .bg-upknavy-700 { background-color: #F1F5F9; }
         .light .bg-upknavy-800 { background-color: #E2E8F0; }
-        .light .border-white\/5 { border-color: rgba(15, 23, 42, 0.05); }
-        .light .border-white\/10 { border-color: rgba(15, 23, 42, 0.1); }
+        .light .bg-upknavy-900 { background-color: #CBD5E1; }
+        .light .border-white\/5 { border-color: rgba(0, 0, 0, 0.05); }
+        .light .border-white\/10 { border-color: rgba(0, 0, 0, 0.1); }
+        .light .text-white\/80 { color: rgba(0, 0, 0, 0.7); }
+        .light .text-white\/60 { color: rgba(0, 0, 0, 0.5); }
     </style>
 
     {{-- Structured Data (JSON-LD) --}}

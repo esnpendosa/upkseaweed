@@ -25,7 +25,7 @@
         x-transition:leave="transition ease-in duration-200"
         x-transition:leave-start="opacity-100 scale-100 translate-y-0"
         x-transition:leave-end="opacity-0 scale-95 translate-y-10"
-        class="absolute bottom-20 right-0 flex max-h-[calc(100vh-120px)] w-[320px] flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/95 shadow-[0_25px_60px_rgba(0,0,0,0.6)] backdrop-blur-3xl transition-all sm:w-[380px] md:h-[650px] md:w-[420px] md:max-h-[80vh]">
+        class="absolute bottom-20 right-0 flex max-h-[calc(100vh-120px)] w-[320px] flex-col overflow-hidden rounded-[2rem] border border-gray-100 dark:border-white/10 bg-white dark:bg-slate-900 shadow-2xl backdrop-blur-3xl transition-all sm:w-[380px] md:h-[650px] md:w-[420px] md:max-h-[80vh]">
         
         <!-- Header -->
         <div class="flex items-center justify-between bg-gradient-to-r from-upkgreen via-emerald-600 to-teal-900 p-5 text-white shadow-xl">
@@ -57,11 +57,11 @@
                         <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9h10v2H7z"/></svg>
                     </div>
                     <div class="max-w-[85%]">
-                        <div class="chatbot-message prose prose-invert prose-sm rounded-2xl p-4 shadow-xl ring-1 ring-white/5"
-                             :class="msg.isUser ? 'rounded-tr-none bg-gradient-to-br from-upkgreen to-emerald-700 text-white font-medium' : 'rounded-tl-none bg-white/5 border border-white/10 text-slate-100 backdrop-blur-sm'">
+                        <div class="chatbot-message prose prose-sm rounded-2xl p-4 shadow-xl ring-1 ring-white/5 transition-colors"
+                             :class="msg.isUser ? 'rounded-tr-none bg-gradient-to-br from-upkgreen to-emerald-700 text-white font-medium' : 'rounded-tl-none bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 text-upknavy-900 dark:text-slate-100 backdrop-blur-sm'">
                             <div x-html="renderMarkdown(msg.text)"></div>
                         </div>
-                        <div class="mt-1.5 px-1 text-[10px] font-medium tracking-wide uppercase" :class="msg.isUser ? 'text-right text-white/30' : 'text-slate-600'" x-text="msg.time"></div>
+                        <div class="mt-1.5 px-1 text-[10px] font-medium tracking-wide uppercase" :class="msg.isUser ? 'text-right text-upkgreen/50 dark:text-white/30' : 'text-gray-400 dark:text-slate-600'" x-text="msg.time"></div>
                     </div>
                 </div>
             </template>
@@ -92,12 +92,12 @@
         </div>
 
         <!-- Input Area -->
-        <div class="border-t border-white/10 bg-slate-950/60 p-5 backdrop-blur-3xl">
+        <div class="border-t border-gray-100 dark:border-white/10 bg-gray-50 dark:bg-slate-950/60 p-5 backdrop-blur-3xl transition-colors">
             <form @submit.prevent="sendMessage()" class="flex items-center gap-3">
                 <div class="relative flex-1">
                     <input type="text" x-model="userInput" 
                         placeholder="{{ __('messages.bot_placeholder') }}"
-                        class="w-full rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-sm text-white placeholder-white/20 outline-none ring-upkgreen/30 transition-all focus:bg-white/10 focus:ring-4">
+                        class="w-full rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 px-5 py-4 text-sm text-upknavy-900 dark:text-white placeholder-gray-400 dark:placeholder-white/20 outline-none ring-upkgreen/30 transition-all focus:bg-white focus:dark:bg-white/10 focus:ring-4">
                 </div>
                 <button type="submit" 
                     :disabled="!userInput.trim() || isTyping"

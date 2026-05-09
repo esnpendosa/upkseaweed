@@ -153,7 +153,7 @@
                 <h2 class="text-3xl sm:text-5xl font-heading font-black text-upknavy-900 dark:text-white mb-8 leading-tight tracking-tighter uppercase transition-colors">
                     {{ \App\Models\Setting::getLocalized('home_about_title', __('messages.home_about_title')) }}
                 </h2>
-                <div class="text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-12 transition-colors">
+                <div class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-12 transition-colors">
                     {!! \App\Models\Setting::getLocalized('compro_foreword') !!}
                 </div>
                 <div class="grid grid-cols-2 gap-8">
@@ -163,7 +163,7 @@
                     </div>
                     <div class="glass p-6 rounded-3xl border border-gray-100 dark:border-white/5 card-glow group bg-slate-50/50 dark:bg-white/5 transition-colors">
                         <div class="text-4xl font-heading font-black text-upknavy-900 dark:text-white mb-2 group-hover:text-upkgreen transition-colors">{{ \App\Models\Setting::get('stats_farmers', '200+') }}</div>
-                        <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 dark:text-gray-500">{{ __('messages.home_about_stats_farmers') }}</p>
+                        <p class="text-[10px] font-black uppercase tracking-widest text-gray-500 dark:text-gray-400">{{ __('messages.home_about_stats_farmers') }}</p>
                     </div>
                 </div>
             </div>
@@ -190,7 +190,7 @@
                  <h2 class="text-3xl sm:text-5xl font-heading font-black text-upknavy-900 dark:text-white mb-4 tracking-tighter uppercase transition-colors">
                     {!! __('messages.home_prod_title') !!}
                 </h2>
-                <p class="text-gray-500 dark:text-gray-400 text-lg font-medium transition-colors">{{ __('messages.prod_subtitle') }}</p>
+                <p class="text-gray-600 dark:text-gray-300 text-lg font-medium transition-colors">{{ __('messages.prod_subtitle') }}</p>
             </div>
             <a href="{{ route('products') }}" class="px-8 py-4 glass border border-gray-200 dark:border-white/10 text-upknavy-900 dark:text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-upkgreen hover:border-upkgreen hover:text-white transition-all">
                 {{ __('messages.prod_all') }}
@@ -209,7 +209,7 @@
                 </div>
                 <div class="px-6 pb-6">
                     <h3 class="text-upknavy-900 dark:text-white font-heading font-black text-xl mb-3 tracking-tight group-hover:text-upkgreen transition-colors">{{ $product->getLocalized('title') }}</h3>
-                    <p class="text-gray-500 dark:text-gray-400 text-xs line-clamp-2 leading-relaxed mb-6 transition-colors">{{ $product->getLocalized('description') }}</p>
+                    <p class="text-gray-600 dark:text-gray-300 text-xs line-clamp-2 leading-relaxed mb-6 transition-colors">{{ $product->getLocalized('description') }}</p>
                     <div class="flex items-center justify-between pt-6 border-t border-gray-100 dark:border-white/5">
                         <span class="text-[10px] font-black text-upkgreen uppercase tracking-widest">{{ __('messages.home_inquire_price') }}</span>
                         <svg class="w-5 h-5 text-gray-300 dark:text-gray-700 group-hover:text-upkgreen transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -233,7 +233,7 @@
                 <h2 class="text-3xl sm:text-5xl font-heading font-black text-upknavy-900 dark:text-white mb-8 tracking-tighter uppercase leading-tight transition-colors">
                     {{ __('messages.trade_title') }}
                 </h2>
-                <p class="text-gray-600 dark:text-gray-400 text-xl leading-relaxed mb-12 transition-colors">
+                <p class="text-gray-700 dark:text-gray-300 text-xl leading-relaxed mb-12 transition-colors">
                     {{ __('messages.trade_desc') }}
                 </p>
                 <div class="flex flex-wrap gap-6">
@@ -277,7 +277,7 @@
         <div class="text-center mb-20 reveal">
             <span class="text-purple-600 dark:text-purple-500 text-[10px] font-black uppercase tracking-[0.4em] mb-6 block transition-colors">{{ __('messages.edu_badge') }}</span>
             <h2 class="text-4xl sm:text-6xl font-heading font-black text-upknavy-900 dark:text-white mb-6 uppercase tracking-tight transition-colors">{{ __('messages.edu_title') }}</h2>
-            <p class="text-gray-500 dark:text-gray-400 text-lg max-w-2xl mx-auto transition-colors">{{ __('messages.edu_desc') }}</p>
+            <p class="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto transition-colors">{{ __('messages.edu_desc') }}</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
@@ -304,7 +304,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div class="lg:col-span-1 reveal">
                 <h2 class="text-3xl font-heading font-black text-upknavy-900 dark:text-white mb-6 uppercase tracking-tighter transition-colors">{{ __('messages.news_title') }}</h2>
-                <p class="text-gray-500 dark:text-gray-400 mb-8 leading-relaxed transition-colors">{{ __('messages.news_subtitle') }}</p>
+                <p class="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed transition-colors">{{ __('messages.news_subtitle') }}</p>
                 <a href="{{ route('articles.index') }}" class="text-upkgreen font-black text-[10px] uppercase tracking-[0.3em] border-b-2 border-upkgreen pb-1 hover:text-upknavy-900 dark:hover:text-white hover:border-upknavy-900 dark:hover:border-white transition-all">
                     {{ __('messages.news_all') }}
                 </a>
@@ -337,7 +337,7 @@
             <h2 class="text-4xl sm:text-7xl font-heading font-black text-upknavy-900 dark:text-white mb-8 tracking-tighter uppercase leading-[0.9] transition-colors">
                 {{ __('messages.cta_h2') }}
             </h2>
-            <p class="text-gray-600 dark:text-gray-500 text-xl sm:text-2xl mb-12 font-medium leading-relaxed transition-colors">
+            <p class="text-gray-700 dark:text-gray-300 text-xl sm:text-2xl mb-12 font-medium leading-relaxed transition-colors">
                  {{ __('messages.cta_p') }}
             </p>
             <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
