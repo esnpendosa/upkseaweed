@@ -31,7 +31,7 @@
             <div class="reveal group h-full" style="transition-delay: {{ $loop->index * 0.1 }}s;">
                 <div class="relative aspect-[4/5] rounded-[4rem] overflow-hidden mb-10 shadow-2xl border border-white/5 bg-upknavy-800">
                     @if($member->photo_path)
-                        <img src="{{ asset('storage/' . $member->photo_path) }}" alt="{{ $member->name }}" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105">
+                        <img src="/media/{{ $member->photo_path }}" alt="{{ $member->name }}" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105">
                     @else
                         <div class="w-full h-full bg-upknavy-700 flex items-center justify-center text-upkgreen/20 group-hover:text-upkgreen transition-colors">
                             <svg class="w-32 h-32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>

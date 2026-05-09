@@ -7,7 +7,7 @@
 <div class="relative pt-48 bg-upknavy overflow-hidden">
     {{-- Dynamic Hero Background --}}
     <div class="absolute inset-0 z-0 h-[70vh]">
-        <img src="{{ $article->image_path ? asset('storage/' . $article->image_path) : asset('assets/img/dummy/hero_news.png') }}" class="w-full h-full object-cover">
+        <img src="{{ $article->image_path ? '/media/' . $article->image_path : asset('assets/img/dummy/hero_news.png') }}" class="w-full h-full object-cover">
         <div class="absolute inset-0 bg-gradient-to-b from-upknavy/80 via-upknavy/60 to-upknavy"></div>
     </div>
 

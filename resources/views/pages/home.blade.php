@@ -15,7 +15,7 @@
                 {{-- Background Image --}}
                 <div class="absolute inset-0 z-0">
                     @if($slide->image_path)
-                        <img src="{{ asset('storage/' . $slide->image_path) }}" alt="{{ $slide->getLocalized('title') }}" class="w-full h-full object-cover">
+                        <img src="/media/{{ $slide->image_path }}" alt="{{ $slide->getLocalized('title') }}" class="w-full h-full object-cover">
                     @else
                         <div class="w-full h-full bg-gradient-to-br from-upknavy via-upknavy-600 to-upknavy-800"></div>
                     @endif
@@ -168,7 +168,7 @@
                 </div>
             </div>
             <div class="reveal relative h-[600px] rounded-[4rem] overflow-hidden group shadow-2xl">
-                 <img src="{{ asset('storage/' . \App\Models\Setting::get('home_about_image', 'images/default-about.jpg')) }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000">
+                 <img src="/media/{{ \App\Models\Setting::get('home_about_image', 'images/default-about.jpg') }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000">
                  <div class="absolute inset-0 bg-gradient-to-t from-upknavy via-transparent to-transparent"></div>
                  <div class="absolute bottom-12 left-12 right-12">
                      <div class="glass p-8 rounded-[2rem] border border-white/10 backdrop-blur-xl">
@@ -201,7 +201,7 @@
             @foreach($products->take(4) as $product)
             <div class="reveal glass rounded-[3rem] p-4 border border-white/5 hover:border-upkgreen/30 transition-all duration-500 group shadow-2xl overflow-hidden">
                 <div class="aspect-square rounded-[2.5rem] bg-white/5 mb-8 overflow-hidden relative">
-                    <img src="{{ $product->image_path ? asset('storage/' . $product->image_path) : 'https://placehold.co/600x600/0A192F/10B981?text=UPK' }}" 
+                    <img src="{{ $product->image_path ? '/media/' . $product->image_path : 'https://placehold.co/600x600/0A192F/10B981?text=UPK' }}" 
                          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 p-2 rounded-[2.5rem]">
                     <div class="absolute top-6 left-6">
                         <span class="text-[8px] font-black uppercase tracking-[0.3em] bg-upkgreen/20 text-upkgreen px-4 py-1.5 rounded-full backdrop-blur-md border border-upkgreen/20">{{ $product->grade_type }}</span>
@@ -285,7 +285,7 @@
             <a href="{{ $module->link ?? route('lms') }}" class="reveal group glass rounded-[3rem] p-10 border border-white/5 hover:border-purple-500/50 transition-all duration-500 shadow-xl overflow-hidden relative">
                 @if($module->image_path)
                     <div class="absolute inset-0 -z-10 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <img src="{{ asset('storage/' . $module->image_path) }}" class="w-full h-full object-cover grayscale">
+                        <img src="/media/{{ $module->image_path }}" class="w-full h-full object-cover grayscale">
                     </div>
                 @endif
                 <div class="w-16 h-16 rounded-2xl bg-purple-500/10 flex items-center justify-center text-purple-400 mb-8 border border-purple-500/20 group-hover:scale-110 transition-transform">
@@ -312,7 +312,7 @@
             @foreach($articles->take(2) as $article)
             <article class="reveal glass rounded-[3rem] overflow-hidden group border border-white/5 bg-upknavy-800">
                 <div class="aspect-video relative overflow-hidden">
-                    <img src="{{ $article->image_path ? asset('storage/' . $article->image_path) : 'https://placehold.co/800x450/0A192F/10B981?text=News' }}" 
+                    <img src="{{ $article->image_path ? '/media/' . $article->image_path : 'https://placehold.co/800x450/0A192F/10B981?text=News' }}" 
                          class="w-full h-full object-cover group-hover:scale-110 transition-all duration-1000">
                     <div class="absolute inset-0 bg-gradient-to-t from-upknavy to-transparent opacity-60"></div>
                 </div>

@@ -90,7 +90,7 @@
                         {{-- Image Area --}}
                         <div class="aspect-square relative overflow-hidden bg-upknavy-700">
                             @if($product->image_path)
-                                <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->getLocalized('title') }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
+                                <img src="/media/{{ $product->image_path }}" alt="{{ $product->getLocalized('title') }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
                             @else
                                 <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-upknavy-700 to-upknavy-900 border-2 border-white/5 relative overflow-hidden">
                                      {{-- Industrial Pattern --}}

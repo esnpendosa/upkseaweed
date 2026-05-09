@@ -59,7 +59,7 @@
                         </div>
                         <div class="flex items-center gap-4">
                             @if($reg->file_path)
-                            <a href="{{ asset('storage/' . $reg->file_path) }}" target="_blank" class="px-8 py-4 bg-orange-500/10 hover:bg-orange-500 text-white text-[10px] font-black uppercase tracking-[0.2em] rounded-2xl transition-all shadow-xl group/btn flex items-center gap-3">
+                            <a href="/media/{{ $reg->file_path }}" target="_blank" class="px-8 py-4 bg-orange-500/10 hover:bg-orange-500 text-white text-[10px] font-black uppercase tracking-[0.2em] rounded-2xl transition-all shadow-xl group/btn flex items-center gap-3">
                                 {{ __('messages.reg_download') }}
                                 <svg class="w-4 h-4 group-hover/btn:translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
                             </a>

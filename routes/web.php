@@ -42,3 +42,49 @@ Route::prefix('api/chatbot')->group(function () {
     Route::get('/options', [ChatbotController::class, 'getOptions']);
     Route::post('/message', [ChatbotController::class, 'handleMessage']);
 });
+
+// Shared Hosting Fix: Storage Link & Fallback
+Route::get('/storage-link', function () {
+    try {
+        $shortcut = public_path('storage');
+        
+        // Remove existing link or directory if it exists
+        if (file_exists($shortcut) || is_link($shortcut)) {
+            if (is_link($shortcut)) {
+                @unlink($shortcut);
+            } else {
+                \Illuminate\Support\Facades\File::deleteDirectory($shortcut);
+            }
+        }
+        
+        \Illuminate\Support\Facades\Artisan::call('storage:link');
+        return "Storage link created successfully!";
+    } catch (\Exception $e) {
+        return "Error: " . $e->getMessage();
+    }
+});
+
+// Diagnostic route to check image existence
+Route::get('/check-images', function() {
+    $path = storage_path('app/public/hero/industrial.jpg');
+    return [
+        'industrial_exists' => \Illuminate\Support\Facades\File::exists($path),
+        'storage_path' => storage_path('app/public'),
+        'public_path' => public_path('storage'),
+        'is_link' => is_link(public_path('storage')),
+        'app_url' => config('app.url'),
+    ];
+});
+
+Route::get('/media/{path}', function ($path) {
+    $fullPath = storage_path('app/public/' . $path);
+    
+    if (!\Illuminate\Support\Facades\File::exists($fullPath)) {
+        abort(404);
+    }
+    
+    $file = \Illuminate\Support\Facades\File::get($fullPath);
+    $type = \Illuminate\Support\Facades\File::mimeType($fullPath);
+    
+    return response($file)->header("Content-Type", $type);
+})->where('path', '.*');
