@@ -43,16 +43,17 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
                         upknavy: {
                             DEFAULT: '#0A192F',
-                            50: '#E6EBF2',
-                            100: '#C2CEDF',
-                            200: '#8FA5C2',
-                            300: '#5C7BA5',
-                            400: '#2D4F7A',
+                            50: '#F8FAFC', // Light theme background
+                            100: '#F1F5F9',
+                            200: '#E2E8F0',
+                            300: '#CBD5E1',
+                            400: '#94A3B8',
                             500: '#0A192F',
                             600: '#091527',
                             700: '#07101F',
@@ -113,14 +114,50 @@
         }
     </script>
 
+    {{-- Theme Switcher Logic --}}
+    <script>
+        if (localStorage.getItem('theme') === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+            document.documentElement.classList.add('light');
+            document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+        }
+    </script>
+
     {{-- Alpine.js CDN --}}
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     {{-- Custom Styles --}}
     <style>
+        :root {
+            --bg-color: #0A192F;
+            --text-color: #ffffff;
+            --nav-bg: rgba(10, 25, 47, 0.85);
+        }
+
+        .light {
+            --bg-color: #F8FAFC;
+            --text-color: #0F172A;
+            --nav-bg: rgba(255, 255, 255, 0.85);
+        }
+
         body {
             font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
         }
+        
+        .dark body {
+            background-color: #0A192F;
+            color: #ffffff;
+        }
+
+        .light body {
+            background-color: #F8FAFC;
+            color: #0F172A;
+        }
+
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Outfit', sans-serif;
         }
@@ -135,7 +172,7 @@
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #0A192F;
+            background: var(--bg-color);
         }
         ::-webkit-scrollbar-thumb {
             background: #10B981;
@@ -153,16 +190,28 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        .light .glass {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(15, 23, 42, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+
         .glass-dark {
-            background: rgba(10, 25, 47, 0.85);
+            background: var(--nav-bg);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(16, 185, 129, 0.15);
         }
 
+        .light .glass-dark {
+            background: var(--nav-bg);
+            border: 1px solid rgba(15, 23, 42, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
         /* Gradient text */
         .gradient-text {
-            background: linear-gradient(135deg, #10B981, #34D399, #6EE7B7);
+            background: linear-gradient(135deg, #10B981, #059669, #065F46);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -173,7 +222,7 @@
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         .card-glow:hover {
-            box-shadow: 0 0 30px rgba(16, 185, 129, 0.15), 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.15), 0 20px 60px rgba(0, 0, 0, 0.1);
             transform: translateY(-8px);
         }
 
@@ -230,6 +279,16 @@
             border-radius: 50%;
             animation: float 6s ease-in-out infinite;
         }
+
+        /* Light mode specific text colors */
+        .light .text-gray-400 { color: #64748B; }
+        .light .text-gray-500 { color: #475569; }
+        .light .text-white { color: #0F172A; }
+        .light .bg-upknavy { background-color: #F8FAFC; }
+        .light .bg-upknavy-700 { background-color: #F1F5F9; }
+        .light .bg-upknavy-800 { background-color: #E2E8F0; }
+        .light .border-white\/5 { border-color: rgba(15, 23, 42, 0.05); }
+        .light .border-white\/10 { border-color: rgba(15, 23, 42, 0.1); }
     </style>
 
     {{-- Structured Data (JSON-LD) --}}
@@ -260,7 +319,7 @@
 
     @stack('styles')
 </head>
-<body class="bg-upknavy text-white font-body antialiased overflow-x-hidden" x-data="{ mobileMenu: false }">
+<body class="transition-colors duration-500 font-body antialiased overflow-x-hidden" x-data="{ mobileMenu: false, isDark: localStorage.getItem('theme') !== 'light' }">
 
     {{-- Navigation --}}
     @include('partials.navbar')
