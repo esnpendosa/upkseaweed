@@ -280,10 +280,7 @@
             animation: float 6s ease-in-out infinite;
         }
 
-        /* Light mode specific text colors */
-        .light .text-gray-400 { color: #64748B; }
-        .light .text-gray-500 { color: #475569; }
-        .light .text-white { color: #0F172A; }
+        /* Light mode specific adjustments */
         .light .bg-upknavy { background-color: #F8FAFC; }
         .light .bg-upknavy-700 { background-color: #F1F5F9; }
         .light .bg-upknavy-800 { background-color: #E2E8F0; }

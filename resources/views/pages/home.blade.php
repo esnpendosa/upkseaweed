@@ -29,10 +29,10 @@
                             <span class="inline-flex items-center gap-2 bg-upkgreen/10 text-upkgreen text-[10px] font-black px-4 py-2 rounded-full border border-upkgreen/20 mb-8 uppercase tracking-widest leading-none">
                                 {{ __('messages.hero_badge') }}
                             </span>
-                            <h1 class="text-4xl sm:text-5xl lg:text-7xl font-heading font-extrabold text-white mb-8 leading-[0.9] tracking-tighter uppercase hero-title opacity-0">
+                            <h1 class="text-4xl sm:text-5xl lg:text-7xl font-heading font-extrabold text-white !text-white mb-8 leading-[0.9] tracking-tighter uppercase hero-title opacity-0">
                                 {!! $slide->getLocalized('title') !!}
                             </h1>
-                            <p class="text-gray-400 text-lg sm:text-xl mb-12 max-w-2xl leading-relaxed font-medium hero-subtitle opacity-0">
+                            <p class="text-white/80 text-lg sm:text-xl mb-12 max-w-2xl leading-relaxed font-medium hero-subtitle opacity-0">
                                 {{ $slide->getLocalized('subtitle') }}
                             </p>
                             <div class="flex flex-col sm:flex-row gap-6 hero-actions opacity-0">

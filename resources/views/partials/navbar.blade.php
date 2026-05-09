@@ -18,14 +18,14 @@
             </a>
 
             {{-- Desktop Navigation --}}
-            <div class="hidden lg:flex items-center gap-0.5">
-                <a href="{{ route('home') }}" class="px-3 py-2 text-[10px] font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 hover:text-upknavy-900 dark:hover:text-white transition-all whitespace-nowrap">{{ __('messages.nav_home') }}</a>
-                <a href="{{ route('products') }}" class="px-3 py-2 text-[10px] font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 hover:text-upknavy-900 dark:hover:text-white transition-all whitespace-nowrap">{{ __('messages.nav_products') }}</a>
-                <a href="{{ route('trade') }}" class="px-3 py-2 text-[10px] font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 hover:text-upknavy-900 dark:hover:text-white transition-all whitespace-nowrap">{{ __('messages.nav_trade') }}</a>
+            <div class="hidden lg:flex items-center gap-1">
+                <a href="{{ route('home') }}" class="px-4 py-2 text-[11px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 hover:text-upknavy-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl transition-all whitespace-nowrap">{{ __('messages.nav_home') }}</a>
+                <a href="{{ route('products') }}" class="px-4 py-2 text-[11px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 hover:text-upknavy-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl transition-all whitespace-nowrap">{{ __('messages.nav_products') }}</a>
+                <a href="{{ route('trade') }}" class="px-4 py-2 text-[11px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 hover:text-upknavy-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl transition-all whitespace-nowrap">{{ __('messages.nav_trade') }}</a>
 
                 {{-- Resources --}}
                 <div class="relative group" x-data="{ open: false }">
-                    <button @mouseenter="open = true" @click="open = !open" class="flex items-center gap-1.5 px-3 py-2 text-[10px] font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 hover:text-upknavy-900 dark:hover:text-white transition-all">
+                    <button @mouseenter="open = true" @click="open = !open" class="flex items-center gap-1.5 px-4 py-2 text-[11px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 hover:text-upknavy-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl transition-all">
                         {{ __('messages.nav_resources') }}
                         <svg class="w-2.5 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </button>
@@ -38,7 +38,7 @@
 
                 {{-- Company --}}
                 <div class="relative group" x-data="{ open: false }">
-                    <button @mouseenter="open = true" @click="open = !open" class="flex items-center gap-1.5 px-3 py-2 text-[10px] font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 hover:text-upknavy-900 dark:hover:text-white transition-all">
+                    <button @mouseenter="open = true" @click="open = !open" class="flex items-center gap-1.5 px-4 py-2 text-[11px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 hover:text-upknavy-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl transition-all">
                         {{ __('messages.nav_company') }}
                         <svg class="w-2.5 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </button>
@@ -49,8 +49,8 @@
                     </div>
                 </div>
 
-                <a href="{{ route('articles.index') }}" class="px-3 py-2 text-[10px] font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 hover:text-upknavy-900 dark:hover:text-white transition-all whitespace-nowrap">{{ __('messages.nav_news') }}</a>
-                <a href="{{ route('contact') }}" class="px-3 py-2 text-[10px] font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 hover:text-upknavy-900 dark:hover:text-white transition-all whitespace-nowrap">{{ __('messages.nav_contact') }}</a>
+                <a href="{{ route('articles.index') }}" class="px-4 py-2 text-[11px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 hover:text-upknavy-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl transition-all whitespace-nowrap">{{ __('messages.nav_news') }}</a>
+                <a href="{{ route('contact') }}" class="px-4 py-2 text-[11px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 hover:text-upknavy-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl transition-all whitespace-nowrap">{{ __('messages.nav_contact') }}</a>
             </div>
 
             {{-- Right Actions --}}
@@ -118,7 +118,7 @@
 
                 {{-- CTA Button --}}
                 <a href="https://wa.me/{{ \App\Models\Setting::get('whatsapp_number') }}" target="_blank"
-                   class="hidden sm:flex items-center justify-center px-8 py-4 bg-upkgreen hover:bg-upkgreen-600 text-white font-black uppercase tracking-[0.2em] rounded-2xl shadow-2xl shadow-upkgreen/20 transition-all hover:scale-105 active:scale-95">
+                   class="hidden sm:flex items-center justify-center px-6 py-3.5 bg-upkgreen hover:bg-upkgreen-600 text-white text-[11px] font-bold uppercase tracking-[0.2em] rounded-2xl shadow-2xl shadow-upkgreen/20 transition-all hover:scale-105 active:scale-95">
                     {{ __('messages.nav_cta') }}
                 </a>
 
