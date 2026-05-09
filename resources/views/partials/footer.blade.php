@@ -1,5 +1,5 @@
 {{-- Corporate Footer --}}
-<footer class="relative bg-upknavy-900 border-t border-white/5 pt-24 pb-12 overflow-hidden" id="contact">
+<footer class="relative bg-white dark:bg-upknavy-900 border-t border-gray-100 dark:border-white/5 pt-24 pb-12 overflow-hidden transition-colors duration-500" id="contact">
     {{-- High-end Decorative Backgrounds --}}
     <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-upkgreen/[0.03] rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
     <div class="absolute bottom-0 right-0 w-[600px] h-[600px] bg-blue-600/[0.02] rounded-full blur-[150px] translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
@@ -13,25 +13,25 @@
                 <div class="space-y-8">
                     <a href="{{ route('home') }}" class="flex flex-col sm:flex-row items-center gap-6 group">
                         <div class="flex items-center gap-4">
-                            <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center border border-white/10 group-hover:border-upkgreen/50 transition-all duration-500 shadow-2xl p-2 overflow-hidden shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                            <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center border border-gray-100 dark:border-white/10 group-hover:border-upkgreen/50 transition-all duration-500 shadow-2xl p-2 overflow-hidden shadow-[0_0_20px_rgba(255,255,255,0.1)]">
                                 <img src="{{ asset('assets/img/logo-upkseaweed.png') }}" alt="UPK Seaweed Logo" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110">
                             </div>
-                            <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center border border-white/10 group-hover:border-upkgreen/50 transition-all duration-500 shadow-2xl p-2 overflow-hidden shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                            <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center border border-gray-100 dark:border-white/10 group-hover:border-upkgreen/50 transition-all duration-500 shadow-2xl p-2 overflow-hidden shadow-[0_0_20px_rgba(255,255,255,0.1)]">
                                 <img src="{{ asset('assets/img/logo-koperasi.png') }}" alt="Koperasi Indonesia Logo" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110">
                             </div>
                         </div>
                         <div class="text-center sm:text-left">
-                            <span class="text-2xl font-heading font-black text-white uppercase leading-none block tracking-tighter">UPK <span class="text-upkgreen">SEAWEED</span></span>
-                            <p class="text-[9px] text-gray-500 tracking-[0.4em] uppercase mt-1.5 font-black opacity-60">{{ __('messages.footer_subtitle') }}</p>
+                            <span class="text-2xl font-heading font-black text-upknavy-900 dark:text-white uppercase leading-none block tracking-tighter transition-colors">UPK <span class="text-upkgreen">SEAWEED</span></span>
+                            <p class="text-[9px] text-gray-500 dark:text-gray-500 tracking-[0.4em] uppercase mt-1.5 font-black opacity-60 transition-colors">{{ __('messages.footer_subtitle') }}</p>
                         </div>
                     </a>
-                    <p class="text-gray-400 text-sm leading-relaxed font-medium max-w-sm">
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed font-medium max-w-sm transition-colors">
                         {{ \App\Models\Setting::get('footer_about', __('messages.footer_about')) }}
                     </p>
                 </div>
 
                 <div class="space-y-6">
-                    <h5 class="text-[10px] font-black text-gray-600 uppercase tracking-[0.3em]">{{ __('messages.footer_social_title') }}</h5>
+                    <h5 class="text-[10px] font-black text-gray-400 dark:text-gray-600 uppercase tracking-[0.3em] transition-colors">{{ __('messages.footer_social_title') }}</h5>
                     <div class="flex flex-wrap gap-4">
                         @php
                             $socials = [
@@ -42,7 +42,7 @@
                             ];
                         @endphp
                         @foreach($socials as $social)
-                        <a href="{{ $social['url'] }}" target="_blank" class="w-12 h-12 rounded-2xl glass border border-white/10 flex items-center justify-center text-gray-500 transition-all duration-300 {{ $social['color'] }} shadow-xl group">
+                        <a href="{{ $social['url'] }}" target="_blank" class="w-12 h-12 rounded-2xl glass border border-gray-100 dark:border-white/10 bg-slate-50 dark:bg-white/5 flex items-center justify-center text-gray-400 dark:text-gray-500 transition-all duration-300 {{ $social['color'] }} shadow-xl group">
                             <svg class="w-5 h-5 transition-transform duration-500 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24"><path d="{{ $social['icon'] }}"/></svg>
                         </a>
                         @endforeach
@@ -52,7 +52,7 @@
 
             {{-- Column 2: Tautan Cepat (2/12) --}}
             <div class="lg:col-span-2 space-y-10 items-start">
-                <h5 class="text-[10px] font-black text-white uppercase tracking-[0.4em]">{{ __('messages.footer_ops_title') }}</h5>
+                <h5 class="text-[10px] font-black text-upknavy-900 dark:text-white uppercase tracking-[0.4em] transition-colors">{{ __('messages.footer_ops_title') }}</h5>
                 <ul class="space-y-6">
                     @foreach([
                         ['route' => 'products', 'label' => 'nav_products'],
@@ -62,7 +62,7 @@
                     ] as $link)
                     <li>
                         <a href="{{ route($link['route']) }}" class="group flex items-center gap-3 text-gray-500 hover:text-upkgreen transition-all duration-300">
-                            <span class="w-1.5 h-1.5 rounded-full border border-gray-800 group-hover:bg-upkgreen group-hover:border-upkgreen transition-all"></span>
+                            <span class="w-1.5 h-1.5 rounded-full border border-gray-200 dark:border-gray-800 group-hover:bg-upkgreen group-hover:border-upkgreen transition-all"></span>
                             <span class="text-[11px] font-black uppercase tracking-widest">{{ __('messages.'.$link['label']) }}</span>
                         </a>
                     </li>
@@ -72,7 +72,7 @@
 
             {{-- Column 3: Governance (2/12) --}}
             <div class="lg:col-span-2 space-y-10 items-start">
-                <h5 class="text-[10px] font-black text-white uppercase tracking-[0.4em]">{{ __('messages.footer_gov_title') }}</h5>
+                <h5 class="text-[10px] font-black text-upknavy-900 dark:text-white uppercase tracking-[0.4em] transition-colors">{{ __('messages.footer_gov_title') }}</h5>
                 <ul class="space-y-6">
                     @foreach([
                         ['route' => 'regulations', 'label' => 'nav_regulations'],
@@ -82,7 +82,7 @@
                     ] as $link)
                     <li>
                         <a href="{{ route($link['route']) }}" class="group flex items-center gap-3 text-gray-500 hover:text-upkgreen transition-all duration-300">
-                            <span class="w-1.5 h-1.5 rounded-full border border-gray-800 group-hover:bg-upkgreen group-hover:border-upkgreen transition-all"></span>
+                            <span class="w-1.5 h-1.5 rounded-full border border-gray-200 dark:border-gray-800 group-hover:bg-upkgreen group-hover:border-upkgreen transition-all"></span>
                             <span class="text-[11px] font-black uppercase tracking-widest">{{ __('messages.'.$link['label']) }}</span>
                         </a>
                     </li>
@@ -92,14 +92,14 @@
 
             {{-- Column 4: Headquarters (4/12) --}}
             <div class="lg:col-span-4 space-y-10">
-                <h5 class="text-[10px] font-black text-white uppercase tracking-[0.4em]">{{ __('messages.footer_hq') }}</h5>
-                <div class="glass p-1 rounded-[2.5rem] border border-white/5 overflow-hidden group shadow-2xl relative">
+                <h5 class="text-[10px] font-black text-upknavy-900 dark:text-white uppercase tracking-[0.4em] transition-colors">{{ __('messages.footer_hq') }}</h5>
+                <div class="glass p-1 rounded-[2.5rem] border border-gray-100 dark:border-white/5 overflow-hidden group shadow-2xl relative transition-colors">
                     {{-- Address Info Overlay --}}
-                    <div class="absolute top-6 left-6 right-6 z-10 glass p-4 rounded-2xl border border-white/10 flex items-center gap-4 group-hover:-translate-y-20 transition-all duration-700">
+                    <div class="absolute top-6 left-6 right-6 z-10 glass p-4 rounded-2xl border border-gray-100 dark:border-white/10 flex items-center gap-4 group-hover:-translate-y-20 transition-all duration-700">
                         <div class="w-10 h-10 bg-upkgreen/20 rounded-xl flex items-center justify-center text-upkgreen shrink-0">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                         </div>
-                        <p class="text-[10px] font-black text-white uppercase tracking-widest leading-tight opacity-70 italic">
+                        <p class="text-[10px] font-black text-upknavy-900 dark:text-white uppercase tracking-widest leading-tight opacity-70 italic transition-colors">
                             {{ \App\Models\Setting::get('address', 'Gresik, Indonesia') }}
                         </p>
                     </div>
@@ -110,7 +110,7 @@
                             {!! \App\Models\Setting::get('google_maps_iframe') !!}
                         </div>
                         {{-- Glossy Overlay --}}
-                        <div class="absolute inset-0 bg-gradient-to-t from-upknavy/80 via-transparent to-transparent pointer-events-none"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-white/80 dark:from-upknavy/80 via-transparent to-transparent pointer-events-none transition-colors"></div>
                         
                         <a href="https://maps.google.com/?q={{ urlencode(\App\Models\Setting::get('address')) }}" target="_blank" class="absolute bottom-6 left-1/2 -translate-x-1/2 px-8 py-3 bg-upkgreen hover:bg-upkgreen-600 text-white text-[10px] font-black uppercase tracking-[0.2em] rounded-xl shadow-2xl transition-all hover:scale-105 active:scale-95 whitespace-nowrap">
                             {{ __('messages.footer_map_btn') }}
@@ -121,14 +121,14 @@
         </div>
 
         {{-- Bottom Copyright Section --}}
-        <div class="pt-10 border-t border-white/5 flex flex-col lg:flex-row items-center justify-between gap-8">
+        <div class="pt-10 border-t border-gray-100 dark:border-white/5 flex flex-col lg:flex-row items-center justify-between gap-8 transition-colors">
             <div class="flex flex-col items-center lg:items-start gap-4">
-                <p class="text-[10px] font-black text-gray-600 uppercase tracking-[0.3em] text-center lg:text-left">
+                <p class="text-[10px] font-black text-gray-500 dark:text-gray-600 uppercase tracking-[0.3em] text-center lg:text-left transition-colors">
                     &copy; {{ date('Y') }} {{ \App\Models\Setting::get('site_name', 'UPK Seaweed') }}. {{ __('messages.footer_rights') }}
                 </p>
                 <div class="flex flex-wrap justify-center lg:justify-start gap-8">
-                    <a href="{{ route('privacy') }}" class="text-[9px] font-black text-gray-700 hover:text-upkgreen uppercase tracking-[0.3em] transition-all">{{ __('messages.footer_privacy') }}</a>
-                    <a href="{{ route('compliance') }}" class="text-[9px] font-black text-gray-700 hover:text-upkgreen uppercase tracking-[0.3em] transition-all">{{ __('messages.footer_terms') }}</a>
+                    <a href="{{ route('privacy') }}" class="text-[9px] font-black text-gray-600 dark:text-gray-700 hover:text-upkgreen uppercase tracking-[0.3em] transition-all">{{ __('messages.footer_privacy') }}</a>
+                    <a href="{{ route('compliance') }}" class="text-[9px] font-black text-gray-600 dark:text-gray-700 hover:text-upkgreen uppercase tracking-[0.3em] transition-all">{{ __('messages.footer_terms') }}</a>
                 </div>
             </div>
 
@@ -137,24 +137,24 @@
                 {{-- Developer Subtle Credit --}}
                 <div class="flex items-center gap-3">
                     <div class="w-1 h-3 bg-upkgreen/20 rounded-full"></div>
-                    <p class="text-[9px] font-black text-gray-700 uppercase tracking-[0.3em]">
+                    <p class="text-[9px] font-black text-gray-600 dark:text-gray-700 uppercase tracking-[0.3em] transition-colors">
                         {{ __('messages.footer_dev_by') }} <a href="https://www.linkedin.com/in/muahmmad-as-ad-muhibbin-akbar-0973a0254/" target="_blank" class="text-upkgreen hover:underline font-bold transition-all">Kang Digital</a>
                     </p>
                 </div>
 
                 {{-- Unified Certifications --}}
-                <div class="flex items-center gap-8 opacity-20 grayscale hover:grayscale-0 transition-all duration-700">
+                <div class="flex items-center gap-8 opacity-40 dark:opacity-20 grayscale hover:grayscale-0 transition-all duration-700">
                     <div class="text-center">
-                        <p class="text-xl font-black text-white leading-none">ISO</p>
-                        <p class="text-[7px] font-black text-gray-500 uppercase tracking-widest mt-1">9001:2015</p>
+                        <p class="text-xl font-black text-upknavy-900 dark:text-white leading-none transition-colors">ISO</p>
+                        <p class="text-[7px] font-black text-gray-500 uppercase tracking-widest mt-1 transition-colors">9001:2015</p>
                     </div>
                     <div class="text-center">
-                        <p class="text-xl font-black text-white leading-none">HACCP</p>
-                        <p class="text-[7px] font-black text-gray-500 uppercase tracking-widest mt-1">CERTIFIED</p>
+                        <p class="text-xl font-black text-upknavy-900 dark:text-white leading-none transition-colors">HACCP</p>
+                        <p class="text-[7px] font-black text-gray-500 uppercase tracking-widest mt-1 transition-colors">CERTIFIED</p>
                     </div>
                     <div class="text-center">
-                        <p class="text-xl font-black text-white leading-none">FAO</p>
-                        <p class="text-[7px] font-black text-gray-500 uppercase tracking-widest mt-1">COMPLIANT</p>
+                        <p class="text-xl font-black text-upknavy-900 dark:text-white leading-none transition-colors">FAO</p>
+                        <p class="text-[7px] font-black text-gray-500 uppercase tracking-widest mt-1 transition-colors">COMPLIANT</p>
                     </div>
                 </div>
             </div>
