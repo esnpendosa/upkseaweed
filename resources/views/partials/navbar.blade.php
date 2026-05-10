@@ -74,6 +74,10 @@
                             <div class="w-1.5 h-1.5 rounded-full bg-orange-500"></div>
                             {{ __('messages.nav_regulations') }}
                         </a>
+                        <a href="{{ route('gallery') }}" class="flex items-center gap-4 px-6 py-4 text-[10px] uppercase font-bold text-gray-500 dark:text-gray-400 hover:text-upkgreen hover:bg-upkgreen/5 transition-all">
+                            <div class="w-1.5 h-1.5 rounded-full bg-purple-500"></div>
+                            Galeri
+                        </a>
                     </div>
                 </div>
 

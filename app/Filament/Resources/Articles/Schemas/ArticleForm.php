@@ -27,6 +27,7 @@ class ArticleForm
                     ->image(),
                 TextInput::make('author'),
                 DateTimePicker::make('published_at'),
+                \App\Filament\Schemas\SEOSection::make(),
             ]);
     }
 }

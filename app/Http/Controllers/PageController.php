@@ -27,8 +27,9 @@ class PageController extends Controller
 
         // SEO and Section Data
         $seo = [
-            'title' => Setting::getLocalized('site_name'),
-            'description' => Setting::getLocalized('site_description'),
+            'title' => Setting::get('seo_home_title', Setting::getLocalized('site_name')),
+            'description' => Setting::get('seo_home_desc', Setting::getLocalized('site_description')),
+            'keywords' => Setting::get('seo_home_keywords'),
         ];
 
         $stats = [
@@ -130,12 +131,11 @@ class PageController extends Controller
     public function products()
     {
         $products = Product::where('is_active', true)->ordered()->get();
-
         $seo = [
-            'title' => __('messages.nav_products') . ' - ' . Setting::getLocalized('site_name'),
-            'description' => Setting::getLocalized('seo_products_desc', 'Browse our range of high-quality Gracilaria, Cottonii, and processed marine products.'),
+            'title' => Setting::get('seo_products_title', __('messages.nav_products') . ' - ' . Setting::getLocalized('site_name')),
+            'description' => Setting::get('seo_products_desc', Setting::getLocalized('seo_products_desc', 'Browse our range of high-quality Gracilaria, Cottonii, and processed marine products.')),
+            'keywords' => Setting::get('seo_products_keywords'),
         ];
-
         return view('pages.products', compact('products', 'seo'));
     }
 
@@ -163,6 +163,19 @@ class PageController extends Controller
         ];
 
         return view('pages.news', compact('articles', 'seo'));
+    }
+
+    public function gallery()
+    {
+        $items = \App\Models\Gallery::where('is_active', true)->ordered()->get();
+        
+        $seo = [
+            'title' => Setting::get('seo_gallery_title', 'Gallery - ' . Setting::getLocalized('site_name')),
+            'description' => Setting::get('seo_gallery_desc', 'Explore our visual journey in the seaweed industry.'),
+            'keywords' => Setting::get('seo_gallery_keywords'),
+        ];
+
+        return view('pages.gallery', compact('items', 'seo'));
     }
 
     public function contact()

@@ -16,6 +16,7 @@ Platform ini terbagi menjadi dua bagian utama: **Halaman Publik (Frontend)** dan
 7.  **Sertifikasi**: Informasi mengenai standar internasional yang dipenuhi (HACCP, Halal, Organik).
 8.  **Portal Berita**: Artikel terbaru mengenai industri rumput laut dengan fitur *like* dan komentar.
 9.  **AI Chatbot (Seaweed Intelligence)**: Asisten pintar berbasis AI untuk menjawab pertanyaan pengguna seputar produk dan layanan.
+10. **Galeri Industri**: Halaman visual yang menampilkan foto-foto aktivitas produksi dan fasilitas.
 
 ### B. Fitur Panel Admin (Filament)
 Admin dapat mengelola seluruh konten melalui dashboard yang aman:
@@ -26,7 +27,8 @@ Admin dapat mengelola seluruh konten melalui dashboard yang aman:
 5.  **Manajemen Tim**: Mengatur profil pengurus dan struktur organisasi.
 6.  **Konfigurasi Chatbot**: Mengatur opsi menu chatbot dan integrasi API OpenRouter.
 7.  **Pengaturan Hero Slide**: Mengubah tampilan visual di halaman utama.
-8.  **Pengaturan Sistem**: Mengelola SEO, alamat kontak, dan statistik global.
+8.  **Manajemen Galeri**: Mengelola foto galeri, kategori, dan pengaturan SEO per foto.
+9.  **Pengaturan Sistem & SEO**: Mengelola SEO global, alamat kontak, dan statistik secara dinamis.
 
 ## 3. Panduan Penggunaan AI Chatbot
 - Pengguna dapat memilih opsi menu yang tersedia (seperti "Tentang Kami", "Daftar Produk") atau mengetik pertanyaan bebas.

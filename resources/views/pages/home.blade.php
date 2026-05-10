@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'UPK Seaweed — Industrial Hub')
-@section('meta_description', 'Connecting Sustainable Farmers with the Global Marine Industry.')
+@section('title', $seo['title'])
+@section('meta_description', $seo['description'])
 
 @section('content')
 

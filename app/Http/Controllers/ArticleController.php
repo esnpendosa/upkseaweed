@@ -18,7 +18,13 @@ class ArticleController extends Controller
         // Dynamic View Counter
         $article->increment('views_count');
 
-        return view('pages.articles.show', compact('article'));
+        $seo = [
+            'title' => $article->seo_title ?: $article->getLocalized('title'),
+            'description' => $article->seo_description ?: $article->excerpt,
+            'keywords' => $article->seo_keywords,
+        ];
+
+        return view('pages.articles.show', compact('article', 'seo'));
     }
 
     /**

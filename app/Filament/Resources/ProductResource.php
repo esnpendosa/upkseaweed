@@ -121,6 +121,8 @@ class ProductResource extends Resource
                             ->helperText('Lower numbers appear first'),
                     ])
                     ->columns(3),
+                
+                \App\Filament\Schemas\SEOSection::make(),
             ]);
     }
 

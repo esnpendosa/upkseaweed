@@ -20,6 +20,7 @@ Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/structure', [PageController::class, 'team'])->name('team');
 Route::get('/products', [PageController::class, 'products'])->name('products');
 Route::get('/certifications', [PageController::class, 'certifications'])->name('certifications');
+Route::get('/gallery', [PageController::class, 'gallery'])->name('gallery');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 
 // Legal & Compliance
