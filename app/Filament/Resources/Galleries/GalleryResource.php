@@ -33,7 +33,7 @@ class GalleryResource extends Resource
     {
         return $schema
             ->components([
-                \Filament\Forms\Components\Section::make('Gallery Item')
+                \Filament\Schemas\Components\Section::make('Gallery Item')
                     ->schema([
                         TextInput::make('title')
                             ->required(),
