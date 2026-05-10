@@ -56,52 +56,97 @@ class ChatbotController extends Controller
 
     private function askAI($prompt, $locale)
     {
-        $apiKey = Setting::get('chatbot_openrouter_api_key');
+        Log::debug("Chatbot: askAI called with prompt: " . $prompt);
+        $apiKey = config('services.openrouter.api_key') ?: Setting::get('chatbot_openrouter_api_key');
         
         if (!$apiKey) {
-            return response()->json(['response' => "OpenRouter API Key tidak ditemukan.", 'type' => 'text'], 400);
+            Log::error("Chatbot Error: OpenRouter API Key not found in config or settings.");
+            return response()->json(['response' => "OpenRouter API Key tidak ditemukan. Harap hubungi administrator.", 'type' => 'text'], 200);
         }
+
+        Log::debug("Chatbot: Using API Key starting with: " . substr($apiKey, 0, 12) . "...");
 
         $productText = \App\Models\Product::where('is_active', true)->limit(15)->pluck('title')->implode(', ');
-
         $address = Setting::get('contact_address', 'Jl. Setro Barat, Pangkahkulon, Ujungpangkah, Gresik, Jawa Timur');
+        
         $systemPrompt = "You are 'Seaweed Intelligence', a premium assistant for UPK Seaweed.
-        CONTEXT: We export premium seaweed from Indonesia. 
-        LOCATION: {$address}.
-        PRODUCTS: {$productText}.
-        GUIDELINES: 
-        1. Respond in {$locale}. 
-        2. Professional & concise. 
-        3. Use Markdown. 
-        4. Sales contact: +6282228214233.";
+        CONTEXT: We export premium seaweed from Indonesia. LOCATION: {$address}. PRODUCTS: {$productText}.
+        GUIDELINES: Respond in {$locale}. Professional & concise. Use Markdown. Sales contact: +6282228214233.";
 
-        try {
-            $response = Http::timeout(40)->withHeaders([
-                'Authorization' => 'Bearer ' . $apiKey,
-                'Content-Type' => 'application/json',
-                'HTTP-Referer' => config('app.url'),
-                'X-OpenRouter-Title' => 'UPK Seaweed Industrial Hub',
-            ])->post('https://openrouter.ai/api/v1/chat/completions', [
-                'model' => 'openrouter/free',
-                'messages' => [
-                    ['role' => 'system', 'content' => $systemPrompt],
-                    ['role' => 'user', 'content' => $prompt]
-                ],
-                'temperature' => 0.7,
-            ]);
+        // --- SESSION-BASED MEMORY ---
+        $historyKey = 'chat_history_' . session()->getId();
+        $history = session()->get($historyKey, []);
+        
+        // Add current message to history
+        $history[] = ['role' => 'user', 'content' => $prompt];
+        
+        // Keep only last 10 messages for context
+        if (count($history) > 10) {
+            array_shift($history);
+        }
 
-            if ($response->successful()) {
+        $models = [
+            'openrouter/free',
+            'mistralai/mistral-7b-instruct:free',
+            'microsoft/phi-3-mini-128k-instruct:free',
+            'qwen/qwen-2-7b-instruct:free',
+        ];
+
+        $lastError = 'Unknown connection error';
+
+        foreach ($models as $currentModel) {
+            try {
+                $messages = array_merge([['role' => 'system', 'content' => $systemPrompt]], $history);
+                
+                $response = Http::timeout(30)
+                    ->withOptions([
+                        'force_ip_resolve' => 'v4', 
+                        'connect_timeout' => 10,
+                        'verify' => false, // Disable SSL verify temporarily
+                    ])
+                    ->withHeaders([
+                        'Authorization' => 'Bearer ' . $apiKey,
+                        'Content-Type' => 'application/json',
+                        'HTTP-Referer' => 'https://upkseaweed.id',
+                        'X-OpenRouter-Title' => 'UPK Seaweed Industrial Hub',
+                    ])->post('https://openrouter.ai/api/v1/chat/completions', [
+                        'model' => $currentModel,
+                        'messages' => $messages,
+                        'temperature' => 0.7,
+                    ]);
+
+                if (!$response->successful()) {
+                    $errorData = $response->json();
+                    $lastError = $errorData['error']['message'] ?? 'Status: ' . $response->status();
+                    Log::error("OpenRouter model {$currentModel} failed. Status: {$response->status()}, Response: " . json_encode($errorData));
+                    continue;
+                }
+
                 $text = $response->json()['choices'][0]['message']['content'] ?? null;
                 if ($text) {
+                    // Add AI response to history
+                    $history[] = ['role' => 'assistant', 'content' => $text];
+                    session()->put($historyKey, $history);
+                    
                     return response()->json(['response' => $text, 'type' => 'markdown']);
                 }
+
+            } catch (\Exception $e) {
+                $lastError = $e->getMessage();
+                Log::error("OpenRouter model {$currentModel} connection failed: " . $lastError);
+                continue;
             }
-
-            $error = $response->json()['error'] ?? ['message' => 'Gagal terhubung ke OpenRouter (Status: ' . $response->status() . ')'];
-            return response()->json(['response' => "OpenRouter Error: " . ($error['message'] ?? 'Unknown'), 'type' => 'text'], 500);
-
-        } catch (\Exception $e) {
-            return response()->json(['response' => "Error: " . $e->getMessage(), 'type' => 'text'], 500);
         }
+
+        $fallbackMessage = __('messages.bot_error');
+
+        if (config('app.debug')) {
+            $fallbackMessage .= "\n\n**Debug Info:** " . $lastError;
+        }
+
+        return response()->json([
+            'response' => $fallbackMessage,
+            'type' => 'markdown'
+        ], 200);
     }
 }

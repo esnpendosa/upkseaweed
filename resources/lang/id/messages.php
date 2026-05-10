@@ -183,4 +183,5 @@ return array (
   'bot_products_ans' => 'Kami memproduksi Eucheuma Cottonii, Spinosum, dan Gracilaria kualitas ekspor.',
   'bot_contact_ans' => 'Anda dapat menghubungi tim penjualan kami melalui WhatsApp di halaman Kontak kami.',
   'bot_default_ans' => 'Terima kasih atas pertanyaan Anda. Sebagai asisten AI Rumput Laut UPK Anda, saya hadir untuk membantu informasi tentang produk rumput laut dan logistik ekspor.',
+  'bot_error' => 'Maaf, sistem AI kami sedang mengalami gangguan teknis. Silakan coba lagi nanti atau hubungi tim sales kami.',
 );
