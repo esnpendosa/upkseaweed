@@ -30,7 +30,7 @@
                 <div class="group relative overflow-hidden rounded-2xl bg-slate-800 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-emerald-500/20">
                     <div class="aspect-w-16 aspect-h-12 overflow-hidden">
                         @if($item->image_path)
-                            <img src="{{ asset('storage/' . $item->image_path) }}" 
+                            <img src="{{ asset('media/' . $item->image_path) }}" 
                                  alt="{{ $item->getLocalized('title') }}" 
                                  class="object-cover w-full h-full transform transition-transform duration-700 group-hover:scale-110">
                         @else
