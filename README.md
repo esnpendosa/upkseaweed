@@ -83,6 +83,12 @@ Aplikasi ini sudah dioptimalkan untuk **Hostinger/Shared Hosting** dengan file `
 
 ---
 
+## 📱 Download Aplikasi Android
+Anda dapat mengunduh aplikasi resmi **UPK Seaweed** untuk perangkat Android melalui tautan di bawah ini:
+👉 **[Download upk.apk](https://upkseaweed.id/upk.apk)**
+
+---
+
 ## 📞 Kontak
 - **Situs**: [upkseaweed.id](https://upkseaweed.id)
 - **WhatsApp**: [+62 822-2821-4233](https://wa.me/6282228214233)

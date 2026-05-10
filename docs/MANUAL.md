@@ -39,4 +39,11 @@ Informasi mengenai kepemimpinan dan tim operasional dapat ditemukan di halaman *
 Untuk pertanyaan lebih lanjut atau pemesanan skala besar (bulk order), pengguna dapat menggunakan fitur formulir di halaman **Contact** atau langsung menghubungi Sales via WhatsApp yang tertera di platform.
 
 ---
+
+## 6. Download Aplikasi Android
+Platform UPK Seaweed juga tersedia dalam versi aplikasi Android untuk memudahkan akses mobile.
+- **Link Download**: [https://upkseaweed.id/upk.apk](https://upkseaweed.id/upk.apk)
+- **Cara Instalasi**: Unduh file APK, izinkan "Instalasi dari Sumber Tidak Dikenal" di pengaturan ponsel Anda, lalu jalankan file yang telah diunduh.
+
+---
 © 2026 UPK Seaweed Industrial Hub. Seluruh hak cipta dilindungi.
