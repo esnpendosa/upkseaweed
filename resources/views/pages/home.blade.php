@@ -2,6 +2,40 @@
 
 @section('title', $seo['title'])
 @section('meta_description', $seo['description'])
+@section('meta_keywords', $seo['keywords'] ?? 'seaweed exporter, Indonesia seaweed, Cottonii supplier, upk seaweed')
+
+@push('json_ld')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Corporation",
+  "name": "{{ \App\Models\Setting::get('site_name', 'UPK Seaweed') }}",
+  "alternateName": "Koperasi UPK Seaweed Ujungpangkah",
+  "url": "{{ url('/') }}",
+  "logo": "{{ asset('assets/img/logo-upkseaweed.png') }}",
+  "description": "{{ $seo['description'] }}",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Pangkahkulon",
+    "addressLocality": "Ujungpangkah",
+    "addressRegion": "Gresik, East Java",
+    "addressCountry": "ID"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "{{ \App\Models\Setting::get('whatsapp_number') }}",
+    "contactType": "sales",
+    "areaServed": "Worldwide",
+    "availableLanguage": ["English", "Indonesian", "Chinese"]
+  },
+  "sameAs": [
+    "https://facebook.com/upkseaweed",
+    "https://instagram.com/upkseaweed",
+    "https://linkedin.com/company/upkseaweed"
+  ]
+}
+</script>
+@endpush
 
 @section('content')
 

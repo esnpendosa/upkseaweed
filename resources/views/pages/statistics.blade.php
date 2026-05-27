@@ -2,6 +2,28 @@
 
 @section('title', $seo['title'])
 @section('meta_description', $seo['description'])
+@section('meta_keywords', 'seaweed statistics, industrial export capacity, seaweed production volume, blue economy growth')
+
+@push('json_ld')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "{{ $seo['title'] }}",
+  "description": "{{ $seo['description'] }}",
+  "url": "{{ url()->current() }}",
+  "about": {
+    "@type": "Dataset",
+    "name": "UPK Seaweed Cultivation & Export Volume Statistics",
+    "description": "Real-time production growth data and global market share stats of Ujungpangkah seaweed cooperative.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "{{ \App\Models\Setting::get('site_name', 'UPK Seaweed') }}"
+    }
+  }
+}
+</script>
+@endpush
 
 @section('content')
 <div class="relative pt-48 pb-24 bg-white dark:bg-upknavy overflow-hidden transition-colors duration-500">

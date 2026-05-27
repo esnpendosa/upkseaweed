@@ -2,6 +2,43 @@
 
 @section('title', $seo['title'])
 @section('meta_description', $seo['description'])
+@section('meta_keywords', 'seaweed industry news, Indonesia seaweed cooperative, Ujungpangkah marine hub updates, aquaculture research')
+
+@push('json_ld')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "{{ $seo['title'] }}",
+  "description": "{{ $seo['description'] }}",
+  "url": "{{ url()->current() }}",
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ \App\Models\Setting::get('site_name', 'UPK Seaweed') }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ asset('assets/img/logo-upkseaweed.png') }}"
+    }
+  },
+  "blogPost": [
+    @foreach($articles as $article)
+    {
+      "@type": "BlogPosting",
+      "headline": "{{ $article->getLocalized('title') }}",
+      "description": "{{ strip_tags($article->getLocalized('excerpt') ?? Str::limit(strip_tags($article->getLocalized('content')), 150)) }}",
+      "image": "{{ $article->image_path ? asset('/media/' . $article->image_path) : asset('assets/img/logo-upkseaweed.png') }}",
+      "datePublished": "{{ $article->published_at ? $article->published_at->toIso8601String() : $article->created_at->toIso8601String() }}",
+      "url": "{{ route('articles.show', $article->slug) }}",
+      "author": {
+        "@type": "Organization",
+        "name": "{{ \App\Models\Setting::get('site_name', 'UPK Seaweed') }}"
+      }
+    }{{ !$loop->last ? ',' : '' }}
+    @endforeach
+  ]
+}
+</script>
+@endpush
 
 @section('content')
 <div class="relative pt-48 pb-24 bg-white dark:bg-upknavy overflow-hidden transition-colors duration-500">

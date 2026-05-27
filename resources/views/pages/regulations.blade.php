@@ -2,6 +2,39 @@
 
 @section('title', $seo['title'])
 @section('meta_description', $seo['description'])
+@section('meta_keywords', 'seaweed regulations, trade policies, aquaculture compliance documents, Indonesian legal seaweed framework')
+
+@push('json_ld')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "{{ $seo['title'] }}",
+  "description": "{{ $seo['description'] }}",
+  "url": "{{ url()->current() }}",
+  "numberOfItems": {{ $regulations->count() }},
+  "itemListElement": [
+    @foreach($regulations as $index => $reg)
+    {
+      "@type": "ListItem",
+      "position": {{ $index + 1 }},
+      "item": {
+        "@type": "DigitalDocument",
+        "name": "{{ $reg->getLocalized('title') }}",
+        "description": "{{ strip_tags($reg->getLocalized('description')) }}",
+        "url": "{{ $reg->file_path ? asset('/media/' . $reg->file_path) : url()->current() }}",
+        "inLanguage": "{{ app()->getLocale() }}",
+        "publisher": {
+          "@type": "Organization",
+          "name": "{{ \App\Models\Setting::get('site_name', 'UPK Seaweed') }}"
+        }
+      }
+    }{{ !$loop->last ? ',' : '' }}
+    @endforeach
+  ]
+}
+</script>
+@endpush
 
 @section('content')
 <div class="relative pt-48 pb-24 bg-white dark:bg-upknavy overflow-hidden transition-colors duration-500">

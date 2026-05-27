@@ -1,6 +1,25 @@
 @extends('layouts.app')
 
 @section('title', $seo['title'])
+@section('meta_description', $seo['description'] ?? 'Privacy Policy of Koperasi UPK Seaweed. Learn how we handle B2B data, customer records, and compliance.')
+@section('meta_keywords', 'privacy policy, seaweed data storage, compliance, upk seaweed')
+
+@push('json_ld')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "{{ $seo['title'] }}",
+  "description": "{{ $seo['description'] ?? 'Privacy Policy of Koperasi UPK Seaweed.' }}",
+  "url": "{{ url()->current() }}",
+  "mainEntity": {
+    "@type": "WebPageElement",
+    "name": "Privacy Policy",
+    "text": "Data collection guidelines, personal records handling, security policies of UPK Seaweed cooperative portal."
+  }
+}
+</script>
+@endpush
 
 @section('content')
 <div class="relative pt-48 pb-24 bg-white dark:bg-upknavy overflow-hidden transition-colors duration-500">

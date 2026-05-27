@@ -1,6 +1,33 @@
 @extends('layouts.app')
 
 @section('title', 'Contact Us — ' . \App\Models\Setting::get('site_name'))
+@section('meta_description', __('messages.contact_subtitle', 'Get in touch with the sales team, cooperative compliance officers, or direct WhatsApp support lines of UPK Seaweed Ujungpangkah.'))
+@section('meta_keywords', 'contact upk seaweed, Ujungpangkah cooperative email, seaweed support hotline, seaweed sales B2B')
+
+@push('json_ld')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact Us — {{ \App\Models\Setting::get('site_name') }}",
+  "description": "Get in touch with the sales team, cooperative compliance officers, or direct WhatsApp support lines of UPK Seaweed Ujungpangkah.",
+  "url": "{{ url()->current() }}",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "{{ \App\Models\Setting::get('site_name', 'UPK Seaweed') }}",
+    "telephone": "{{ \App\Models\Setting::get('whatsapp_number') }}",
+    "email": "{{ \App\Models\Setting::get('site_email') }}",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Pangkahkulon",
+      "addressLocality": "Ujungpangkah",
+      "addressRegion": "Gresik, East Java",
+      "addressCountry": "ID"
+    }
+  }
+}
+</script>
+@endpush
 
 @section('content')
 <section class="relative pt-48 pb-24 bg-white dark:bg-upknavy overflow-hidden transition-colors duration-500">

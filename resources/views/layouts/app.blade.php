@@ -15,9 +15,19 @@
     {{-- Open Graph --}}
     <meta property="og:type" content="website">
     <meta property="og:title" content="@yield('title', \App\Models\Setting::get('seo_title', 'UPK Seaweed'))">
-    <meta property="og:description" content="@yield('meta_description', \App\Models\Setting::get('seo_description', 'SEAWEED EXPORTER'))">
+    <meta property="og:description" content="@yield('meta_description', \App\Models\Setting::get('seo_description', 'Leading Indonesian B2B seaweed exporter.'))">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:site_name" content="{{ \App\Models\Setting::get('site_name', 'UPK Seaweed') }}">
+    <meta property="og:image" content="{{ asset('assets/img/logo-upkseaweed.png') }}">
+
+    {{-- Twitter Cards --}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@yield('title', \App\Models\Setting::get('seo_title', 'UPK Seaweed'))">
+    <meta name="twitter:description" content="@yield('meta_description', \App\Models\Setting::get('seo_description', 'Leading Indonesian B2B seaweed exporter.'))">
+    <meta name="twitter:image" content="{{ asset('assets/img/logo-upkseaweed.png') }}">
+
+    {{-- Structured Data for AI & Search Engines --}}
+    @stack('json_ld')
 
     {{-- Hreflang Tags for Multi-language SEO --}}
     @php

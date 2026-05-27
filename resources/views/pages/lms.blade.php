@@ -2,6 +2,39 @@
 
 @section('title', $seo['title'])
 @section('meta_description', $seo['description'])
+@section('meta_keywords', 'seaweed education, sustainable farming, seaweed guides, upk seaweed, lms')
+
+@push('json_ld')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "{{ $seo['title'] }}",
+  "description": "{{ $seo['description'] }}",
+  "url": "{{ url()->current() }}",
+  "numberOfItems": {{ $modules->count() }},
+  "itemListElement": [
+    @foreach($modules as $index => $module)
+    {
+      "@type": "ListItem",
+      "position": {{ $index + 1 }},
+      "item": {
+        "@type": "TechArticle",
+        "headline": "{{ $module->getLocalized('title') }}",
+        "description": "{{ strip_tags($module->getLocalized('description')) }}",
+        "url": "{{ $module->link ?? url()->current() }}",
+        "inLanguage": "{{ app()->getLocale() }}",
+        "publisher": {
+          "@type": "Organization",
+          "name": "{{ \App\Models\Setting::get('site_name', 'UPK Seaweed') }}"
+        }
+      }
+    }{{ !$loop->last ? ',' : '' }}
+    @endforeach
+  ]
+}
+</script>
+@endpush
 
 @section('content')
 <div class="relative pt-48 pb-24 bg-white dark:bg-upknavy overflow-hidden transition-colors duration-500">

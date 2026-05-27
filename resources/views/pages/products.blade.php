@@ -2,6 +2,41 @@
 
 @section('title', $seo['title'])
 @section('meta_description', $seo['description'])
+@section('meta_keywords', $seo['keywords'] ?? 'seaweed product, Cottonii exporter, Gracilaria supplier, UPK Seaweed, high quality seaweed')
+
+@push('json_ld')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "{{ $seo['title'] }}",
+  "description": "{{ $seo['description'] }}",
+  "url": "{{ url()->current() }}",
+  "numberOfItems": {{ $products->count() }},
+  "itemListElement": [
+    @foreach($products as $index => $product)
+    {
+      "@type": "ListItem",
+      "position": {{ $index + 1 }},
+      "item": {
+        "@type": "Product",
+        "name": "{{ $product->getLocalized('title') }}",
+        "image": "{{ $product->image_path ? asset('/media/' . $product->image_path) : asset('assets/img/logo-upkseaweed.png') }}",
+        "description": "{{ strip_tags($product->getLocalized('description')) }}",
+        "category": "{{ $product->grade_type }}",
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "price": "0.00",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    }{{ !$loop->last ? ',' : '' }}
+    @endforeach
+  ]
+}
+</script>
+@endpush
 
 @section('content')
 <div class="relative pt-48 pb-24 bg-white dark:bg-upknavy overflow-hidden transition-colors duration-500">

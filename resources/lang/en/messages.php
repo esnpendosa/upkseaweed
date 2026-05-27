@@ -118,15 +118,15 @@ return [
     'contact_hq_title' => 'Global Headquarters',
 
     // Education / Academy
-    'edu_badge' => 'Industrial Scholarship',
-    'edu_h1' => 'Seaweed <span class="text-purple-400">Academy</span>',
-    'edu_subtitle' => 'Empowering farmers and cooperative members with global-standard knowledge. Browse our modules on cultivation techniques, financial management, and sustainable aquatic practices.',
-    'edu_module_badge' => 'Academic Module',
+    'edu_badge' => 'Seaweed Education',
+    'edu_h1' => 'Seaweed <span class="text-purple-400">Education</span> Hub',
+    'edu_subtitle' => 'Empowering farmers and cooperative members with global-standard knowledge. Browse our modules on cultivation techniques, resource management, and sustainable aquatic practices.',
+    'edu_module_badge' => 'Educational Guide',
     'edu_access' => 'Access Module',
     'edu_empty' => 'Educational modules are currently being drafted. Please check back soon.',
-    'edu_cta_title' => 'Want to certify your skills?',
-    'edu_cta_desc' => 'Join our certification program and get verified as an expert seaweed cultivator recognized by the Industry Hub.',
-    'edu_cta_btn' => 'Register for Certification',
+    'edu_cta_title' => 'Want to deepen your cultivation expertise?',
+    'edu_cta_desc' => 'Learn sustainable cultivation practices, water monitoring, and grade-A drying techniques from our industrial cooperative experts.',
+    'edu_cta_btn' => 'Consult with Our Experts',
 
     // Regulations
     'reg_badge' => 'Governance & Compliance',

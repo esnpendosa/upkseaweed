@@ -2,6 +2,43 @@
 
 @section('title', $seo['title'])
 @section('meta_description', $seo['description'])
+@section('meta_keywords', 'upk seaweed leadership, seaweed cooperative management, Ujungpangkah cooperative team, Indonesian seaweed experts')
+
+@push('json_ld')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "{{ $seo['title'] }}",
+  "description": "{{ $seo['description'] }}",
+  "url": "{{ url()->current() }}",
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": "Cooperative Leadership & Structure",
+    "numberOfItems": {{ $team->count() }},
+    "itemListElement": [
+      @foreach($team as $index => $member)
+      {
+        "@type": "ListItem",
+        "position": {{ $index + 1 }},
+        "item": {
+          "@type": "Person",
+          "name": "{{ $member->name }}",
+          "jobTitle": "{{ $member->getLocalized('position') }}",
+          "address": "{{ $member->address ?? 'Ujungpangkah, Gresik, Indonesia' }}",
+          "telephone": "{{ $member->phone ?? '' }}",
+          "worksFor": {
+            "@type": "Organization",
+            "name": "{{ \App\Models\Setting::get('site_name', 'UPK Seaweed') }}"
+          }
+        }
+      }{{ !$loop->last ? ',' : '' }}
+      @endforeach
+    ]
+  }
+}
+</script>
+@endpush
 
 @section('content')
 <div class="relative pt-48 pb-24 bg-white dark:bg-upknavy overflow-hidden transition-colors duration-500">

@@ -2,6 +2,26 @@
 
 @section('title', $seo['title'])
 @section('meta_description', $seo['description'])
+@section('meta_keywords', 'about upk seaweed, seaweed cooperative history, seaweed vision and mission, sustainable seaweed supplier')
+
+@push('json_ld')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "{{ $seo['title'] }}",
+  "description": "{{ $seo['description'] }}",
+  "url": "{{ url()->current() }}",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "{{ \App\Models\Setting::get('site_name', 'UPK Seaweed') }}",
+    "description": "{{ strip_tags($compro['foreword']) }}",
+    "knowsAbout": ["Sustainable Aquaculture", "Seaweed Harvesting", "Cooperative Business Model", "Indonesian Agriculture Export"],
+    "slogan": "{{ __('messages.about_quote') }}"
+  }
+}
+</script>
+@endpush
 
 @section('content')
 {{-- ============= HERO SECTION ============= --}}

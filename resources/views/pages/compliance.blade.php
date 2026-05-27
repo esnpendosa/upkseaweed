@@ -1,6 +1,25 @@
 @extends('layouts.app')
 
 @section('title', $seo['title'])
+@section('meta_description', $seo['description'] ?? 'Cooperative compliance and governance policies of UPK Seaweed. Maintaining export standards and legal regulations.')
+@section('meta_keywords', 'compliance policies, export regulations, legal framework, cooperative governance, upk seaweed')
+
+@push('json_ld')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "{{ $seo['title'] }}",
+  "description": "{{ $seo['description'] ?? 'Cooperative compliance and governance policies of UPK Seaweed.' }}",
+  "url": "{{ url()->current() }}",
+  "mainEntity": {
+    "@type": "WebPageElement",
+    "name": "Cooperative Compliance",
+    "text": "Regulatory governance, export standards compliance, and administrative transparency of UPK Seaweed."
+  }
+}
+</script>
+@endpush
 
 @section('content')
 <div class="relative pt-48 pb-24 bg-white dark:bg-upknavy overflow-hidden transition-colors duration-500">

@@ -86,9 +86,9 @@ class ChatbotController extends Controller
         }
 
         $models = [
+            'poolside/laguna-m.1:free',
             'openrouter/free',
-            'mistralai/mistral-7b-instruct:free',
-            'microsoft/phi-3-mini-128k-instruct:free',
+            'meta-llama/llama-3-8b-instruct:free',
             'qwen/qwen-2-7b-instruct:free',
         ];
 
@@ -96,12 +96,13 @@ class ChatbotController extends Controller
 
         foreach ($models as $currentModel) {
             try {
+                Log::debug("Chatbot: Attempting model " . $currentModel);
                 $messages = array_merge([['role' => 'system', 'content' => $systemPrompt]], $history);
                 
-                $response = Http::timeout(30)
+                $response = Http::timeout(6)
                     ->withOptions([
                         'force_ip_resolve' => 'v4', 
-                        'connect_timeout' => 10,
+                        'connect_timeout' => 3,
                         'verify' => false, // Disable SSL verify temporarily
                     ])
                     ->withHeaders([
@@ -124,6 +125,7 @@ class ChatbotController extends Controller
 
                 $text = $response->json()['choices'][0]['message']['content'] ?? null;
                 if ($text) {
+                    Log::debug("Chatbot: Success with model " . $currentModel);
                     // Add AI response to history
                     $history[] = ['role' => 'assistant', 'content' => $text];
                     session()->put($historyKey, $history);
@@ -140,8 +142,14 @@ class ChatbotController extends Controller
 
         $fallbackMessage = __('messages.bot_error');
 
-        if (config('app.debug')) {
-            $fallbackMessage .= "\n\n**Debug Info:** " . $lastError;
+        $whatsappNumber = Setting::get('whatsapp_number', '6282228214233');
+        $whatsappText = urlencode("Halo Admin UPK Seaweed, saya mengalami kendala teknis saat menggunakan Asisten AI Chatbot dan ingin bertanya langsung.");
+        $whatsappUrl = "https://wa.me/{$whatsappNumber}?text={$whatsappText}";
+
+        if ($locale === 'id') {
+            $fallbackMessage .= "\n\nSilakan hubungi admin kami secara langsung melalui WhatsApp:\n👉 **[WhatsApp Chat Admin]({$whatsappUrl})**";
+        } else {
+            $fallbackMessage .= "\n\nPlease contact our admin directly via WhatsApp:\n👉 **[WhatsApp Chat Admin]({$whatsappUrl})**";
         }
 
         return response()->json([

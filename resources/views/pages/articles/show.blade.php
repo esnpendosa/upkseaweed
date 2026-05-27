@@ -2,6 +2,37 @@
 
 @section('title', $article->getLocalized('title') . ' — ' . \App\Models\Setting::get('site_name'))
 @section('meta_description', $article->getLocalized('excerpt') ?? Str::limit(strip_tags($article->getLocalized('content')), 160))
+@section('meta_keywords', $article->seo_keywords ?? 'seaweed news, upk seaweed article, sustainable seaweed farming')
+
+@push('json_ld')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ $article->getLocalized('title') }}",
+  "description": "{{ strip_tags($article->getLocalized('excerpt') ?? Str::limit(strip_tags($article->getLocalized('content')), 160)) }}",
+  "image": "{{ $article->image_path ? asset('/media/' . $article->image_path) : asset('assets/img/logo-upkseaweed.png') }}",
+  "datePublished": "{{ $article->published_at ? $article->published_at->toIso8601String() : $article->created_at->toIso8601String() }}",
+  "dateModified": "{{ $article->updated_at->toIso8601String() }}",
+  "author": {
+    "@type": "Organization",
+    "name": "{{ \App\Models\Setting::get('site_name', 'UPK Seaweed') }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ \App\Models\Setting::get('site_name', 'UPK Seaweed') }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ asset('assets/img/logo-upkseaweed.png') }}"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ url()->current() }}"
+  }
+}
+</script>
+@endpush
 
 @section('content')
 <div class="relative pt-48 bg-white dark:bg-upknavy overflow-hidden transition-colors duration-500">

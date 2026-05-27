@@ -38,6 +38,11 @@ Route::get('/sitemap.xml', function() {
     return response()->view('sitemap', compact('articles'))->header('Content-Type', 'text/xml');
 });
 
+Route::get('/robots.txt', function() {
+    $content = "User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /filament/\n\nSitemap: " . url('/sitemap.xml') . "\n";
+    return response($content)->header('Content-Type', 'text/plain');
+});
+
 // AI Chatbot Routes
 Route::prefix('api/chatbot')->group(function () {
     Route::get('/options', [ChatbotController::class, 'getOptions']);

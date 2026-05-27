@@ -2,6 +2,37 @@
 
 @section('title', $seo['title'])
 @section('meta_description', $seo['description'])
+@section('meta_keywords', 'seaweed certifications, HACCP certified seaweed, Halal seaweed exporter, ISO seaweed standard')
+
+@push('json_ld')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "{{ $seo['title'] }}",
+  "description": "{{ $seo['description'] }}",
+  "url": "{{ url()->current() }}",
+  "numberOfItems": {{ $certifications->count() }},
+  "itemListElement": [
+    @foreach($certifications as $index => $cert)
+    {
+      "@type": "ListItem",
+      "position": {{ $index + 1 }},
+      "item": {
+        "@type": "CreativeWork",
+        "name": "{{ $cert->getLocalized('title') }}",
+        "description": "{{ strip_tags($cert->getLocalized('description')) }}",
+        "publisher": {
+          "@type": "Organization",
+          "name": "{{ $cert->issuer ?? 'Standards Body' }}"
+        }
+      }
+    }{{ !$loop->last ? ',' : '' }}
+    @endforeach
+  ]
+}
+</script>
+@endpush
 
 @section('content')
 <div class="relative pt-48 pb-24 bg-white dark:bg-upknavy overflow-hidden transition-colors duration-500">
