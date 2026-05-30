@@ -153,5 +153,7 @@ class DatabaseSeeder extends Seeder
         foreach ($certifications as $cert) {
             Certification::firstOrCreate(['name' => $cert['name']], $cert);
         }
+
+        $this->call(TradePriceSeeder::class);
     }
 }

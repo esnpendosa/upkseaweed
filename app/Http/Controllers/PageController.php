@@ -63,12 +63,14 @@ class PageController extends Controller
 
     public function trade()
     {
+        $tradePrices = \App\Models\TradePrice::where('is_active', true)->ordered()->get();
+
         $seo = [
             'title' => __('messages.nav_trade') . ' - ' . Setting::getLocalized('site_name'),
             'description' => Setting::getLocalized('seo_trade_desc', 'Direct marketplace for seaweed products and global industrial trade.'),
         ];
 
-        return view('pages.trade', compact('seo'));
+        return view('pages.trade', compact('seo', 'tradePrices'));
     }
 
     public function lms()

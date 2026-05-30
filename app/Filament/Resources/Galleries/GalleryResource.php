@@ -27,6 +27,11 @@ class GalleryResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    protected static string|\UnitEnum|null $navigationGroup = 'Konten';
+    protected static ?string $navigationLabel = 'Galeri';
+    protected static ?string $pluralModelLabel = 'Galeri';
+    protected static ?string $modelLabel = 'Galeri';
+
     protected static ?string $recordTitleAttribute = 'title';
 
     public static function form(Schema $schema): Schema

@@ -23,7 +23,11 @@ class RegulationResource extends Resource
 
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-document-text';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Management';
+    protected static string|UnitEnum|null $navigationGroup = 'Manajemen';
+
+    protected static ?string $navigationLabel = 'Regulasi / Kebijakan';
+    protected static ?string $pluralModelLabel = 'Regulasi / Kebijakan';
+    protected static ?string $modelLabel = 'Regulasi / Kebijakan';
 
     protected static ?int $navigationSort = 2;
 

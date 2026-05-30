@@ -22,7 +22,11 @@ class TeamMemberResource extends Resource
 
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-users';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Management';
+    protected static string|UnitEnum|null $navigationGroup = 'Manajemen';
+
+    protected static ?string $navigationLabel = 'Anggota Tim';
+    protected static ?string $pluralModelLabel = 'Anggota Tim';
+    protected static ?string $modelLabel = 'Anggota Tim';
 
     protected static ?int $navigationSort = 4;
 

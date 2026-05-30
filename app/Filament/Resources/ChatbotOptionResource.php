@@ -24,7 +24,11 @@ class ChatbotOptionResource extends Resource
 
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-chat-bubble-left-right';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'AI Support';
+    protected static string|\UnitEnum|null $navigationGroup = 'Dukungan AI';
+
+    protected static ?string $navigationLabel = 'Pilihan Chatbot';
+    protected static ?string $pluralModelLabel = 'Pilihan Chatbot';
+    protected static ?string $modelLabel = 'Pilihan Chatbot';
 
     protected static ?int $navigationSort = 1;
 

@@ -79,22 +79,31 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-100 dark:divide-white/5 transition-colors">
-                            @foreach([
-                                ['type' => 'Dried Cottonii', 'specs' => 'Moisture ≤38%, Impurities ≤3%', 'price' => 'Rp 28.500/kg', 'trend' => '+2.5%', 'color' => 'text-upkgreen'],
-                                ['type' => 'Dried Spinosum', 'specs' => 'Moisture ≤38%, Impurities ≤3%', 'price' => 'Rp 12.000/kg', 'trend' => '-1.2%', 'color' => 'text-red-400'],
-                                ['type' => 'Gracilaria SP', 'specs' => 'Premium Grade, Sun Dried', 'price' => 'Rp 14.500/kg', 'trend' => '+0.8%', 'color' => 'text-upkgreen'],
-                                ['type' => 'Semi-Refined (SRC)', 'specs' => 'Industrial Processing Grade', 'price' => 'Contact Us', 'trend' => 'Stable', 'color' => 'text-blue-400'],
-                            ] as $item)
+                            @foreach($tradePrices as $item)
+                            @php
+                                $color = match($item->trend_direction) {
+                                    'up' => 'text-upkgreen',
+                                    'down' => 'text-red-400',
+                                    'stable' => 'text-blue-400',
+                                    default => 'text-gray-400'
+                                };
+                                $bulletColor = match($item->trend_direction) {
+                                    'up' => 'bg-upkgreen',
+                                    'down' => 'bg-red-400',
+                                    'stable' => 'bg-blue-400',
+                                    default => 'bg-gray-300 dark:bg-gray-700'
+                                };
+                            @endphp
                             <tr class="hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-colors group">
                                 <td class="px-12 py-8">
                                     <div class="flex items-center gap-4">
-                                        <div class="w-2 h-2 rounded-full {{ str_contains($item['color'], 'upkgreen') ? 'bg-upkgreen' : 'bg-gray-300 dark:bg-gray-700' }} transition-colors"></div>
-                                        <span class="text-upknavy-900 dark:text-white font-black uppercase tracking-tight text-lg transition-colors">{{ $item['type'] }}</span>
+                                        <div class="w-2 h-2 rounded-full {{ $bulletColor }} transition-colors"></div>
+                                        <span class="text-upknavy-900 dark:text-white font-black uppercase tracking-tight text-lg transition-colors">{{ $item->getLocalized('product_name') }}</span>
                                     </div>
                                 </td>
-                                <td class="px-12 py-8 text-gray-500 dark:text-gray-400 text-sm font-medium italic transition-colors">{{ $item['specs'] }}</td>
-                                <td class="px-12 py-8 text-upknavy-900 dark:text-white font-black text-right text-lg tracking-tighter transition-colors">{{ $item['price'] }}</td>
-                                <td class="px-12 py-8 font-black text-right uppercase tracking-widest text-[10px] {{ $item['color'] }} transition-colors">{{ $item['trend'] }}</td>
+                                <td class="px-12 py-8 text-gray-500 dark:text-gray-400 text-sm font-medium italic transition-colors">{{ $item->getLocalized('quality_specs') }}</td>
+                                <td class="px-12 py-8 text-upknavy-900 dark:text-white font-black text-right text-lg tracking-tighter transition-colors">{{ $item->reference_price }}</td>
+                                <td class="px-12 py-8 font-black text-right uppercase tracking-widest text-[10px] {{ $color }} transition-colors">{{ $item->market_trend }}</td>
                             </tr>
                             @endforeach
                         </tbody>

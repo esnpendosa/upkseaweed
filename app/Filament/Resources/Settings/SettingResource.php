@@ -20,7 +20,11 @@ class SettingResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-cog-6-tooth';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'System';
+    protected static string|\UnitEnum|null $navigationGroup = 'Sistem';
+
+    protected static ?string $navigationLabel = 'Pengaturan';
+    protected static ?string $pluralModelLabel = 'Pengaturan';
+    protected static ?string $modelLabel = 'Pengaturan';
 
     protected static ?int $navigationSort = 10;
 

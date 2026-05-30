@@ -20,7 +20,11 @@ class ArticleResource extends Resource
 
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-newspaper';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Content';
+    protected static string|\UnitEnum|null $navigationGroup = 'Konten';
+
+    protected static ?string $navigationLabel = 'Artikel';
+    protected static ?string $pluralModelLabel = 'Artikel';
+    protected static ?string $modelLabel = 'Artikel';
 
     protected static ?int $navigationSort = 1;
 

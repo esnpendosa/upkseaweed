@@ -25,7 +25,11 @@ class CertificationResource extends Resource
 
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-shield-check';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Catalog';
+    protected static string|UnitEnum|null $navigationGroup = 'Katalog';
+
+    protected static ?string $navigationLabel = 'Sertifikasi';
+    protected static ?string $pluralModelLabel = 'Sertifikasi';
+    protected static ?string $modelLabel = 'Sertifikasi';
 
     protected static ?int $navigationSort = 2;
 

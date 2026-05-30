@@ -23,7 +23,11 @@ class EducationModuleResource extends Resource
 
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-academic-cap';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Management';
+    protected static string|UnitEnum|null $navigationGroup = 'Manajemen';
+
+    protected static ?string $navigationLabel = 'Modul Edukasi (LMS)';
+    protected static ?string $pluralModelLabel = 'Modul Edukasi (LMS)';
+    protected static ?string $modelLabel = 'Modul Edukasi (LMS)';
 
     protected static ?int $navigationSort = 3;
 

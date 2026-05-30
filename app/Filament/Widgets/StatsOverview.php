@@ -10,16 +10,16 @@ class StatsOverview extends StatsOverviewWidget
     protected function getStats(): array
     {
         return [
-            Stat::make('Total Products', \App\Models\Product::count())
-                ->description('All catalog items')
+            Stat::make('Total Produk', \App\Models\Product::count())
+                ->description('Semua item katalog')
                 ->descriptionIcon('heroicon-m-cube')
                 ->color('success'),
-            Stat::make('Total Articles', \App\Models\Article::count())
-                ->description('Published news & updates')
+            Stat::make('Total Artikel', \App\Models\Article::count())
+                ->description('Berita & pembaruan diterbitkan')
                 ->descriptionIcon('heroicon-m-newspaper')
                 ->color('info'),
-            Stat::make('Certifications', \App\Models\Certification::count())
-                ->description('Active quality certificates')
+            Stat::make('Sertifikasi', \App\Models\Certification::count())
+                ->description('Sertifikat kualitas aktif')
                 ->descriptionIcon('heroicon-m-shield-check')
                 ->color('warning'),
         ];

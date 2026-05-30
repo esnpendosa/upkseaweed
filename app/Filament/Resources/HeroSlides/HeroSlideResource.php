@@ -22,6 +22,11 @@ class HeroSlideResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    protected static string|\UnitEnum|null $navigationGroup = 'Konten';
+    protected static ?string $navigationLabel = 'Slide Hero';
+    protected static ?string $pluralModelLabel = 'Slide Hero';
+    protected static ?string $modelLabel = 'Slide Hero';
+
     public static function form(Schema $schema): Schema
     {
         return HeroSlideForm::configure($schema);
