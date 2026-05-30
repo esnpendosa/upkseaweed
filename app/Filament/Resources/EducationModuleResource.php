@@ -43,10 +43,6 @@ class EducationModuleResource extends Resource
                 
                 Section::make('Appearance & Link')
                     ->schema([
-                        FileUpload::make('image_path')
-                            ->image()
-                            ->directory('education')
-                            ->label('Banner Image'),
                         TextInput::make('link')
                             ->url()
                             ->maxLength(255),
