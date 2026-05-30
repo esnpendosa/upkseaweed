@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Contact Us — ' . \App\Models\Setting::get('site_name'))
-@section('meta_description', __('messages.contact_subtitle', 'Get in touch with the sales team, cooperative compliance officers, or direct WhatsApp support lines of UPK Seaweed Ujungpangkah.'))
+@section('meta_description', __('messages.contact_subtitle'))
 @section('meta_keywords', 'contact upk seaweed, Ujungpangkah cooperative email, seaweed support hotline, seaweed sales B2B')
 
 @push('json_ld')
