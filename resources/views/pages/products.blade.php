@@ -39,7 +39,7 @@
 @endpush
 
 @section('content')
-<div class="relative pt-48 pb-24 bg-white dark:bg-upknavy overflow-hidden transition-colors duration-500">
+<div x-data="{ selectedCategories: [], showType: 'all' }" class="relative pt-48 pb-24 bg-white dark:bg-upknavy overflow-hidden transition-colors duration-500">
     {{-- Hero Background --}}
     <div class="absolute inset-0 z-0">
         <img src="{{ asset('assets/img/dummy/hero_products.png') }}" class="w-full h-full object-cover">
@@ -57,10 +57,14 @@
             </div>
             <div class="flex items-center gap-4">
                  <div class="glass p-2 rounded-3xl border border-gray-200 dark:border-white/5 flex shadow-2xl bg-white/50 dark:bg-white/5">
-                    <button class="px-10 py-5 bg-upkgreen text-white rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all shadow-lg active:scale-95">
+                    <button @click="showType = 'all'" 
+                            :class="showType === 'all' ? 'bg-upkgreen text-white shadow-lg' : 'text-gray-400 dark:text-gray-500 hover:text-upknavy-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'"
+                            class="px-10 py-5 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all active:scale-95">
                         {{ __('messages.prod_all') }}
                     </button>
-                    <button class="px-10 py-5 text-gray-400 dark:text-gray-500 hover:text-upknavy-900 dark:hover:text-white rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all hover:bg-slate-100 dark:hover:bg-white/5">
+                    <button @click="showType = 'wholesale'" 
+                            :class="showType === 'wholesale' ? 'bg-upkgreen text-white shadow-lg' : 'text-gray-400 dark:text-gray-500 hover:text-upknavy-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'"
+                            class="px-10 py-5 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all active:scale-95">
                         {{ __('messages.prod_wholesale') }}
                     </button>
                  </div>
@@ -81,7 +85,7 @@
                         @foreach($categories as $cat)
                         <label class="flex items-center gap-4 cursor-pointer group">
                             <div class="relative w-5 h-5">
-                                <input type="checkbox" class="peer hidden">
+                                <input type="checkbox" value="{{ $cat }}" x-model="selectedCategories" class="peer hidden">
                                 <div class="w-full h-full rounded border-2 border-gray-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 peer-checked:bg-upkgreen peer-checked:border-upkgreen transition-all"></div>
                             </div>
                             <span class="text-sm font-bold text-gray-700 dark:text-gray-300 group-hover:text-upknavy-900 dark:group-hover:text-white transition-colors">{{ $cat }}</span>
@@ -121,7 +125,11 @@
             <div class="lg:col-span-3">
                 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
                     @foreach($products as $product)
-                    <div class="reveal glass rounded-[3rem] border border-gray-100 dark:border-white/5 overflow-hidden flex flex-col group transition-all duration-500 hover:border-upkgreen/30 hover:-translate-y-2 shadow-2xl bg-white dark:bg-upknavy-800 transition-colors">
+                    <div x-show="(selectedCategories.length === 0 || selectedCategories.includes('{{ $product->grade_type }}')) && (showType === 'all' || '{{ $product->grade_type }}' !== 'Other')"
+                         x-transition:enter="transition ease-out duration-300"
+                         x-transition:enter-start="opacity-0 scale-95"
+                         x-transition:enter-end="opacity-100 scale-100"
+                         class="reveal glass rounded-[3rem] border border-gray-100 dark:border-white/5 overflow-hidden flex flex-col group transition-all duration-500 hover:border-upkgreen/30 hover:-translate-y-2 shadow-2xl bg-white dark:bg-upknavy-800 transition-colors">
                         {{-- Image Area --}}
                         <div class="aspect-square relative overflow-hidden bg-slate-100 dark:bg-upknavy-700">
                             @if($product->image_path)
