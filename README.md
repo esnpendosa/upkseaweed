@@ -40,8 +40,10 @@ Terminal khusus untuk transaksi B2B global dengan spesifikasi industri yang mend
 ### 4. 🎓 Seaweed Academy (LMS)
 Portal edukasi digital untuk memberdayakan petani rumput laut dengan standar budidaya global.
 
-### 5. 📝 CMS Berbasis Filament v3
-Panel administrasi modern untuk pengelolaan berita, produk, sertifikasi, dan anggota tim secara efisien.
+### 5. 📝 CMS Berbasis Filament v3 & Role-Based Access Control (RBAC)
+Panel administrasi modern untuk pengelolaan berita, produk, sertifikasi, dan anggota tim secara efisien. Sekarang dilengkapi dengan sistem manajemen user dan pembagian hak akses dinamis:
+- 👑 **Administrator**: Akses penuh ke seluruh sistem termasuk **Manajemen Pengguna (User Management)** dan **Pengaturan Sistem (Settings)**. Dilengkapi fitur keamanan pencegah lockout (tidak bisa menghapus akun sendiri).
+- ✍️ **Content Editor**: Akses terbatas khusus pengelolaan konten operasional (Produk, Harga, Akademi, Artikel, Regulasi, dll) dan diblokir secara mutlak dari menu administratif.
 
 ---
 

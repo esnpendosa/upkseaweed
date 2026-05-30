@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'UPK Admin',
                 'password' => Hash::make('password'),
+                'role' => 'admin',
             ]
         );
 

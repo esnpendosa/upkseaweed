@@ -61,6 +61,7 @@ Gresik, 19 Mei 2026
         *   3.2.11. Manajemen Anggota Koperasi (Khusus Pengurus)
         *   3.2.12. Manajemen Master Data & Sistem (Khusus Pengurus)
         *   3.2.13. Fitur Pencatatan Laporan Atas Nama Pekerja / Anggota (Khusus Pengurus)
+        *   3.2.14. Manajemen Pengguna & Hak Akses / RBAC (Khusus Administrator)
 *   **BAB IV: PEMECAHAN MASALAH (TROUBLESHOOTING)**
 
 ---
@@ -354,6 +355,37 @@ Fitur eksklusif ini dirancang untuk memudahkan Pengurus Koperasi melakukan penca
     *   Masukkan jumlah **potongan berat (KG)** jika ada, serta pilih tipe tambak (**Sewa** atau **Petani**).
 4.  **Simpan Laporan**: Klik tombol hitam **"Simpan Laporan"** di paling bawah.
 5.  **Verifikasi Pencatatan**: Data panen akan langsung terikat ke akun anggota yang dipilih. Laporan ini otomatis tercatat di menu **Laporan Excel Koperasi** dengan nama petani yang Anda pilih secara real-time dan teratur tanpa ada data yang tertinggal atau minus!
+
+#### 3.2.14. Manajemen Pengguna & Hak Akses / RBAC (Khusus Administrator)
+Untuk menjaga keamanan data dan membagi tanggung jawab kerja, sistem dilengkapi dengan **Manajemen Pengguna (User Management)** dan pembatasan hak akses berbasis peran (**Role-Based Access Control / RBAC**).
+
+##### A. Pembagian Hak Akses Peran (Roles):
+- 👑 **Administrator (`admin`)**:
+  - Memiliki kontrol penuh atas seluruh sistem dan CMS.
+  - Satu-satunya peran yang dapat mengakses menu **Pengguna (User Management)** untuk menambah/menghapus/menyunting pengguna.
+  - Satu-satunya peran yang dapat mengakses menu **Pengaturan (Settings)** sistem.
+  - Memiliki fitur pengaman lockout otomatis (sistem melarang Administrator menghapus akunnya sendiri yang sedang aktif digunakan login).
+- ✍️ **Content Editor (`editor`)**:
+  - Hanya dapat mengelola konten operasional website (seperti Produk, Harga, Modul Akademi LMS, Artikel/Berita, Regulasi, Galeri, Banner Hero).
+  - Diblokir secara mutlak dari akses menu **Pengguna** dan **Pengaturan**. Jika mencoba mengakses paksa via URL, sistem akan mengembalikan error *403 Forbidden*.
+
+##### B. Cara Menambah Pengguna Baru (CMS Admin Panel):
+1. Log masuk sebagai akun dengan peran **Administrator**.
+2. Pada sidebar navigasi kiri, gulir ke grup menu **Sistem**, lalu klik menu **Pengguna**.
+3. Di sudut kanan atas tabel, klik tombol **"Buat Pengguna"** (*New Pengguna*).
+4. Isi data pada formulir:
+   - **Nama**: Nama lengkap pengguna (misal: *Wawan Editor*).
+   - **Email**: Alamat email unik (misal: *editor@upkseaweed.id*).
+   - **Peran / Role**: Pilih **Administrator** atau **Content Editor**.
+   - **Kata Sandi**: Masukkan sandi minimal 8 karakter.
+5. Klik tombol **"Buat"** (*Create*) di bagian bawah. Akun baru langsung aktif secara real-time.
+
+##### C. Cara Menyunting & Mengubah Sandi Pengguna:
+1. Masuk ke halaman daftar **Pengguna**.
+2. Klik tombol **Edit** (ikon pensil) pada baris data pengguna yang ingin disunting.
+3. Ubah informasi dasar jika ada perubahan.
+4. **Mengubah Sandi**: Jika ingin mengganti kata sandi, ketik kata sandi baru pada kolom **Kata Sandi**. Jika sandi **tidak ingin diubah**, biarkan kolom tersebut **kosong** (sistem tidak akan menimpa sandi lama dengan nilai kosong).
+5. Klik **"Simpan Perubahan"** (*Save*).
 
 ---
 
